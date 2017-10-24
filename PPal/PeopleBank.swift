@@ -7,18 +7,19 @@
 //
 
 import Foundation
-class PeopleBank{
-    
-    //var people: [Person]
-    
-    func sort() {}
-    func add() -> Bool{}//bool
-    func del() -> Bool{}//bool
-   // func getlist() -> [People]//[people]
-    func getcount() -> Int{} //int
-    
-    
-    
-    
-    
-}
+//class PeopleBank{
+//
+//    //var people: [Person]
+//
+//    func sort() {}
+//    func add() -> Bool{}//bool
+//    func del() -> Bool{}//bool
+//   // func getlist() -> [People]//[people]
+//    func getcount() -> Int{} //int
+//
+//
+//
+//
+//
+//}
+
