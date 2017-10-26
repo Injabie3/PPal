@@ -12,6 +12,8 @@ import XCTest
 
 class PersonTest: XCTestCase {
     
+    let person1 = Person() // A Person object we will continuously use.s
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,7 +27,6 @@ class PersonTest: XCTestCase {
 
     /// Tests setting correct information using setInfo()
     func testSetInfo_correct() {
-        let person1 = Person()
         let result = person1.setInfo(pathToPhoto: "aPathToAPhoto.jpg", firstName: "Ryan", lastName: "Lui", phoneNumber: "+16041234567", email: "rclui@sfu.ca", address: "123 Fake Street", hasHouseKeys: false, labels: [])
         
         XCTAssert(result, "Person information was not set correctly!")
@@ -34,7 +35,6 @@ class PersonTest: XCTestCase {
 
     /// Tests setting blank photo path
     func testSetInfo_photoBlank() {
-        let person1 = Person()
         let result = person1.setInfo(pathToPhoto: "", firstName: "Ryan", lastName: "Lui", phoneNumber: "+16041234567", email: "rclui@sfu.ca", address: "123 Fake Street", hasHouseKeys: false, labels: [])
         
         XCTAssertFalse(result, "Blank photo path not detected correctly!")
@@ -42,7 +42,6 @@ class PersonTest: XCTestCase {
     
     /// Tests setting blank first name.
     func testSetInfo_blankFirstName() {
-        let person1 = Person()
         let result = person1.setInfo(pathToPhoto: "aPathToAPhoto.jpg", firstName: "", lastName: "Lui", phoneNumber: "+16041234567", email: "rclui@sfu.ca", address: "123 Fake Street", hasHouseKeys: false, labels: [])
         
         XCTAssertFalse(result, "Blank firstName not detected correctly!")
@@ -51,7 +50,6 @@ class PersonTest: XCTestCase {
     /// Tests setting blank last name.
     func testSetInfo_blankLastName() {
         // Tests setting blank last name.
-        let person1 = Person()
         let result = person1.setInfo(pathToPhoto: "aPathToAPhoto.jpg", firstName: "Ryan", lastName: "", phoneNumber: "+16041234567", email: "rclui@sfu.ca", address: "123 Fake Street", hasHouseKeys: false, labels: [])
         
         XCTAssertFalse(result, "Blank lastName not detected correctly!")
@@ -59,7 +57,6 @@ class PersonTest: XCTestCase {
     
     /// Tests setting blank phone number, and phone number with invalid characters.
     func testSetInfo_invalidPhoneNumber() {
-        let person1 = Person()
         
         // 1. Test blank phone number
         var result = person1.setInfo(pathToPhoto: "aPathToAPhoto.jpg", firstName: "Ryan", lastName: "", phoneNumber: "+16041234567", email: "rclui@sfu.ca", address: "123 Fake Street", hasHouseKeys: false, labels: [])
@@ -80,6 +77,27 @@ class PersonTest: XCTestCase {
         
         XCTAssertFalse(result, "Invalid phone number (symbols not detected correctly!")
         
+    }
+    
+    /// Tests adding a label to a person.
+    func testAddLabel_NonExistent() {
+        let label01 = Label()
+        _ = label01.editLabel(name: "Family")
+        let result = person1.add(label: label01)
+        
+        XCTAssertTrue(result)
+    }
+    
+    /// Tests adding a duplicate label to a person.
+    func testAddLabel_Duplicate() {
+        let label01 = Label()
+        
+        var result = person1.add(label: label01)
+        
+        // Try adding the same label again
+        result = person1.add(label: label01)
+        
+        XCTAssertFalse(result, "The duplicate was added!")
     }
     
     

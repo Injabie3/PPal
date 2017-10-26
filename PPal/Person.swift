@@ -22,35 +22,40 @@ class Person {
         self.labels = []
     }
     
+    private var id: Int = 0 // This holds the ID of the person.  To be used with the database.
     private var photo: String = "" // An image of the person. Not sure if we should use UIImage here, probably want a path here.
-    private var firstName: String = "" // The first name of the person.
-    private var lastName: String = "" // The last name of the person.
-    private var phoneNumber: String = "" // The phone number of the person.
+    private var firstName: String = "" // The first name of the person. Must not be empty as per requirements.
+    private var lastName: String = "" // The last name of the person. Must not be empty as per requirements.
+    private var phoneNumber: String = "" // The phone number of the person. Must not be empty as per requirements.
     private var email: String = "" // The email address.
     private var address: String = "" // The house address.
     private var hasHouseKeys: Bool = false // Does this person have keys for the AD patient?
-    private var labels: [Label]
+    private var labels: [Label] // An array of Labels associated with the person.
+    
+    private var hasMaxLabels: Bool {
+        get {
+            return labels.count >= 10 // As per Profile requirements.
+        }
+    }
+    
     var validate: Bool {
         get {
             //Do error checking here.
             if (photo == "" || firstName == "" || lastName == "" || phoneNumber == "") {
                 return false
             }
-                // Check if the phone number is valid.
-            else if (phoneNumber == "" || phoneNumber.rangeOfCharacter(from: validPhoneNumberCharacters.inverted) != nil) {
+            // Check if the phone number is valid.
+            else if (!phoneNumber.isValidPhoneNumber) {
                 return false
             }
-            else if (email != "" && email.rangeOfCharacter(from: CharacterSet(charactersIn: "@")) == nil ) {
-                return false;
+            // Check if the email is valid.
+            else if (email != "" && !email.isValidEmail) {
+                return false
             } else {
                 return true
             }
         }
     }
-    
-    // Helpers
-    /// The valid characters in a phone number.
-    private let validPhoneNumberCharacters = CharacterSet(charactersIn: "-+1234567890")
     
     /**
      Gets a Person's first and last name.
@@ -60,9 +65,47 @@ class Person {
          - firstName: The first name of the Person.
          - lastName: The last name of the Person.
      */
-    func getName() -> (String, String) {
+    func getName() -> (firstName: String, lastName: String) {
         return (firstName, lastName)
     }
+    
+    /**
+     Gets a Person's phone number.
+     
+     - returns: String
+     */
+    func getPhoneNumber() -> String {
+        return phoneNumber
+    }
+    
+    /**
+     Associates a Label with a Person.
+     
+     - parameter label: A Label.
+     - returns:
+         - True if the label was successfully added.
+         - False if the label could not be added.
+             This can be due to the label already existing in the list,
+             or due to the fact that the person has the maximum number of labels.
+     */
+    func add(label: Label) -> Bool {
+        if self.hasMaxLabels {
+            return false
+        }
+        
+        // Check to see if the label exists in the list.
+        for listItem in self.labels {
+            if listItem.name == label.name {
+                return false
+            }
+        }
+        
+        // We've made it this far, so we can safely add the label, and return true.
+        self.labels.append(label)
+        return true
+    }
+    
+    
     
     /**
      Sets the info for a Person.
@@ -101,11 +144,12 @@ class Person {
             return false
         }
         // Check if the phone number is valid.
-        else if (phoneNumber == "" || phoneNumber.rangeOfCharacter(from: validPhoneNumberCharacters.inverted) != nil) {
+        else if (!phoneNumber.isValidPhoneNumber) {
             return false
         }
-        else if (email != "" && email.rangeOfCharacter(from: CharacterSet(charactersIn: "@")) == nil ) {
-            return false;
+        // Check if the email is valid.
+        else if (email != "" && !email.isValidEmail ) {
+            return false
         } else {
             self.photo = photo
             self.firstName = firstName
@@ -147,3 +191,22 @@ class Person {
     
 }
 
+extension Person: Equatable {
+    /**
+     Defines the equality operator to signify what is meant by
+     having two Person objects being "equivalent"
+     
+     Referenced: https://developer.apple.com/documentation/swift/equatable
+     */
+    static func == (lhs: Person, rhs: Person) -> Bool {
+        let lhsInfo = lhs.getInfo()
+        let rhsInfo = rhs.getInfo()
+        return
+            lhsInfo.pathToPhoto == rhsInfo.pathToPhoto &&
+            lhsInfo.firstName == rhsInfo.firstName &&
+            lhsInfo.lastName == rhsInfo.lastName &&
+            lhsInfo.phoneNumber == rhsInfo.phoneNumber &&
+            lhsInfo.email == rhsInfo.email &&
+            lhsInfo.hasHouseKeys == rhsInfo.hasHouseKeys
+    }
+}
