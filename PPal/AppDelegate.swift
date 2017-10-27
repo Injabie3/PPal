@@ -8,25 +8,11 @@
 //
 
 import UIKit
-import SQLite
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    
-    //Table variable declaration
-    let personsTable = Table("persons")
-    let id = Expression<Int>("id")
-    let pathToPhoto = Expression<String>("pathToPhoto")
-    let firstName = Expression<String>("firstName")
-    let lastName = Expression<String>("lastName")
-    let phoneNumber = Expression<String>("phoneNumber")
-    let email = Expression<String>("email")
-    let address = Expression<String>("address")
-    let hasHouseKeys = Expression<Bool>("hasHouseKeys")
-    //we'll need to discuss how to store the labels ***
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -41,28 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print(error)
         }
-        
-        //Which variables needs to be unique? needs to be discussed _mirac
-        let createTable = self.personsTable.create { (table) in
-            table.column(self.id, primaryKey: true)
-            table.column(self.pathToPhoto, unique: true)
-            table.column(self.firstName)
-            table.column(self.lastName)
-            table.column(self.phoneNumber, unique: true)
-            table.column(self.email, unique: true)
-            table.column(self.address)
-            table.column(self.hasHouseKeys)
-            //again missing labels here***
-        }
 
-        do {
-            try self.database.run(createTable)
-            print("Table created")
-        } catch {
-            print(error)
-        }
-      
-        //==================mirac
         
         return true
     }
