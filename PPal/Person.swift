@@ -3,11 +3,13 @@
 //  PPal
 //
 //  Created by rclui on 10/20/17.
+//  Last modified by mirac on 10/27/2017
 //  Copyright © 2017 CMPT275. All rights reserved.
 //
 
 import Foundation
 import UIKit
+import SQLite
 
 class Person {
     init () {
@@ -23,6 +25,8 @@ class Person {
     private var address: String = ""
     private var hasHouseKeys: Bool = false
     //private var labels: [Label]
+    
+    var database: Connection!
     
     func getName() -> String {
         if (firstName == "" || lastName == "") {
@@ -57,7 +61,25 @@ class Person {
             self.email = email
             self.address = address
             self.hasHouseKeys = hasHouseKeys
+            
+            
+            //make connection to database
+            let database = try Connection(fileUrl.path) //***** "fileUrl.path" needs to be replaced
+            self.database = database
+            
+            let createProfile = self.personsTable.insert(self.pathToPhoto <- pathToPhoto, self.firstName <- firstName,
+               self.lastName <- lastName, self.phoneNumber <- phoneNumber, self.email <- email, self.address <- address,
+               self.hasHouseKeys <- hasHouseKeys)
+            do {
+                try self.database.run(createProfile)
+                print("Profile created")
+            } catch {
+                print(error)
+            }
+            
+            
             return true
+            
         }
         
     }
