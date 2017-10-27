@@ -39,7 +39,7 @@ class Person {
     }
     
     func setInfo (
-        photo: UIImage?,
+        photo: UIImage?, //pathToPhoto?
         firstName: String,
         lastName: String,
         phoneNumber: String,
@@ -54,7 +54,7 @@ class Person {
             return false
         }
         else {
-            self.photo = photo
+            self.photo = photo //pathToPhoto?
             self.firstName = firstName
             self.lastName = lastName
             self.phoneNumber = phoneNumber
@@ -67,12 +67,14 @@ class Person {
             let database = try Connection(fileUrl.path) //***** "fileUrl.path" needs to be replaced
             self.database = database
             
-            let createProfile = self.personsTable.insert(self.pathToPhoto <- pathToPhoto, self.firstName <- firstName,
+            //save profile entry to database
+            //***REPLACE "self.personsTable" so that it refers to personsTable in "class AppDelegate"
+            let saveProfile = self.personsTable.insert(self.pathToPhoto <- pathToPhoto, self.firstName <- firstName,
                self.lastName <- lastName, self.phoneNumber <- phoneNumber, self.email <- email, self.address <- address,
                self.hasHouseKeys <- hasHouseKeys)
             do {
-                try self.database.run(createProfile)
-                print("Profile created")
+                try self.database.run(saveProfile)
+                print("Profile saved")
             } catch {
                 print(error)
             }
