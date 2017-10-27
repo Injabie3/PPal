@@ -38,7 +38,7 @@ class Person {
         }
     }
     
-    var validate: Bool {
+    var valid: Bool {
         get {
             //Do error checking here.
             if (photo == "" || firstName == "" || lastName == "" || phoneNumber == "") {
@@ -50,6 +50,10 @@ class Person {
             }
             // Check if the email is valid.
             else if (email != "" && !email.isValidEmail) {
+                return false
+            }
+            // Check if the person has at least one label.
+            else if (labels.count == 0) {
                 return false
             } else {
                 return true
@@ -78,16 +82,19 @@ class Person {
         return phoneNumber
     }
     
+    
+    
     /**
      Associates a Label with a Person.
      
      - parameter label: A Label.
      - returns:
-         - True if the label was successfully added.
-         - False if the label could not be added.
-             This can be due to the label already existing in the list,
-             or due to the fact that the person has the maximum number of labels.
+     - True if the label was successfully added.
+     - False if the label could not be added.
+     This can be due to the label already existing in the list,
+     or due to the fact that the person has the maximum number of labels.
      */
+    @discardableResult
     func add(label: Label) -> Bool {
         if self.hasMaxLabels {
             return false
@@ -95,9 +102,20 @@ class Person {
         
         // Check to see if the label exists in the list.
         for listItem in self.labels {
-            if listItem.name == label.name {
+            if listItem == label {
                 return false
             }
+        }
+        
+        // Check to see if the label has a blank name.
+        if label.getName() == "" {
+            return false
+        }
+        
+        // Check to see if we can add this Person to the label, if not
+        // return false
+        if !label.add(person: self) {
+            return false
         }
         
         // We've made it this far, so we can safely add the label, and return true.
@@ -105,7 +123,38 @@ class Person {
         return true
     }
     
-    
+    /**
+     Delete/disassociates a Label with a Person.
+     
+     - parameter label: A Label.
+     - returns:
+     - True if the label was successfully deleted from this person.
+     - False if the label could not be deleted.
+         This can be due to the label not associated with this person.
+     */
+    @discardableResult
+    func del(label: Label) -> Bool {
+        
+        // Check to see if the label is associated with this person.
+        // If not, return false.
+        let indexToRemove = self.labels.index(of: label)
+        
+        if indexToRemove == nil {
+            return false
+        }
+        
+        // Try to remove this person from the label, if not
+        // return false
+        if !label.del(person: self) {
+            return false
+        }
+        
+        // We've made it this far, so we can safely remove the label, and return true.
+        self.labels.remove(at: indexToRemove!)
+        return true
+        
+        
+    }
     
     /**
      Sets the info for a Person.
@@ -135,8 +184,7 @@ class Person {
         phoneNumber: String,
         email: String,
         address: String,
-        hasHouseKeys: Bool,
-        labels: [Label]
+        hasHouseKeys: Bool
         ) -> Bool {
         
         //Do error checking here.
