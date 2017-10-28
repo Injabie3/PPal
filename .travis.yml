@@ -1,0 +1,11 @@
+language: objective-c
+osx_image: xcode9.0
+xcode_project: PPal.xcodeproj # path to your xcodeproj folder
+xcode_scheme: PPal
+xcode_sdk: iphonesimulator11.0
+
+before_install:
+- brew install tailor
+script:
+- tailor PPal
+- tailor PPalTests
