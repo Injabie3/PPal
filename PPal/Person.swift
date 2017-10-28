@@ -17,8 +17,11 @@ class Person {
     init (pathToPhoto photo: String,
           firstName: String,
           lastName: String,
-          phoneNumber: String,
-          labels: [Label]) {
+          phoneNumber: String) {
+        self.photo = photo
+        self.firstName = firstName
+        self.lastName = lastName
+        self.phoneNumber = phoneNumber
         self.labels = []
     }
     
@@ -38,6 +41,14 @@ class Person {
         }
     }
     
+    /**
+     Determines if the Person is valid.  That is to say, they have all the necessary fields, including
+     - photo
+     - firstName
+     - lastName
+     - phoneNumber
+     - At least one Label
+     */
     var valid: Bool {
         get {
             //Do error checking here.
@@ -82,7 +93,14 @@ class Person {
         return phoneNumber
     }
     
-    
+    /**
+     Gets the list of Labels.
+     
+     - returns: An array of Labels
+     */
+    func getLabels() -> [Label] {
+        return labels
+    }
     
     /**
      Associates a Label with a Person.
@@ -235,6 +253,22 @@ class Person {
         hasHouseKeys: Bool,
         labels: [Label]) {
             return (self.photo, self.firstName, self.lastName, self.phoneNumber, self.email, self.address, self.hasHouseKeys, self.labels)
+    }
+    
+    /**
+     Clears (removes) all references that this object has to/from its Labels.
+     
+     This is to avoid cyclic strong references
+     
+     You must RUN this in the following situations:
+     - Before permanently "removing" a person.
+     
+     */
+    func clearAll() {
+        for item in labels {
+            _ = item.del(person: self)
+        }
+        labels.removeAll()
     }
     
 }

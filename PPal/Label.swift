@@ -37,6 +37,24 @@ class Label {
     }
     
     /**
+     Determines if the label is valid.  Must have a name.
+     */
+    var valid: Bool {
+        get {
+            return name != ""
+        }
+    }
+    
+    /**
+     The number of people that are associated with this label.
+     */
+    var count: Int {
+        get {
+            return people.count
+        }
+    }
+    
+    /**
      Gets a list of Person(s) associated with the label.
      
      -returns: Array of Person(s)
@@ -129,6 +147,22 @@ class Label {
             self.people.remove(at: indexOfExistingPerson!)
             return true
         }
+    }
+    
+    /**
+     Clears (removes) all references that this object has to/from its list of people.
+     
+     This is to avoid cyclic strong references
+     
+     You must RUN this in the following situations:
+     - Before "removing" the label.
+     */
+    func clearAll() {
+        for item in people {
+            _ = item.del(label: self)
+        }
+        // Just to be safe.
+        people.removeAll()
     }
     
 }

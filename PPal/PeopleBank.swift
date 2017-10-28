@@ -28,6 +28,15 @@ class PeopleBank{
     }
     
     /**
+     The number of Person(s) in this bank of people.
+     */
+    var count: Int {
+        get {
+            return self.people.count
+        }
+    }
+    
+    /**
      Add a person to the list.
      - parameter person: The Person to add.
      - returns: true or false
@@ -64,6 +73,8 @@ class PeopleBank{
         if !people.contains(person) {
             return false
         }
+        
+        person.clearAll() // Remove cyclic references to its label.
         let indexToRemove = people.index(of: person)
         people.remove(at: indexToRemove!)
         
