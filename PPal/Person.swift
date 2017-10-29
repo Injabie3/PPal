@@ -73,6 +73,57 @@ class Person {
     }
     
     /**
+     Sets a Person's first and last name.
+     - parameters:
+         - firstName: The person's first name.
+         - lastName: The person's last name.
+     - returns: true or false
+         - True if the name was set successfully.
+         - False if the name was not set, due to a blank String supplied.
+     */
+    func set(firstName: String, lastName: String) -> Bool {
+        if (firstName == "" || lastName == "") {
+            return false
+        }
+        
+        self.firstName = firstName
+        self.lastName = lastName
+        return true
+    }
+    
+    /**
+     Sets a Person's email address.
+     - parameter emailAddress: A valid email address.
+     - returns: true or false
+         - True if it was set successfully.
+         - False if it was not set, due to a blank String, or invalid email address.
+     */
+    func set(email: String) -> Bool {
+        if (email == "" || !email.isValidEmail) {
+            return false
+        }
+        
+        self.email = email
+        return true
+    }
+    
+    /**
+     Sets a Person's phone number
+     - parameter phoneNumber: The person's phone number.
+     - returns: true or false
+         - True if it was set successfully.
+         - False if it was not set, due to a blank String, or invalid email address.
+     */
+    func set(phoneNumber: String) -> Bool {
+        if (phoneNumber == "" || !phoneNumber.isValidPhoneNumber) {
+            return false
+        }
+        
+        self.phoneNumber = phoneNumber
+        return true
+    }
+    
+    /**
      Gets a Person's first and last name.
      
      - returns:
@@ -82,15 +133,6 @@ class Person {
      */
     func getName() -> (firstName: String, lastName: String) {
         return (firstName, lastName)
-    }
-    
-    /**
-     Gets a Person's phone number.
-     
-     - returns: String
-     */
-    func getPhoneNumber() -> String {
-        return phoneNumber
     }
     
     /**
@@ -109,8 +151,10 @@ class Person {
      - returns:
      - True if the label was successfully added.
      - False if the label could not be added.
-     This can be due to the label already existing in the list,
-     or due to the fact that the person has the maximum number of labels.
+     This can be due to the following:
+         - The label already exists in the list
+         - The label is invalid.
+         - The person has the maximum number of labels.
      */
     @discardableResult
     func add(label: Label) -> Bool {
