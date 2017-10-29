@@ -206,5 +206,25 @@ class PeopleBankTest: XCTestCase {
         
     }
     
+    /**
+     Test to see if the list is sorted correctly in alphabetical order.
+     */
+    func testSortingFirstName() {
+        
+        _ = listOfPeople!.add(label: label01!)
+        
+        for item in 0..<mixedUpListOfPeopleToSort.count {
+            mixedUpListOfPeopleToSort[item]!.add(label: label01!)
+            _ = listOfPeople!.add(person: mixedUpListOfPeopleToSort[item]!)
+        }
+        
+        let list = listOfPeople!.getPeople()
+        
+        for item in 1..<list.count {
+            XCTAssertTrue(list[item-1].getName().firstName < list[item].getName().firstName, "First names are not in alphabetical order!")
+        }
+        
+    }
+    
 
 }
