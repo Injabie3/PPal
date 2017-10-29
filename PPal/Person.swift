@@ -151,8 +151,10 @@ class Person {
      - returns:
      - True if the label was successfully added.
      - False if the label could not be added.
-     This can be due to the label already existing in the list,
-     or due to the fact that the person has the maximum number of labels.
+     This can be due to the following:
+         - The label already exists in the list
+         - The label is invalid.
+         - The person has the maximum number of labels.
      */
     @discardableResult
     func add(label: Label) -> Bool {
