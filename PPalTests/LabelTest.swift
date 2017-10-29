@@ -36,14 +36,14 @@ class LabelTest: XCTestCase {
     }
     
     /// Test to see if we can change the name of a label to be blank.
-    func testEditLabelNameBlankName() {
+    func testEditLabelNameButBlankName() {
         let result = label01!.editLabel(name: "")
         
         XCTAssertFalse(result, "You managed to change the label name to be blank!")
     }
     
     /// Test to see if we can create two labels, and change them to the same name.
-    func testEditLabelNameSameName() {
+    func testEditLabelNameButSameName() {
         _ = label01?.editLabel(name: "Family")
         
         // This should fail because Family already exists.

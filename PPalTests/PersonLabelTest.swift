@@ -101,40 +101,40 @@ class PersonLabelTest: XCTestCase {
         XCTAssertFalse(resultFromLabel, "The person still exists in the label!")
     }
     
-//    /**
-//     Test to see if we can add more than 10 labels to a person.
-//     */
-//    func testAddMoreThan10LabelsToPerson() {
-//        for item in labels {
-//            person01.add(label: item)
-//        }
-//
-//        let label01 = Label()
-//        
-//        label01.editLabel(name: "Test")
-//
-//        let resultFromPerson = person01.add(label: label01)
-//        let resultFromLabel = label01.getPeople().contains(person01)
-//
-//        XCTAssertFalse(resultFromPerson, "You somehow added a label to this person even though they have 10 labels!")
-//        XCTAssertFalse(resultFromLabel, "The person still got added to the label!")
-//    }
+    /**
+     Test to see if we can add more than 10 labels to a person.
+     */
+    func testAddMoreThan10LabelsToPerson() {
+        for item in labels {
+            person01!.add(label: item!)
+        }
+
+        let label01 = Label()
+        
+        label01.editLabel(name: "Test")
+
+        let resultFromPerson = person01!.add(label: label01)
+        let resultFromLabel = label01.getPeople().contains(person01!)
+
+        XCTAssertFalse(resultFromPerson, "You somehow added a label to this person even though they have 10 labels!")
+        XCTAssertFalse(resultFromLabel, "The person still got added to the label!")
+    }
     
     /**
      Test to see if we can add 10 labels, and then remove them all.
      */
     func testAdd10LabelsAndRemove10Labels() {
+        var result: Bool
+        
         for item in labels {
-            person01!.add(label: item!)
+            result = person01!.add(label: item!)
+            XCTAssertTrue(result, "Could not add label #\(String(describing: item)) into the Person object")
         }
         
-        label01!.editLabel(name: "Test")
-        
-        let resultFromPerson = person01!.add(label: label01!)
-        let resultFromLabel = label01!.getPeople().contains(person01!)
-        
-        XCTAssertFalse(resultFromPerson, "You somehow added a label to this person even though they have 10 labels!")
-        XCTAssertFalse(resultFromLabel, "The person still got added to the label!")
+        for item in person01!.getLabels() {
+            result = person01!.del(label: item)
+            XCTAssertTrue(result, "Could not remove label #\(String(describing: item)) from the Person object")
+        }
     }
     
 }
