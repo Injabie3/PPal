@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let fileUrl = documentDirectory.appendingPathComponent("persons").appendingPathExtension("sqlite3")
         } catch {
             print(error)
-            return false
         }
 
         
