@@ -5,6 +5,8 @@
 //  Created by Mirac Chen on 10/29/2017.
 //  Copyright © 2017 CMPT275. All rights reserved.
 //
+
+
 import Foundation
 import SQLite
 
@@ -98,8 +100,18 @@ class Database {
 	}
 
     }
-	
 
 
+    func deleteProfileById(id: Int) -> Bool {
+            
+        let profile = self.PersonsTable.filter(self.id == id)
+        let deleteProfile = profile.delete()
+        do {
+            try self.database.run(deleteProfile)
+	    return true
+        } catch {
+	    print(error)
+	    return false
+        }
 
 }
