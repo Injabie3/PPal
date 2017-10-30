@@ -117,15 +117,14 @@ class Database {
     //Only updating email address by user ID, need to discuss how this should work
     func updateProfile(id: Int, email: String) -> Bool {
             
-            let profile = self.personsTable.filter(self.id == id)
-            let updateProfile = profile.update(self.email <- email)
-            do {
-                try self.database.run(updateProfile)
-		return true
-            } catch {
-                print(error)
-		return false
-            }
+        let profile = self.personsTable.filter(self.id == id)
+        let updateProfile = profile.update(self.email <- email)
+        do {
+	    try self.database.run(updateProfile)
+	    return true
+        } catch {
+	    print(error)
+	    return false
         }
     }
 	
