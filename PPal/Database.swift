@@ -13,15 +13,15 @@ import SQLite
 class Database {
 
     //Table variable declaration
-    let PersonsTable = Table("persons")
-    let Id = Expression<Int>("id")
-    let PathToPhoto = Expression<String>("pathToPhoto")
-    let FirstName = Expression<String>("firstName")
-    let LastName = Expression<String>("lastName")
-    let PhoneNumber = Expression<String>("phoneNumber")
-    let Email = Expression<String>("email")
-    let Address = Expression<String>("address")
-    let HasHouseKeys = Expression<Bool>("hasHouseKeys")
+    let personsTable = Table("persons")
+    let id = Expression<Int>("id")
+    let pathToPhoto = Expression<String>("pathToPhoto")
+    let firstName = Expression<String>("firstName")
+    let lastName = Expression<String>("lastName")
+    let phoneNumber = Expression<String>("phoneNumber")
+    let email = Expression<String>("email")
+    let address = Expression<String>("address")
+    let hasHouseKeys = Expression<Bool>("hasHouseKeys")
     //we'll need to discuss how to store the labels ***
     
     //Establish connection to the database file
@@ -32,15 +32,15 @@ class Database {
     
     func createTable() -> Bool {
         
-	let tryCreatingTable = self.PersonsTable.create { (table) in
-	    table.column(self.Id, primaryKey: true)
-	    table.column(self.PathToPhoto, unique: true)
-       	    table.column(self.FirstName)
-	    table.column(self.LastName)
-	    table.column(self.PhoneNumber, unique: true)
-	    table.column(self.Email, unique: true)
-	    table.column(self.Address)
-	    table.column(self.HasHouseKeys)
+	let tryCreatingTable = self.personsTable.create { (table) in
+	    table.column(self.id, primaryKey: true)
+	    table.column(self.pathToPhoto, unique: true)
+       	    table.column(self.firstName)
+	    table.column(self.lastName)
+	    table.column(self.phoneNumber, unique: true)
+	    table.column(self.email, unique: true)
+	    table.column(self.address)
+	    table.column(self.hasHouseKeys)
 	    //again missing labels here***
 	}
 
@@ -68,9 +68,9 @@ class Database {
         ) -> Bool {
         
 	//save profile entry to database
-	let saveProfile = self.PersonsTable.insert(self.PathToPhoto <- pathToPhoto, self.FirstName <- firstName,
-	   self.LastName <- lastName, self.PhoneNumber <- phoneNumber, self.Email <- email, self.Address <- address,
-	   self.HasHouseKeys <- hasHouseKeys)
+	let saveProfile = self.personsTable.insert(self.pathToPhoto <- pathToPhoto, self.firstName <- firstName,
+	   self.lastName <- lastName, self.phoneNumber <- phoneNumber, self.email <- email, self.address <- address,
+	   self.hasHouseKeys <- hasHouseKeys)
 	do {
 	    try self.database.run(saveProfile)
 	    return true
@@ -82,17 +82,14 @@ class Database {
     }
 	
 	
-	
+
+
     func retrieveProfileById (id: Int) -> Bool {
 
 	do {
-	    let profiles = try self.database.prepare(self.PersonsTable)
-	    for profile in profiles {
-	        if (id == profile[self.id]){
-		    //can be modified to create an persons object instead of printing
-		    print("userId: \(profile[self.id]), firstName: \(profile[self.firstName]), lastName: \(profile[self.lastName]), phoneNumber: \(profile[self.phoneNumber]), email: \(profile[self.email]), address: \(profile[self.address]), hasHouseKeys: \(profile[self.hasHouseKeys])")
-		}
-	    }
+	    let profile = self.personsTable.filter(self.id == id)
+	    //can be modified to create an persons object instead of printing
+	    print("userId: \(profile[self.id]), firstName: \(profile[self.firstName]), lastName: \(profile[self.lastName]), phoneNumber: \(profile[self.phoneNumber]), email: \(profile[self.email]), address: \(profile[self.address]), hasHouseKeys: \(profile[self.hasHouseKeys])")
 	    return true
 	} catch {
 	    print(error)
@@ -102,9 +99,10 @@ class Database {
     }
 
 
+
     func deleteProfileById(id: Int) -> Bool {
             
-        let profile = self.PersonsTable.filter(self.id == id)
+        let profile = self.personsTable.filter(self.id == id)
         let deleteProfile = profile.delete()
         do {
             try self.database.run(deleteProfile)
@@ -113,5 +111,23 @@ class Database {
 	    print(error)
 	    return false
         }
+    }
+	
+
+    //Only updating email address by user ID, need to discuss how this should work
+    func updateProfile(id: Int, email: String) -> Bool {
+            
+            let profile = self.personsTable.filter(self.id == id)
+            let updateProfile = profile.update(self.email <- email)
+            do {
+                try self.database.run(updateProfile)
+		return true
+            } catch {
+                print(error)
+		return false
+            }
+        }
+    }
+	
 
 }
