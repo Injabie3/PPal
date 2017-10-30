@@ -27,15 +27,15 @@ class Person {
     //private var labels: [Label]
     
     //Table variable declaration
-    let personsTable = Table("persons")
-    let id = Expression<Int>("id")
-    let pathToPhoto = Expression<String>("pathToPhoto")
-    let firstName = Expression<String>("firstName")
-    let lastName = Expression<String>("lastName")
-    let phoneNumber = Expression<String>("phoneNumber")
-    let email = Expression<String>("email")
-    let address = Expression<String>("address")
-    let hasHouseKeys = Expression<Bool>("hasHouseKeys")
+    let PersonsTable = Table("persons")
+    let Id = Expression<Int>("id")
+    let PathToPhoto = Expression<String>("pathToPhoto")
+    let FirstName = Expression<String>("firstName")
+    let LastName = Expression<String>("lastName")
+    let PhoneNumber = Expression<String>("phoneNumber")
+    let Email = Expression<String>("email")
+    let Address = Expression<String>("address")
+    let HasHouseKeys = Expression<Bool>("hasHouseKeys")
     //we'll need to discuss how to store the labels ***
 
 
@@ -45,15 +45,15 @@ class Person {
     //Table creation
     //Which variables needs to be unique? needs to be discussed _mirac
     
-    try database.run(personsTable.create { (table) in
-        table.column(self.id, primaryKey: true)
-        table.column(self.pathToPhoto, unique: true)
-        table.column(self.firstName)
-        table.column(self.lastName)
-        table.column(self.phoneNumber, unique: true)
-        table.column(self.email, unique: true)
-        table.column(self.address)
-        table.column(self.hasHouseKeys)
+    try database.run(PersonsTable.create { (table) in
+        table.column(self.Id, primaryKey: true)
+        table.column(self.PathToPhoto, unique: true)
+        table.column(self.FirstName)
+        table.column(self.LastName)
+        table.column(self.PhoneNumber, unique: true)
+        table.column(self.Email, unique: true)
+        table.column(self.Address)
+        table.column(self.HasHouseKeys)
         //again missing labels here***
     })
 
@@ -94,9 +94,9 @@ class Person {
             
             
             //save profile entry to database
-            let saveProfile = self.personsTable.insert(self.pathToPhoto <- pathToPhoto, self.firstName <- firstName,
-               self.lastName <- lastName, self.phoneNumber <- phoneNumber, self.email <- email, self.address <- address,
-               self.hasHouseKeys <- hasHouseKeys)
+            let saveProfile = self.PersonsTable.insert(self.PathToPhoto <- pathToPhoto, self.FirstName <- firstName,
+               self.LastName <- lastName, self.PhoneNumber <- phoneNumber, self.Email <- email, self.Address <- address,
+               self.HasHouseKeys <- hasHouseKeys)
             do {
                 try self.database.run(saveProfile)
                 print("Profile saved")
