@@ -3,6 +3,7 @@
 //  PPal
 //
 //  Created by rclui on 10/20/17.
+//  Last modified by mirac on 10/27/2017
 //  Copyright © 2017 CMPT275. All rights reserved.
 //
 
@@ -16,6 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        //create document path URL if not existed
+        do {
+            let documentDirectory = try FileManager.default.url(for: .documentDirectory, 
+                in: .userDomainMask, appropriateFor: nil, create: true)
+            let fileUrl = documentDirectory.appendingPathComponent("persons").appendingPathExtension("sqlite3")
+        } catch {
+            print(error)
+        }
+
+        
         return true
     }
 
