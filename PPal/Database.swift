@@ -65,7 +65,7 @@ class Database {
         }
 
         do {
-            try self.database.run(tryCreatingLabelTable)
+            try self.labelDatabase.run(tryCreatingLabelTable)
         } catch {
             print(error)
         }
