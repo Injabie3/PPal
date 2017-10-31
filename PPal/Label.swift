@@ -20,11 +20,13 @@ class Label {
             return nil
         }
         Label.names.append(name)
+        self.id = 0
         self.name = name
         self.people = []
     }
     
     init() {
+        self.id = 0
         self.name = ""
         self.people = []
     }
