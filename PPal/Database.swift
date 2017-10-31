@@ -22,79 +22,82 @@ class Database {
     let email = Expression<String>("email")
     let address = Expression<String>("address")
     let hasHouseKeys = Expression<Bool>("hasHouseKeys")
-    //we'll need to discuss how to store the labels ***
+    let labels = Expression<String>("labels")
+    var database: Connection!
     
-    //Establish connection to the database file
-    let database = try Connection(fileUrl.path) //***** "fileUrl.path" needs to be replaced with reaql path <String>
+    //we'll need to discuss how to store the labels ***
+    //create document path URL if not existed
+    init (){
+        do {
+            let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let fileUrl = documentDirectory.appendingPathComponent("persons").appendingPathExtension("sqlite3")
+            let database = try Connection(fileUrl.path)
+            self.database = database
+            self.createTable()
+        } catch {
+            print(error)
+        }    //Establish connection to the database file
+    }
     
     //Table creation
     //Which variables needs to be unique? needs to be discussed _mirac
     
-    func createTable() -> Bool {
+    func createTable() {
         
-	let tryCreatingTable = self.personsTable.create { (table) in
-	    table.column(self.id, primaryKey: true)
-	    table.column(self.pathToPhoto, unique: true)
-       	    table.column(self.firstName)
-	    table.column(self.lastName)
-	    table.column(self.phoneNumber, unique: true)
-	    table.column(self.email, unique: true)
-	    table.column(self.address)
-	    table.column(self.hasHouseKeys)
-	    //again missing labels here***
-	}
+        let tryCreatingTable = self.personsTable.create { (table) in
+            table.column(self.id, primaryKey: true)
+            table.column(self.pathToPhoto, unique: true)
+            table.column(self.firstName)
+            table.column(self.lastName)
+            table.column(self.phoneNumber, unique: true)
+            table.column(self.email, unique: true)
+            table.column(self.address)
+            table.column(self.hasHouseKeys)
+            table.column(self.labels)
+            //again missing labels here***
+        }
 
         do {
             try self.database.run(tryCreatingTable)
-            return true
         } catch {
-	    print(error)
-            return false
+            print(error)
         }
  	
     }
 
 	
     //can be modified to accept class type
-    func saveProfileToDataBase (
-        pathToPhoto photo: String,
-        firstName: String,
-        lastName: String,
-        phoneNumber: String,
-        email: String,
-        address: String,
-        hasHouseKeys: Bool
-	//labels: [Labels]
-        ) -> Bool {
+    func saveProfileToDatabase (profile: Person) -> Bool {
         
-	//save profile entry to database
-	let saveProfile = self.personsTable.insert(self.pathToPhoto <- pathToPhoto, self.firstName <- firstName,
-	   self.lastName <- lastName, self.phoneNumber <- phoneNumber, self.email <- email, self.address <- address,
-	   self.hasHouseKeys <- hasHouseKeys)
-	do {
-	    try self.database.run(saveProfile)
-	    return true
-	} catch {
-	    print(error)
-	    return false
-	}
+        var labelArray = [String]()
+        for label in profile.getInfo().labels {
+            labelArray.append(label.getName())
+        }
+        
+        let labelString = labelArray.joined(separator: ",")
+        
+        //save profile entry to database
+        let saveProfile = self.personsTable.insert(self.pathToPhoto <- profile.getInfo().pathToPhoto, self.firstName <- profile.getInfo().firstName,
+                                                   self.lastName <- profile.getInfo().lastName, self.phoneNumber <- profile.getInfo().phoneNumber, self.email <- profile.getInfo().email,
+                                                   self.address <- profile.getInfo().address, self.hasHouseKeys <- profile.getInfo().hasHouseKeys, self.labels <- labelString)
+        do {
+            try self.database.run(saveProfile)
+            return true
+        } catch {
+            print(error)
+            return false
+        }
 
     }
 	
 	
 
 
-    func retrieveProfileById (id: Int) -> Bool {
+    func retrieveProfileById (id: Int) {
 
-	do {
-	    let profile = self.personsTable.filter(self.id == id)
-	    //can be modified to create an persons object instead of printing
-	    print("userId: \(profile[self.id]), firstName: \(profile[self.firstName]), lastName: \(profile[self.lastName]), phoneNumber: \(profile[self.phoneNumber]), email: \(profile[self.email]), address: \(profile[self.address]), hasHouseKeys: \(profile[self.hasHouseKeys])")
-	    return true
-	} catch {
-	    print(error)
-	    return false
-	}
+        let profile = self.personsTable.filter(self.id == id)
+        //can be modified to create an persons object instead of printing
+        print("userId: \(profile[self.id]), firstName: \(profile[self.firstName]), lastName: \(profile[self.lastName]), phoneNumber: \(profile[self.phoneNumber]), email: \(profile[self.email]), address: \(profile[self.address]), hasHouseKeys: \(profile[self.hasHouseKeys])")
 
     }
 
@@ -106,10 +109,10 @@ class Database {
         let deleteProfile = profile.delete()
         do {
             try self.database.run(deleteProfile)
-	    return true
+            return true
         } catch {
-	    print(error)
-	    return false
+            print(error)
+            return false
         }
     }
 	
@@ -120,11 +123,11 @@ class Database {
         let profile = self.personsTable.filter(self.id == id)
         let updateProfile = profile.update(self.email <- email)
         do {
-	    try self.database.run(updateProfile)
-	    return true
+            try self.database.run(updateProfile)
+            return true
         } catch {
-	    print(error)
-	    return false
+            print(error)
+            return false
         }
     }
 	
