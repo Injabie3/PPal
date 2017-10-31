@@ -124,6 +124,22 @@ class Person {
     }
     
     /**
+     Sets the ID of the person in the database table.
+     - parameter id: The primary key id in the table.
+     */
+    func set(id: Int) {
+        self.id = id
+    }
+    
+    /**
+     Gets the ID of the person, which is associated with the database.
+     - returns: The primary key id in the table.
+     */
+    func getId() -> Int {
+        return id
+    }
+    
+    /**
      Gets a Person's first and last name.
      
      - returns:
