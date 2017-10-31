@@ -12,7 +12,7 @@ import SQLite
 
 class Database {
 
-    //Table variable declaration
+    //Table variable declaration for persons
     let personsTable = Table("persons")
     let id = Expression<Int>("id")
     let pathToPhoto = Expression<String>("pathToPhoto")
@@ -25,22 +25,56 @@ class Database {
     let labels = Expression<String>("labels")
     var database: Connection!
     
+    //Table variable declaration for labels
+    let labelTable = Table("labels")
+    let labelId = Expression<Int>("id")
+    let label = Expression<String>("label")
+    var labelDatabase: Connection!
+    
     //we'll need to discuss how to store the labels ***
     //create document path URL if not existed
     init (){
         do {
+            //creating persons database
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let fileUrl = documentDirectory.appendingPathComponent("persons").appendingPathExtension("sqlite3")
             let database = try Connection(fileUrl.path)
             self.database = database
             self.createTable()
+            
+            //creating labels database
+            let labelDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let labelFileUrl = labelDocumentDirectory.appendingPathComponent("labels").appendingPathExtension("sqlite3")
+            let labelDatabase = try Connection(labelFileUrl.path)
+            self.labelDatabase = labelDatabase
+            self.createTableForLabel()
+            
         } catch {
             print(error)
         }    //Establish connection to the database file
     }
     
-    //Table creation
-    //Which variables needs to be unique? needs to be discussed _mirac
+    //Table creation for Person class
+    
+    func createTableForLabel() {
+        
+        let tryCreatingLabelTable = self.labelTable.create { (table) in
+            table.column(self.labelId, primaryKey: true)
+            table.column(self.label, unique: true)
+            print("Label Table Created!")
+        }
+
+        do {
+            try self.database.run(tryCreatingLabelTable)
+        } catch {
+            print(error)
+        }
+ 	
+    }
+
+    
+    
+    //Table creation for Person class
     
     func createTable() {
         
@@ -54,19 +88,38 @@ class Database {
             table.column(self.address)
             table.column(self.hasHouseKeys)
             table.column(self.labels)
-            //again missing labels here***
+            print("Person Table Created!")
         }
-
+        
         do {
             try self.database.run(tryCreatingTable)
         } catch {
             print(error)
         }
- 	
+        
     }
-
-	
-    //can be modified to accept class type
+    
+    
+    
+    //Taking in Label type and save it into database
+    func saveLabelToDatabase (label: Label) -> Bool {
+        
+        let saveLabel = self.labelTable.insert(self.label <- label.getName())
+        do {
+            let rowid = try self.labelDatabase.run(saveLabel)
+            label.set(id: Int(truncatingBitPattern: rowid))
+            print("Saved label (rowid: \(rowid)) to database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+        
+    }
+    
+    
+    
+    //Taking in Person type and save it into database
     func saveProfileToDatabase (profile: Person) -> Bool {
         
         var labelArray = [String]()
@@ -81,7 +134,9 @@ class Database {
                                                    self.lastName <- profile.getInfo().lastName, self.phoneNumber <- profile.getInfo().phoneNumber, self.email <- profile.getInfo().email,
                                                    self.address <- profile.getInfo().address, self.hasHouseKeys <- profile.getInfo().hasHouseKeys, self.labels <- labelString)
         do {
-            try self.database.run(saveProfile)
+            let rowid = try self.database.run(saveProfile)
+            profile.set(id: Int(truncatingBitPattern: rowid))
+            print("Saved profile (rowid: \(rowid)) to database")
             return true
         } catch {
             print(error)
@@ -90,14 +145,38 @@ class Database {
 
     }
 	
+    
+    
+    
+    //Search and return label by ID
+    func retrieveLabelById (id: Int) {
+        
+        let label = self.labelTable.filter(self.labelId == id)
+        do {
+            let labels = try self.labelDatabase!.prepare(label)
+            for selectedLabel in labels {
+                print("labelID: \(selectedLabel[self.labelId]), label: \(selectedLabel[self.label])")
+            }
+        } catch {
+            print (error)
+        }
+        
+    }
+    
 	
 
-
+    //Search and return profile by ID
     func retrieveProfileById (id: Int) {
 
         let profile = self.personsTable.filter(self.id == id)
-        //can be modified to create an persons object instead of printing
-        print("userId: \(profile[self.id]), firstName: \(profile[self.firstName]), lastName: \(profile[self.lastName]), phoneNumber: \(profile[self.phoneNumber]), email: \(profile[self.email]), address: \(profile[self.address]), hasHouseKeys: \(profile[self.hasHouseKeys]), labels: \(profile[self.labels])")
+        do {
+            let people = try self.database!.prepare(profile)
+            for person in people {
+                print("userId: \(person[self.id]), firstName: \(person[self.firstName]), lastName: \(person[self.lastName]), phoneNumber: \(person[self.phoneNumber]), email: \(person[self.email]), address: \(person[self.address]), hasHouseKeys: \(person[self.hasHouseKeys]), labels: \(person[self.labels])")
+            }
+        } catch {
+            print (error)
+        }
 
     }
 
