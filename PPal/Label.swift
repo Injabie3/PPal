@@ -84,7 +84,7 @@ class Label {
      */
     @discardableResult
     func editLabel(name: String) -> Bool {
-        if (name == "") {
+        if name == "" {
             return false
         }
         
@@ -168,6 +168,7 @@ class Label {
 }
 
 extension Label: Equatable {
+    
     /**
      Defines the equality operator to signify what is meant by
      having two Label objects being "equivalent"
@@ -177,4 +178,5 @@ extension Label: Equatable {
     static func == (lhs: Label, rhs: Label) -> Bool {
         return lhs.getName() == rhs.getName()
     }
+    
 }

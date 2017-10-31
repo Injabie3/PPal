@@ -13,7 +13,7 @@ import Foundation
  The encapsulating class that will hold people and labels, and
  their relationships between each other.
  */
-class PeopleBank{
+class PeopleBank {
     
     private var people = [Person]()
     private var labels = [Label]()
@@ -184,4 +184,3 @@ class PeopleBank{
     }
 
 }
-
