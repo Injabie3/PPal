@@ -15,7 +15,6 @@
 		6D6AF0BC1FA8EA7B00C9792A /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D6AF0AF1FA8EA3200C9792A /* SQLite.framework */; };
 		6D6AF0BD1FA8EACD00C9792A /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D6AF0AF1FA8EA3200C9792A /* SQLite.framework */; };
 		6D6AF0BE1FA8EACD00C9792A /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D6AF0AF1FA8EA3200C9792A /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6D6AF0C41FA9072900C9792A /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6AF0C21FA906F400C9792A /* DatabaseTest.swift */; };
 		F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */; };
 		F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BB01F9A9BF90046AC3E /* ViewController.swift */; };
 		F7563BB41F9A9BF90046AC3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7563BB21F9A9BF90046AC3E /* Main.storyboard */; };
@@ -120,7 +119,6 @@
 		6D6AF0591FA8E7AC00C9792A /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		6D6AF05B1FA8E7B000C9792A /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		6D6AF0A41FA8EA3100C9792A /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../Downloads/SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
-		6D6AF0C21FA906F400C9792A /* DatabaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseTest.swift; path = PPalTests/DatabaseTest.swift; sourceTree = SOURCE_ROOT; };
 		F7563BAB1F9A9BF90046AC3E /* PPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7563BB01F9A9BF90046AC3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 		F7563BC21F9A9BF90046AC3E /* PPalTests */ = {
 			isa = PBXGroup;
 			children = (
-				6D6AF0C21FA906F400C9792A /* DatabaseTest.swift */,
 				F7563BC31F9A9BF90046AC3E /* PPalTests.swift */,
 				F7563BC51F9A9BF90046AC3E /* Info.plist */,
 			);
@@ -462,7 +459,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D6AF0C41FA9072900C9792A /* DatabaseTest.swift in Sources */,
 				F7563BC41F9A9BF90046AC3E /* PPalTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

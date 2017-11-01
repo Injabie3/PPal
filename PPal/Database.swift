@@ -182,6 +182,7 @@ class Database {
 
 
 
+    //delete profile entry by ID
     func deleteProfileById(id: Int) -> Bool {
             
         let profile = self.personsTable.filter(self.id == id)
@@ -195,20 +196,132 @@ class Database {
         }
     }
 	
-
-    //Only updating email address by user ID, need to discuss how this should work
-    func updateProfile(id: Int, email: String) -> Bool {
-            
-        let profile = self.personsTable.filter(self.id == id)
-        let updateProfile = profile.update(self.email <- email)
+    
+    //delete label entry by ID
+    func deleteLabelById(id: Int) -> Bool {
+        
+        let label = self.labelTable.filter(self.id == id)
+        let deleteLabel = label.delete()
         do {
-            try self.database.run(updateProfile)
+            try self.labelDatabase.run(deleteLabel)
             return true
         } catch {
             print(error)
             return false
         }
     }
+    
+    
+
+    //Updating profile on database by taking in Person object
+    func updateProfile(profile: Person) -> Bool {
+        
+        var labelArray = [String]()
+        for label in profile.getInfo().labels {
+            labelArray.append(label.getName())
+        }
+        
+        let labelString = labelArray.joined(separator: ",")
+        
+        let updateProfile = self.personsTable.update(self.pathToPhoto <- profile.getInfo().pathToPhoto, self.firstName <- profile.getInfo().firstName,
+                                                   self.lastName <- profile.getInfo().lastName, self.phoneNumber <- profile.getInfo().phoneNumber, self.email <- profile.getInfo().email,
+                                                   self.address <- profile.getInfo().address, self.hasHouseKeys <- profile.getInfo().hasHouseKeys, self.labels <- labelString)
+        do {
+            try self.database.run(updateProfile)
+            let rowid = profile.getId()
+            print("Updated profile (rowid: \(rowid)) in database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+        
+        
+    }
+    
+    
+    //Updating label on database by taking in Label object
+    func updateProfile(label: Label) -> Bool {
+        
+
+        let updateLabel = self.labelTable.update(self.label <- label.getName())
+        do {
+            try self.labelDatabase.run(updateLabel)
+            let rowid = label.getId()
+            print("Updated label (rowid: \(rowid)) in database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+
+    }
+    
+    
+    
+    
+    /**
+     Builds the PeopleBank class from the database.
+     
+     - returns: A PeopleBank object.
+     - by Ryan on Oct 31, 2017
+     */
+    func getAllData() -> PeopleBank {
+        let bank = PeopleBank()
+        
+        do {
+            let labelsInDatabase = try self.labelDatabase!.prepare(labelTable)
+            for label in labelsInDatabase {
+                print("Id: \(label[self.labelId]), name: \(label[self.label])")
+                
+                // Create a Label object per result, and add this label into the bank.
+                let labelObject = Label()
+                labelObject.set(id: label[self.labelId])
+                labelObject.editLabel(name: label[self.label])
+                
+                _ = bank.add(label: labelObject)
+            }
+        } catch {
+            print (error)
+        }
+        
+        // At this point, all the labels are in the PeopleBank.
+        let labelObjectArray = bank.getLabels()
+        do {
+            // Get all the people from the database.
+            let peopleInDatabase = try self.database!.prepare(personsTable)
+            
+            for person in peopleInDatabase {
+                print("userId: \(person[self.id]), firstName: \(person[self.firstName]), lastName: \(person[self.lastName]), phoneNumber: \(person[self.phoneNumber]), email: \(person[self.email]), address: \(person[self.address]), hasHouseKeys: \(person[self.hasHouseKeys]), labels: \(person[self.labels])")
+                
+                // For each person, construct a Person object with the information from the database.
+                let personObject = Person()
+                _ = personObject.setInfo(pathToPhoto: person[pathToPhoto], firstName: person[firstName], lastName: person[lastName], phoneNumber: person[phoneNumber], email: person[email], address: person[address], hasHouseKeys: person[hasHouseKeys])
+                let labelTextArray = person[self.labels].components(separatedBy: ",")
+                
+                // Now add the labels that this person has to it.  Since we only have the names of the labels, we have to search for the label
+                // object using this.
+                for labelText in labelTextArray {
+                    // Get the associated label object, and associate it with the person.
+                    let labelIndex = labelObjectArray.index(where: { $0.getName().lowercased() == labelText.lowercased() })
+                    if labelIndex != nil {
+                        personObject.add(label: labelObjectArray[labelIndex!])
+                    }
+                }
+                
+                // Now this person object is ready, and we can now add it to the bank.
+                _ = bank.add(person: personObject)
+            }
+        } catch {
+            print (error)
+        }
+        
+        return bank
+    }
+    
+    
+    
+    
 	
 
 }
