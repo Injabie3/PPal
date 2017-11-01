@@ -30,11 +30,11 @@ public extension String {
      - True if the phone number is valid.
      - false if the phone number is invalid.
      */
-    
     var isValidPhoneNumber: Bool {
         get {
             let validPhoneNumberCharacters = CharacterSet(charactersIn: "-+1234567890")
             return self.rangeOfCharacter(from: validPhoneNumberCharacters.inverted) == nil
         }
     }
+    
 }

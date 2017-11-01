@@ -19,6 +19,21 @@ class PeopleBank {
     private var labels = [Label]()
     
     /**
+     If this has no more references, we should clear the references between labels and people,
+     and also clear the lists.
+     */
+    deinit {
+        for item in people {
+            item.clearAll()
+        }
+        for item in labels {
+            item.clearAll()
+        }
+        people.removeAll()
+        labels.removeAll()
+    }
+    
+    /**
      Sorts the people list in alphabetical order by first name, and then by last name.
      */
     private func sortPeople() {
@@ -184,3 +199,4 @@ class PeopleBank {
     }
 
 }
+

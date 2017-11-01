@@ -42,6 +42,13 @@ class LabelTest: XCTestCase {
         XCTAssertFalse(result, "You managed to change the label name to be blank!")
     }
     
+    /// Test to see if we can change the name of a label to contain a comma.
+    func testEditLabelNameButContainsComma() {
+        let result = label01!.editLabel(name: "Test,")
+        
+        XCTAssertFalse(result, "You managed to change the label name to contain a comma!")
+    }
+    
     /// Test to see if we can create two labels, and change them to the same name.
     func testEditLabelNameButSameName() {
         _ = label01?.editLabel(name: "Family")
@@ -49,8 +56,8 @@ class LabelTest: XCTestCase {
         // This should fail because Family already exists.
         let result02 = label02!.editLabel(name: "Family")
         
-        
         XCTAssertFalse(result02, "You managed to set the name even though you're not supposed to!")
+        
     }
     
     /**
@@ -69,6 +76,18 @@ class LabelTest: XCTestCase {
         let result02 = label02!.editLabel(name: "Family")
         
         XCTAssertTrue(result02, "You can't change the name even though this name doesn't exist!")
+    }
+    
+    /// Test to see if the valid { get } is working correctly.
+    func testValidBoolean() {
+        
+        XCTAssertFalse(label01!.valid, "The label is valid even though there's no name!")
+        
+        _ = label01?.editLabel(name: "Family")
+        
+        // It should be okay now.
+        XCTAssertTrue(label01!.valid, "The label is supposed to be valid!")
+        
     }
     
 }
