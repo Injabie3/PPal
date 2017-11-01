@@ -241,7 +241,7 @@ class Database {
     
     
     //Updating label on database by taking in Label object
-    func updateProfile(label: Label) -> Bool {
+    func updateLabel(label: Label) -> Bool {
         
 
         let updateLabel = self.labelTable.update(self.label <- label.getName())
