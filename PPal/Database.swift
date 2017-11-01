@@ -33,7 +33,7 @@ class Database {
     
     //we'll need to discuss how to store the labels ***
     //create document path URL if not existed
-    init (){
+    init () {
         do {
             //creating persons database
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -54,9 +54,8 @@ class Database {
         }    //Establish connection to the database file
     }
     
-    //Table creation for Person class
-    
-    func createTableForLabel() {
+    /// Table creation for Person class
+    private func createTableForLabel() {
         
         let tryCreatingLabelTable = self.labelTable.create { (table) in
             table.column(self.labelId, primaryKey: true)
@@ -71,12 +70,9 @@ class Database {
         }
  	
     }
-
     
-    
-    //Table creation for Person class
-    
-    func createTable() {
+    /// Table creation for Person class
+    private func createTable() {
         
         let tryCreatingTable = self.personsTable.create { (table) in
             table.column(self.id, primaryKey: true)
@@ -99,9 +95,13 @@ class Database {
         
     }
     
-    
-    
-    //Taking in Label type and save it into database
+    /**
+     Saves a label to the database for the first time.
+     - parameter label: A Label object.
+     - returns: true or false.
+         - True if the label was saved to the database.
+         - False if the label could not be saved.
+     */
     func saveLabelToDatabase (label: Label) -> Bool {
         
         let saveLabel = self.labelTable.insert(self.label <- label.getName())
@@ -117,10 +117,14 @@ class Database {
         
     }
     
-    
-    
-    //Taking in Person type and save it into database
-    func saveProfileToDatabase (profile: Person) -> Bool {
+    /**
+     Saves a person to the database for the first time.
+     - parameter profile: A Person object.
+     - returns: true or false.
+         - True if the person was saved to the database.
+         - False if the person could not be saved.
+     */
+    func saveProfileToDatabase(profile: Person) -> Bool {
         
         var labelArray = [String]()
         for label in profile.getInfo().labels {
@@ -129,10 +133,15 @@ class Database {
         
         let labelString = labelArray.joined(separator: ",")
         
-        //save profile entry to database
-        let saveProfile = self.personsTable.insert(self.pathToPhoto <- profile.getInfo().pathToPhoto, self.firstName <- profile.getInfo().firstName,
-                                                   self.lastName <- profile.getInfo().lastName, self.phoneNumber <- profile.getInfo().phoneNumber, self.email <- profile.getInfo().email,
-                                                   self.address <- profile.getInfo().address, self.hasHouseKeys <- profile.getInfo().hasHouseKeys, self.labels <- labelString)
+        // Save profile entry to database
+        let saveProfile = self.personsTable.insert(self.pathToPhoto <- profile.getInfo().pathToPhoto,
+                                                   self.firstName <- profile.getInfo().firstName,
+                                                   self.lastName <- profile.getInfo().lastName,
+                                                   self.phoneNumber <- profile.getInfo().phoneNumber,
+                                                   self.email <- profile.getInfo().email,
+                                                   self.address <- profile.getInfo().address,
+                                                   self.hasHouseKeys <- profile.getInfo().hasHouseKeys,
+                                                   self.labels <- labelString)
         do {
             let rowid = try self.database.run(saveProfile)
             profile.set(id: Int(truncatingBitPattern: rowid))
@@ -144,12 +153,9 @@ class Database {
         }
 
     }
-	
-    
-    
     
     //Search and return label by ID
-    func retrieveLabelById (id: Int) {
+    func retrieveLabelById(id: Int) {
         
         let label = self.labelTable.filter(self.labelId == id)
         do {
@@ -166,7 +172,7 @@ class Database {
 	
 
     //Search and return profile by ID
-    func retrieveProfileById (id: Int) {
+    func retrieveProfileById(id: Int) {
 
         let profile = self.personsTable.filter(self.id == id)
         do {
@@ -182,6 +188,13 @@ class Database {
 
 
 
+    /**
+     Deletes a Person from the database
+     - parameter id: The ID of the Person, which can be obtained from the getId() method of the person.
+     - returns: true or false
+         - True if the person was successfully deleted from the database.
+         - False if the person could not be deleted.
+     */
     //delete profile entry by ID
     func deleteProfileById(id: Int) -> Bool {
             
@@ -196,8 +209,13 @@ class Database {
         }
     }
 	
-    
-    //delete label entry by ID
+    /**
+     Deletes a Label from the database
+     - parameter id: The ID of the Label, which can be obtained from the getId() method of the label.
+     - returns: true or false
+         - True if the label was successfully deleted from the database.
+         - False if the label could not be deleted.
+     */
     func deleteLabelById(id: Int) -> Bool {
         
         let label = self.labelTable.filter(self.id == id)
@@ -211,9 +229,13 @@ class Database {
         }
     }
     
-    
-
-    //Updating profile on database by taking in Person object
+    /**
+     Updates a Person profile in the database.
+     - parameter profile: A person object.
+     - returns: true or false
+         - True if the update was successful.
+         - False if it could not be updated.
+     */
     func updateProfile(profile: Person) -> Bool {
         
         var labelArray = [String]()
@@ -223,9 +245,14 @@ class Database {
         
         let labelString = labelArray.joined(separator: ",")
         
-        let updateProfile = self.personsTable.update(self.pathToPhoto <- profile.getInfo().pathToPhoto, self.firstName <- profile.getInfo().firstName,
-                                                   self.lastName <- profile.getInfo().lastName, self.phoneNumber <- profile.getInfo().phoneNumber, self.email <- profile.getInfo().email,
-                                                   self.address <- profile.getInfo().address, self.hasHouseKeys <- profile.getInfo().hasHouseKeys, self.labels <- labelString)
+        let updateProfile = self.personsTable.update(self.pathToPhoto <- profile.getInfo().pathToPhoto,
+                                                     self.firstName <- profile.getInfo().firstName,
+                                                     self.lastName <- profile.getInfo().lastName,
+                                                     self.phoneNumber <- profile.getInfo().phoneNumber,
+                                                     self.email <- profile.getInfo().email,
+                                                     self.address <- profile.getInfo().address,
+                                                     self.hasHouseKeys <- profile.getInfo().hasHouseKeys,
+                                                     self.labels <- labelString)
         do {
             try self.database.run(updateProfile)
             let rowid = profile.getId()
@@ -240,7 +267,13 @@ class Database {
     }
     
     
-    //Updating label on database by taking in Label object
+    /**
+     Updates a Label in the database.
+     - parameter label: A Label object.
+     - returns: true or false
+         - True if the update was successful.
+         - False if it could not be updated.
+     */
     func updateLabel(label: Label) -> Bool {
         
 
@@ -256,9 +289,6 @@ class Database {
         }
 
     }
-    
-    
-    
     
     /**
      Builds the PeopleBank class from the database.
@@ -296,13 +326,22 @@ class Database {
                 
                 // For each person, construct a Person object with the information from the database.
                 let personObject = Person()
-                _ = personObject.setInfo(pathToPhoto: person[pathToPhoto], firstName: person[firstName], lastName: person[lastName], phoneNumber: person[phoneNumber], email: person[email], address: person[address], hasHouseKeys: person[hasHouseKeys])
+                _ = personObject.setInfo(pathToPhoto: person[pathToPhoto],
+                                         firstName: person[firstName],
+                                         lastName: person[lastName],
+                                         phoneNumber: person[phoneNumber],
+                                         email: person[email],
+                                         address: person[address],
+                                         hasHouseKeys: person[hasHouseKeys])
+                
+                personObject.set(id: person[self.id])
                 let labelTextArray = person[self.labels].components(separatedBy: ",")
                 
                 // Now add the labels that this person has to it.  Since we only have the names of the labels, we have to search for the label
                 // object using this.
                 for labelText in labelTextArray {
                     // Get the associated label object, and associate it with the person.
+                    // If the label object doesn't exist, then don't add it to the person.
                     let labelIndex = labelObjectArray.index(where: { $0.getName().lowercased() == labelText.lowercased() })
                     if labelIndex != nil {
                         personObject.add(label: labelObjectArray[labelIndex!])
