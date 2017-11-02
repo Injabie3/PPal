@@ -31,7 +31,6 @@ class Database {
     let label = Expression<String>("label")
     var labelDatabase: Connection!
     
-    //we'll need to discuss how to store the labels ***
     //create document path URL if not existed
     init () {
         do {
@@ -154,7 +153,7 @@ class Database {
 
     }
     
-    //Search and return label by ID
+    //Search and print label info by ID
     func retrieveLabelById(id: Int) {
         
         let label = self.labelTable.filter(self.labelId == id)
@@ -171,7 +170,7 @@ class Database {
     
 	
 
-    //Search and return profile by ID
+    //Search and print profile info by ID
     func retrieveProfileById(id: Int) {
 
         let profile = self.personsTable.filter(self.id == id)
