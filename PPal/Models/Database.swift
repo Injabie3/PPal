@@ -295,10 +295,9 @@ class Database {
     /**
      Builds the PeopleBank class from the database.
      
-     - returns: A PeopleBank object.
      - by Ryan on Oct 31, 2017
      */
-    func getAllData() -> PeopleBank {
+    func getAllData() {
         let bank = PeopleBank.shared
         
         do {
@@ -357,7 +356,6 @@ class Database {
             print (error)
         }
         
-        return bank
     }
     
     

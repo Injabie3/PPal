@@ -182,7 +182,7 @@
                                 <rect key="frame" x="0.0" y="148" width="414" height="588"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T9O-2V-d6w">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T9O-2V-d6w">
                                         <rect key="frame" x="0.0" y="-8" width="414" height="588"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -241,6 +241,7 @@
                         <outlet property="ListViewField" destination="F4l-t3-h7H" id="wtC-gz-QC3"/>
                         <outlet property="MapViewField" destination="HBh-aZ-V4G" id="Ahj-VU-4As"/>
                         <outlet property="Segment" destination="13X-xO-ohY" id="3sb-1W-EmY"/>
+                        <outlet property="listViewTableView" destination="T9O-2V-d6w" id="2dI-mV-wUV"/>
                         <segue destination="7tX-10-iwA" kind="show" identifier="SegueToAddLabelToContacts" id="0sS-Ii-Aye"/>
                     </connections>
                 </viewController>

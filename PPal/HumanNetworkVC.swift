@@ -8,12 +8,13 @@
 
 import UIKit
 
-class HumanNetworkVC: UIViewController {
+class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var ListViewField: UIView!
     @IBOutlet weak var MapViewField: UIView!
     @IBOutlet weak var LabelViewField: UIView!
     @IBOutlet weak var Segment: UISegmentedControl!
+    @IBOutlet weak var listViewTableView: UITableView! // The table view for the list of people.
     @IBAction func SegmentValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -32,9 +33,37 @@ class HumanNetworkVC: UIViewController {
             break
         }
     }
+    
+    var people = [Person]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        var person01: Person? = nil
+        person01 = Person()
+        person01!.setInfo(pathToPhoto: "asdf1", firstName: "Mirac", lastName: "Chen", phoneNumber: "1234", email: "hah@sfu.ca", address: "1234 fake street", hasHouseKeys: false)
+        var person02: Person? = nil
+        person02 = Person()
+        
+        person02!.setInfo(pathToPhoto: "asdf", firstName: "Ranbir", lastName: "Makkar", phoneNumber: "4567", email: "cool@sfu.ca", address: "123 Fake Ave", hasHouseKeys: false)
+        var label01: Label? = nil
+        label01 = Label()
+        label01!.editLabel(name: "Test")
+        person01!.add(label: label01!)
+        person02!.add(label: label01!)
+        people.append(person01!)
+        people.append(person02!)
+        Database.shared.saveLabelToDatabase(label: label01!)
+        Database.shared.saveProfileToDatabase(profile: person01!)
+        Database.shared.saveProfileToDatabase(profile: person02!)
+        person01?.clearAll()
+        person01 = nil
+        person02?.clearAll()
+        label01?.clearAll()
+        label01 = nil
+        Database.shared.getAllData()
+        // Associate the table view data source and delegates
+        listViewTableView.delegate = self
+        listViewTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
 
@@ -88,14 +117,28 @@ class HumanNetworkVC: UIViewController {
     {
         return 1
     }
+    
+    // Table view function to get the number of items to display.
+    // This will need to be modified for both the label and people table views.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         //return Database.shared.getAllData().numberOfPeople
+        
+        // Get the number of people to display for the list view.
+        if tableView == self.listViewTableView {
+            return PeopleBank.shared.getPeople().count
+            // return people.count
+        }
         return 1
     }
+    
+    // Table view function to display each item
+    // This will need to be modified for both the label and people table views.
+    // Should do a check for the respective table views.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         // Table view cells are reused and should be dequeued using a cell identifier.
+        
         let cellIdentifier = "PersonTableViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PersonTableViewCell  else {
@@ -105,16 +148,13 @@ class HumanNetworkVC: UIViewController {
         // Fetches the appropriate meal for the data source layout.
         
         //personArray needs to be
-        let person01 = Person()
-        person01.setInfo(pathToPhoto: "asdf", firstName: "Mirac", lastName: "Chen", phoneNumber: "1234", email: "hah@sfu.ca", address: "1234 fake street", hasHouseKeys: false)
-        let person02 = Person()
-        person02.setInfo(pathToPhoto: "asdf", firstName: "Ranbir", lastName: "Makkar", phoneNumber: "4567", email: "cool@sfu.ca", address: "123 Fake Ave", hasHouseKeys: false)
-        //let personArray = Database.shared.getAllData().getPeople()[indexPath.row]
-        let personArray = person01
-        let fullName = "\(personArray.getName().firstName) \(personArray.getName().lastName)"
         
-        cell.nameLabel.text = fullName
-        cell.phoneNumberLabel.text = personArray.getInfo().phoneNumber
+        //let personArray = Database.shared.getAllData().getPeople()[indexPath.row]
+        //let person = people[indexPath.row]
+        let person = PeopleBank.shared.getPeople()[indexPath.row]
+        
+        cell.nameLabel.text = "\(person.getName().firstName) \(person.getName().lastName)"
+        cell.phoneNumberLabel.text = person.getInfo().phoneNumber
         
         return cell
         
