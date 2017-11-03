@@ -15,6 +15,10 @@ import Foundation
  */
 class PeopleBank {
     
+    static var shared = PeopleBank()
+    
+    private init() {}
+    
     private var people = [Person]()
     private var labels = [Label]()
     

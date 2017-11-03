@@ -12,6 +12,8 @@ import SQLite
 
 class Database {
 
+    static var shared = Database()
+    
     //Table variable declaration for persons
     let personsTable = Table("persons")
     let id = Expression<Int>("id")
@@ -33,7 +35,7 @@ class Database {
     
     //we'll need to discuss how to store the labels ***
     //create document path URL if not existed
-    init () {
+    private init () {
         do {
             //creating persons database
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -107,7 +109,7 @@ class Database {
         let saveLabel = self.labelTable.insert(self.label <- label.getName())
         do {
             let rowid = try self.labelDatabase.run(saveLabel)
-            label.set(id: Int(truncatingBitPattern: rowid))
+            label.set(id: Int(truncatingIfNeeded: rowid))
             print("Saved label (rowid: \(rowid)) to database")
             return true
         } catch {
@@ -144,7 +146,7 @@ class Database {
                                                    self.labels <- labelString)
         do {
             let rowid = try self.database.run(saveProfile)
-            profile.set(id: Int(truncatingBitPattern: rowid))
+            profile.set(id: Int(truncatingIfNeeded: rowid))
             print("Saved profile (rowid: \(rowid)) to database")
             return true
         } catch {
@@ -297,7 +299,7 @@ class Database {
      - by Ryan on Oct 31, 2017
      */
     func getAllData() -> PeopleBank {
-        let bank = PeopleBank()
+        let bank = PeopleBank.shared
         
         do {
             let labelsInDatabase = try self.labelDatabase!.prepare(labelTable)
