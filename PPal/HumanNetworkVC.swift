@@ -106,9 +106,9 @@ class HumanNetworkVC: UIViewController {
         
         //personArray needs to be
         let person01 = Person()
-        person01.setInfo(pathToPhoto: "", firstName: "Mirac", lastName: "Chen", phoneNumber: "1234", email: "hah@sfu.ca", address: "1234 fake street", hasHouseKeys: false)
+        person01.setInfo(pathToPhoto: "asdf", firstName: "Mirac", lastName: "Chen", phoneNumber: "1234", email: "hah@sfu.ca", address: "1234 fake street", hasHouseKeys: false)
         let person02 = Person()
-        person02.setInfo(pathToPhoto: "", firstName: "Ranbir", lastName: "Makkar", phoneNumber: "4567", email: "cool@sfu.ca", address: "123 Fake Ave", hasHouseKeys: false)
+        person02.setInfo(pathToPhoto: "asdf", firstName: "Ranbir", lastName: "Makkar", phoneNumber: "4567", email: "cool@sfu.ca", address: "123 Fake Ave", hasHouseKeys: false)
         //let personArray = Database.shared.getAllData().getPeople()[indexPath.row]
         let personArray = person01
         let fullName = "\(personArray.getName().firstName) \(personArray.getName().lastName)"
