@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4636A13B1F9AA7DB009094CE /* PeopleBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4636A13A1F9AA7DB009094CE /* PeopleBank.swift */; };
+		717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717749B61FA8061800C33286 /* HumanNetworkVC.swift */; };
+		71F531E81FA9333D0093886A /* AddItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F531E71FA9333D0093886A /* AddItemVC.swift */; };
+		D3D234AA1FA96BBC00E5D683 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234A61FA96BBB00E5D683 /* String.swift */; };
+		D3D234AB1FA96BBC00E5D683 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234A71FA96BBB00E5D683 /* Person.swift */; };
+		D3D234AC1FA96BBC00E5D683 /* PeopleBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234A81FA96BBC00E5D683 /* PeopleBank.swift */; };
+		D3D234AE1FA96BD700E5D683 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234AD1FA96BD700E5D683 /* Label.swift */; };
+		D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */; };
 		F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */; };
 		F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BB01F9A9BF90046AC3E /* ViewController.swift */; };
 		F7563BB41F9A9BF90046AC3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7563BB21F9A9BF90046AC3E /* Main.storyboard */; };
@@ -36,7 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4636A13A1F9AA7DB009094CE /* PeopleBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBank.swift; sourceTree = "<group>"; };
+		717749B61FA8061800C33286 /* HumanNetworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanNetworkVC.swift; sourceTree = "<group>"; };
+		71F531E71FA9333D0093886A /* AddItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemVC.swift; sourceTree = "<group>"; };
+		D3D234A61FA96BBB00E5D683 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		D3D234A71FA96BBB00E5D683 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		D3D234A81FA96BBC00E5D683 /* PeopleBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBank.swift; sourceTree = "<group>"; };
+		D3D234AD1FA96BD700E5D683 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
 		F7563BAB1F9A9BF90046AC3E /* PPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7563BB01F9A9BF90046AC3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,10 +115,16 @@
 		F7563BAD1F9A9BF90046AC3E /* PPal */ = {
 			isa = PBXGroup;
 			children = (
+				D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */,
 				F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */,
+				D3D234AD1FA96BD700E5D683 /* Label.swift */,
+				D3D234A81FA96BBC00E5D683 /* PeopleBank.swift */,
+				D3D234A71FA96BBB00E5D683 /* Person.swift */,
+				D3D234A61FA96BBB00E5D683 /* String.swift */,
 				F7563BB01F9A9BF90046AC3E /* ViewController.swift */,
-				4636A13A1F9AA7DB009094CE /* PeopleBank.swift */,
 				F7563BB21F9A9BF90046AC3E /* Main.storyboard */,
+				71F531E71FA9333D0093886A /* AddItemVC.swift */,
+				717749B61FA8061800C33286 /* HumanNetworkVC.swift */,
 				F7563BB51F9A9BF90046AC3E /* Assets.xcassets */,
 				F7563BB71F9A9BF90046AC3E /* LaunchScreen.storyboard */,
 				F7563BBA1F9A9BF90046AC3E /* Info.plist */,
@@ -286,7 +304,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */,
-				4636A13B1F9AA7DB009094CE /* PeopleBank.swift in Sources */,
+				D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */,
+				D3D234AA1FA96BBC00E5D683 /* String.swift in Sources */,
+				71F531E81FA9333D0093886A /* AddItemVC.swift in Sources */,
+				D3D234AE1FA96BD700E5D683 /* Label.swift in Sources */,
+				D3D234AC1FA96BBC00E5D683 /* PeopleBank.swift in Sources */,
+				717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */,
+				D3D234AB1FA96BBC00E5D683 /* Person.swift in Sources */,
 				F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

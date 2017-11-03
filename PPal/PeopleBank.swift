@@ -6,7 +6,7 @@
 //  Modified by rclui on 10/26/17.
 //  Copyright © 2017 CMPT275. All rights reserved.
 //
-
+/*
 import Foundation
 
 /**
@@ -183,5 +183,5 @@ class PeopleBank{
         return labels
     }
 
-}
+}*/
 
