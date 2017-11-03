@@ -6,7 +6,7 @@
 //  Modified by rclui on 10/26/17.
 //  Copyright © 2017 CMPT275. All rights reserved.
 //
-/*
+
 import Foundation
 
 /**
@@ -14,6 +14,10 @@ import Foundation
  their relationships between each other.
  */
 class PeopleBank{
+    
+    static var shared = PeopleBank()
+    
+    private init() {}
     
     private var people = [Person]()
     private var labels = [Label]()
@@ -183,5 +187,5 @@ class PeopleBank{
         return labels
     }
 
-}*/
+}
 

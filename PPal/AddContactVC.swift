@@ -34,6 +34,8 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+
+        
     }
     
     /*
@@ -96,4 +98,29 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             self.doneBarButton.isEnabled = true
         }
     }
+    
+    @IBAction func cancelPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func donePressed(_ sender: Any) {
+        // 1. Validate data.
+        
+        // 2. Create person class object
+        let profile = Person()
+        profile.set(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!)
+        profile.set(phoneNumber: phoneField.text!)
+        profile.set(email: emailField.text!)
+        
+        // 3. Save to PeopleBank object.
+        PeopleBank.shared.add(person: profile)
+        
+        // 4. Add to database.
+        Database.shared.saveProfileToDatabase(profile: profile)
+        
+        // 5. Go back to previous screen.
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
+

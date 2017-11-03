@@ -9,6 +9,7 @@
 import Foundation
 
 class Label {
+    private var id: Int // The id for the database.
     private var name: String // The name of the label.
     private var people: [Person] // An array of Person that have this label.
     static private var names: [String] = [] // An array that contains the currently used names.
@@ -19,11 +20,13 @@ class Label {
             return nil
         }
         Label.names.append(name)
+        self.id = 0
         self.name = name
         self.people = []
     }
     
     init() {
+        self.id = 0
         self.name = ""
         self.people = []
     }
@@ -37,11 +40,11 @@ class Label {
     }
     
     /**
-     Determines if the label is valid.  Must have a name.
+     Determines if the label is valid.  Must have a name, and cannot contain a comma.
      */
     var valid: Bool {
         get {
-            return name != ""
+            return name != "" || name.rangeOfCharacter(from: CharacterSet(charactersIn: ",")) != nil
         }
     }
     
@@ -80,11 +83,14 @@ class Label {
          - True if the label name **was changed**.
          - False if the label name **could not be changed**.
              This can be due to an existing label already having the same name,
-             or the name supplied is blank.
+             the name supplied is blank, or the name contains a comma.
      */
     @discardableResult
     func editLabel(name: String) -> Bool {
-        if (name == "") {
+        if name == "" {
+            return false
+        }
+        if name.rangeOfCharacter(from: CharacterSet(charactersIn: ",")) != nil {
             return false
         }
         
@@ -150,6 +156,22 @@ class Label {
     }
     
     /**
+     Sets the ID of the person in the database table.
+     - parameter id: The primary key id in the table.
+     */
+    func set(id: Int) {
+        self.id = id
+    }
+    
+    /**
+     Gets the ID of the person, which is associated with the database.
+     - returns: The primary key id in the table.
+     */
+    func getId() -> Int {
+        return id
+    }
+    
+    /**
      Clears (removes) all references that this object has to/from its list of people.
      
      This is to avoid cyclic strong references
@@ -168,6 +190,7 @@ class Label {
 }
 
 extension Label: Equatable {
+    
     /**
      Defines the equality operator to signify what is meant by
      having two Label objects being "equivalent"
@@ -177,4 +200,5 @@ extension Label: Equatable {
     static func == (lhs: Label, rhs: Label) -> Bool {
         return lhs.getName() == rhs.getName()
     }
+    
 }

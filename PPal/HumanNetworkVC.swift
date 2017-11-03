@@ -83,6 +83,44 @@ class HumanNetworkVC: UIViewController {
         
     }
 
+    
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        //return Database.shared.getAllData().numberOfPeople
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "PersonTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PersonTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of PersonTableViewCell.")
+        }
+        
+        // Fetches the appropriate meal for the data source layout.
+        
+        //personArray needs to be
+        let person01 = Person()
+        person01.setInfo(pathToPhoto: "", firstName: "Mirac", lastName: "Chen", phoneNumber: "1234", email: "hah@sfu.ca", address: "1234 fake street", hasHouseKeys: false)
+        let person02 = Person()
+        person02.setInfo(pathToPhoto: "", firstName: "Ranbir", lastName: "Makkar", phoneNumber: "4567", email: "cool@sfu.ca", address: "123 Fake Ave", hasHouseKeys: false)
+        //let personArray = Database.shared.getAllData().getPeople()[indexPath.row]
+        let personArray = person01
+        let fullName = "\(personArray.getName().firstName) \(personArray.getName().lastName)"
+        
+        cell.nameLabel.text = fullName
+        cell.phoneNumberLabel.text = personArray.getInfo().phoneNumber
+        
+        return cell
+        
+    }
+    
+    
     /*
     // MARK: - Navigation
 
