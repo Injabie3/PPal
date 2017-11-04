@@ -11,6 +11,19 @@ import XCTest
 import SQLite
 @testable import PPal
 
+/**
+ # DatabaseTest Class
+ This class contains the XCTests for the Database class methods, and additionally
+ requires the following classes and dependencies:
+ - SQLite
+ - Person class (from PPal)
+ - Label class (from PPal)
+ - PeopleBank class (from PPal)
+ 
+ Note: These sets of test will **drop all tables** in the database.  The initial test
+ may also fail if the app currently has data in it.  If the test is re-run, they should
+ all pass.
+ */
 class DatabaseTest: XCTestCase {
     
     var db: Database? = nil
@@ -23,7 +36,8 @@ class DatabaseTest: XCTestCase {
     override func setUp() {
         super.setUp()
         // Set up the objects
-        db = Database()
+        db = Database.shared
+        db!.recreateDatabase()
         person01 = Person()
         personArray = [Person]()
         
@@ -74,7 +88,7 @@ class DatabaseTest: XCTestCase {
         } catch {
             print(error)
         }
-        
+        PeopleBank.shared.clearAll()
         person01 = nil
         label01 = nil
         label02 = nil
@@ -106,6 +120,7 @@ class DatabaseTest: XCTestCase {
         label01 = Label()
         
         // Get the people Bank.
+        PeopleBank.shared.clearAll() // Must clear here because static.
         let peopleBank = db?.getAllData()
         
         let result = peopleBank!.getPeople()[0]
@@ -151,6 +166,7 @@ class DatabaseTest: XCTestCase {
         labelArray.removeAll()
         
         // Reconstruct objects, and check to make sure they're ok.
+        PeopleBank.shared.clearAll() // Must clear here because static.
         let bank = db!.getAllData()
         
         personArray = bank.getPeople()
@@ -225,6 +241,7 @@ class DatabaseTest: XCTestCase {
         person01 = nil
         label01 = nil
         
+        PeopleBank.shared.clearAll() // Must clear here because static.
         let bank = db?.getAllData()
         let people = bank!.getPeople()
         
@@ -264,6 +281,7 @@ class DatabaseTest: XCTestCase {
         // Destroy the label object, and fetch the labels from the database from scratch.
         label01 = nil
         
+        PeopleBank.shared.clearAll()
         var labelsFromDatabase = db!.getAllData().getLabels()
         XCTAssertTrue(labelsFromDatabase.count == 1, "Labels were not retrieved properly!")
         
@@ -272,6 +290,7 @@ class DatabaseTest: XCTestCase {
         
         // Fetch again, and check.
         labelsFromDatabase.removeAll()
+        PeopleBank.shared.clearAll() // Must clear here because static.
         labelsFromDatabase = db!.getAllData().getLabels()
         XCTAssertTrue(labelsFromDatabase.count == 0, "The label was not deleted properly!")
         
@@ -300,6 +319,7 @@ class DatabaseTest: XCTestCase {
         
         // Fetch again, and check.
         peopleFromDatabase.removeAll()
+        PeopleBank.shared.clearAll() // Must clear here because static.
         peopleFromDatabase = db!.getAllData().getPeople()
         XCTAssertTrue(peopleFromDatabase.count == 0, "The profile was not deleted properly!")
         

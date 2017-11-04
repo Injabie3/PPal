@@ -8,13 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717749B61FA8061800C33286 /* HumanNetworkVC.swift */; };
-		71F531E81FA9333D0093886A /* AddItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F531E71FA9333D0093886A /* AddItemVC.swift */; };
-		D3D234AA1FA96BBC00E5D683 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234A61FA96BBB00E5D683 /* String.swift */; };
-		D3D234AB1FA96BBC00E5D683 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234A71FA96BBB00E5D683 /* Person.swift */; };
-		D3D234AC1FA96BBC00E5D683 /* PeopleBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234A81FA96BBC00E5D683 /* PeopleBank.swift */; };
-		D3D234AE1FA96BD700E5D683 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234AD1FA96BD700E5D683 /* Label.swift */; };
+		BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */; };
 		D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */; };
-		F744DCD11FABD7D900B607D2 /* PersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F744DCD01FABD7D900B607D2 /* PersonTableViewController.swift */; };
 		F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */; };
 		F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BB01F9A9BF90046AC3E /* ViewController.swift */; };
 		F7563BB41F9A9BF90046AC3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7563BB21F9A9BF90046AC3E /* Main.storyboard */; };
@@ -23,18 +18,19 @@
 		F7563BC41F9A9BF90046AC3E /* PPalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BC31F9A9BF90046AC3E /* PPalTests.swift */; };
 		F7563BCF1F9A9BF90046AC3E /* PPalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BCE1F9A9BF90046AC3E /* PPalUITests.swift */; };
 		F7563BDE1F9A9C230046AC3E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F7563BDD1F9A9C230046AC3E /* libsqlite3.tbd */; settings = {ATTRIBUTES = (Required, ); }; };
-		F7AC46C91FABCD6E00FD1596 /* PersonLabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC46C41FABCD6E00FD1596 /* PersonLabelTest.swift */; };
-		F7AC46CA1FABCD6E00FD1596 /* PeopleBankTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC46C51FABCD6E00FD1596 /* PeopleBankTest.swift */; };
-		F7AC46CB1FABCD6E00FD1596 /* PersonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC46C61FABCD6E00FD1596 /* PersonTest.swift */; };
-		F7AC46CC1FABCD6E00FD1596 /* LabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC46C71FABCD6E00FD1596 /* LabelTest.swift */; };
-		F7AC46CD1FABCD6E00FD1596 /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC46C81FABCD6E00FD1596 /* DatabaseTest.swift */; };
-		F7AC46E61FABCD8E00FD1596 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC46D91FABCD8600FD1596 /* SQLite.framework */; };
-		F7AC46E71FABCD9200FD1596 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC46D91FABCD8600FD1596 /* SQLite.framework */; };
-		F7AC46E81FABCD9200FD1596 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC46D91FABCD8600FD1596 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F7AC46EF1FABCFE800FD1596 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC46EE1FABCFE800FD1596 /* PersonTableViewCell.swift */; };
-		F7D82F761FABFC6200BC4DBE /* addLabelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D82F751FABFC6200BC4DBE /* addLabelTableViewController.swift */; };
-		F7DAF2011FAD2D62004A7574 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DAF2001FAD2D62004A7574 /* LabelTableViewCell.swift */; };
-		F7F67B791FABF2A300AF7C85 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F67B721FABF2A300AF7C85 /* Database.swift */; };
+		F75D81E01FAE7C6F0071F47F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75D81D31FAE7C630071F47F /* SQLite.framework */; };
+		F75D81E11FAE7C740071F47F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75D81D31FAE7C630071F47F /* SQLite.framework */; };
+		F75D81E21FAE7C740071F47F /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F75D81D31FAE7C630071F47F /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F75D81EB1FAE7C930071F47F /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81E61FAE7C930071F47F /* Label.swift */; };
+		F75D81EC1FAE7C930071F47F /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81E71FAE7C930071F47F /* Database.swift */; };
+		F75D81ED1FAE7C930071F47F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81E81FAE7C930071F47F /* String.swift */; };
+		F75D81EE1FAE7C930071F47F /* PeopleBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81E91FAE7C930071F47F /* PeopleBank.swift */; };
+		F75D81EF1FAE7C930071F47F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81EA1FAE7C930071F47F /* Person.swift */; };
+		F75D81F61FAE7CDD0071F47F /* PersonLabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F11FAE7CDD0071F47F /* PersonLabelTest.swift */; };
+		F75D81F71FAE7CDD0071F47F /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F21FAE7CDD0071F47F /* DatabaseTest.swift */; };
+		F75D81F81FAE7CDD0071F47F /* PeopleBankTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F31FAE7CDD0071F47F /* PeopleBankTest.swift */; };
+		F75D81F91FAE7CDD0071F47F /* LabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F41FAE7CDD0071F47F /* LabelTest.swift */; };
+		F75D81FA1FAE7CDD0071F47F /* PersonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F51FAE7CDD0071F47F /* PersonTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,58 +48,58 @@
 			remoteGlobalIDString = F7563BAA1F9A9BF90046AC3E;
 			remoteInfo = PPal;
 		};
-		F7AC46D81FABCD8600FD1596 /* PBXContainerItemProxy */ = {
+		F75D81D21FAE7C630071F47F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */;
+			containerPortal = F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EE247AD31C3F04ED00AE3E12;
 			remoteInfo = "SQLite iOS";
 		};
-		F7AC46DA1FABCD8600FD1596 /* PBXContainerItemProxy */ = {
+		F75D81D41FAE7C630071F47F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */;
+			containerPortal = F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EE247ADD1C3F04ED00AE3E12;
 			remoteInfo = "SQLiteTests iOS";
 		};
-		F7AC46DC1FABCD8600FD1596 /* PBXContainerItemProxy */ = {
+		F75D81D61FAE7C630071F47F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */;
+			containerPortal = F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EE247B3C1C3F3ED000AE3E12;
 			remoteInfo = "SQLite Mac";
 		};
-		F7AC46DE1FABCD8600FD1596 /* PBXContainerItemProxy */ = {
+		F75D81D81FAE7C630071F47F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */;
+			containerPortal = F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EE247B451C3F3ED000AE3E12;
 			remoteInfo = "SQLiteTests Mac";
 		};
-		F7AC46E01FABCD8600FD1596 /* PBXContainerItemProxy */ = {
+		F75D81DA1FAE7C630071F47F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */;
+			containerPortal = F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 03A65E5A1C6BB0F50062603F;
 			remoteInfo = "SQLite tvOS";
 		};
-		F7AC46E21FABCD8600FD1596 /* PBXContainerItemProxy */ = {
+		F75D81DC1FAE7C630071F47F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */;
+			containerPortal = F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 03A65E631C6BB0F60062603F;
 			remoteInfo = "SQLiteTests tvOS";
 		};
-		F7AC46E41FABCD8600FD1596 /* PBXContainerItemProxy */ = {
+		F75D81DE1FAE7C630071F47F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */;
+			containerPortal = F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A121AC451CA35C79005A31D1;
 			remoteInfo = "SQLite watchOS";
 		};
-		F7AC46E91FABCD9200FD1596 /* PBXContainerItemProxy */ = {
+		F75D81E31FAE7C740071F47F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */;
+			containerPortal = F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = EE247AD21C3F04ED00AE3E12;
 			remoteInfo = "SQLite iOS";
@@ -111,13 +107,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F7AC46EB1FABCD9300FD1596 /* Embed Frameworks */ = {
+		F75D81E51FAE7C740071F47F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F7AC46E81FABCD9200FD1596 /* SQLite.framework in Embed Frameworks */,
+				F75D81E21FAE7C740071F47F /* SQLite.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,13 +122,8 @@
 
 /* Begin PBXFileReference section */
 		717749B61FA8061800C33286 /* HumanNetworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanNetworkVC.swift; sourceTree = "<group>"; };
-		71F531E71FA9333D0093886A /* AddItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemVC.swift; sourceTree = "<group>"; };
-		D3D234A61FA96BBB00E5D683 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		D3D234A71FA96BBB00E5D683 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		D3D234A81FA96BBC00E5D683 /* PeopleBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBank.swift; sourceTree = "<group>"; };
-		D3D234AD1FA96BD700E5D683 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserProfileVC.swift; sourceTree = "<group>"; };
 		D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
-		F744DCD01FABD7D900B607D2 /* PersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewController.swift; sourceTree = "<group>"; };
 		F7563BAB1F9A9BF90046AC3E /* PPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7563BB01F9A9BF90046AC3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,16 +138,17 @@
 		F7563BCE1F9A9BF90046AC3E /* PPalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPalUITests.swift; sourceTree = "<group>"; };
 		F7563BD01F9A9BF90046AC3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7563BDD1F9A9C230046AC3E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		F7AC46C41FABCD6E00FD1596 /* PersonLabelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonLabelTest.swift; sourceTree = "<group>"; };
-		F7AC46C51FABCD6E00FD1596 /* PeopleBankTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBankTest.swift; sourceTree = "<group>"; };
-		F7AC46C61FABCD6E00FD1596 /* PersonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTest.swift; sourceTree = "<group>"; };
-		F7AC46C71FABCD6E00FD1596 /* LabelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTest.swift; sourceTree = "<group>"; };
-		F7AC46C81FABCD6E00FD1596 /* DatabaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
-		F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
-		F7AC46EE1FABCFE800FD1596 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
-		F7D82F751FABFC6200BC4DBE /* addLabelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addLabelTableViewController.swift; sourceTree = "<group>"; };
-		F7DAF2001FAD2D62004A7574 /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
-		F7F67B721FABF2A300AF7C85 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
+		F75D81E61FAE7C930071F47F /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		F75D81E71FAE7C930071F47F /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		F75D81E81FAE7C930071F47F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		F75D81E91FAE7C930071F47F /* PeopleBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBank.swift; sourceTree = "<group>"; };
+		F75D81EA1FAE7C930071F47F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		F75D81F11FAE7CDD0071F47F /* PersonLabelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonLabelTest.swift; sourceTree = "<group>"; };
+		F75D81F21FAE7CDD0071F47F /* DatabaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
+		F75D81F31FAE7CDD0071F47F /* PeopleBankTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBankTest.swift; sourceTree = "<group>"; };
+		F75D81F41FAE7CDD0071F47F /* LabelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTest.swift; sourceTree = "<group>"; };
+		F75D81F51FAE7CDD0071F47F /* PersonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,9 +156,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7AC46E61FABCD8E00FD1596 /* SQLite.framework in Frameworks */,
+				F75D81E01FAE7C6F0071F47F /* SQLite.framework in Frameworks */,
 				F7563BDE1F9A9C230046AC3E /* libsqlite3.tbd in Frameworks */,
-				F7AC46E71FABCD9200FD1596 /* SQLite.framework in Frameworks */,
+				F75D81E11FAE7C740071F47F /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,17 +179,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F744DCD81FABD7E500B607D2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D3D234AD1FA96BD700E5D683 /* Label.swift */,
-				D3D234A71FA96BBB00E5D683 /* Person.swift */,
-				F7F67B721FABF2A300AF7C85 /* Database.swift */,
-				D3D234A81FA96BBC00E5D683 /* PeopleBank.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		F7563BA21F9A9BF90046AC3E = {
 			isa = PBXGroup;
 			children = (
@@ -222,18 +203,13 @@
 		F7563BAD1F9A9BF90046AC3E /* PPal */ = {
 			isa = PBXGroup;
 			children = (
-				F744DCD81FABD7E500B607D2 /* Models */,
-				F7AC46EE1FABCFE800FD1596 /* PersonTableViewCell.swift */,
-				F7DAF2001FAD2D62004A7574 /* LabelTableViewCell.swift */,
-				F744DCD01FABD7D900B607D2 /* PersonTableViewController.swift */,
-				F7D82F751FABFC6200BC4DBE /* addLabelTableViewController.swift */,
+				F75D81F01FAE7C970071F47F /* Models */,
 				D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */,
 				F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */,
-				D3D234A61FA96BBB00E5D683 /* String.swift */,
 				F7563BB01F9A9BF90046AC3E /* ViewController.swift */,
 				F7563BB21F9A9BF90046AC3E /* Main.storyboard */,
-				71F531E71FA9333D0093886A /* AddItemVC.swift */,
 				717749B61FA8061800C33286 /* HumanNetworkVC.swift */,
+				BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */,
 				F7563BB51F9A9BF90046AC3E /* Assets.xcassets */,
 				F7563BB71F9A9BF90046AC3E /* LaunchScreen.storyboard */,
 				F7563BBA1F9A9BF90046AC3E /* Info.plist */,
@@ -245,11 +221,11 @@
 			isa = PBXGroup;
 			children = (
 				F7563BC31F9A9BF90046AC3E /* PPalTests.swift */,
-				F7AC46C81FABCD6E00FD1596 /* DatabaseTest.swift */,
-				F7AC46C71FABCD6E00FD1596 /* LabelTest.swift */,
-				F7AC46C51FABCD6E00FD1596 /* PeopleBankTest.swift */,
-				F7AC46C41FABCD6E00FD1596 /* PersonLabelTest.swift */,
-				F7AC46C61FABCD6E00FD1596 /* PersonTest.swift */,
+				F75D81F21FAE7CDD0071F47F /* DatabaseTest.swift */,
+				F75D81F41FAE7CDD0071F47F /* LabelTest.swift */,
+				F75D81F31FAE7CDD0071F47F /* PeopleBankTest.swift */,
+				F75D81F11FAE7CDD0071F47F /* PersonLabelTest.swift */,
+				F75D81F51FAE7CDD0071F47F /* PersonTest.swift */,
 				F7563BC51F9A9BF90046AC3E /* Info.plist */,
 			);
 			path = PPalTests;
@@ -267,24 +243,36 @@
 		F7563BDC1F9A9C230046AC3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */,
+				F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */,
 				F7563BDD1F9A9C230046AC3E /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F7AC46CF1FABCD8600FD1596 /* Products */ = {
+		F75D81C91FAE7C630071F47F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F7AC46D91FABCD8600FD1596 /* SQLite.framework */,
-				F7AC46DB1FABCD8600FD1596 /* SQLiteTests iOS.xctest */,
-				F7AC46DD1FABCD8600FD1596 /* SQLite.framework */,
-				F7AC46DF1FABCD8600FD1596 /* SQLiteTests Mac.xctest */,
-				F7AC46E11FABCD8600FD1596 /* SQLite.framework */,
-				F7AC46E31FABCD8600FD1596 /* SQLiteTests tvOS.xctest */,
-				F7AC46E51FABCD8600FD1596 /* SQLite.framework */,
+				F75D81D31FAE7C630071F47F /* SQLite.framework */,
+				F75D81D51FAE7C630071F47F /* SQLiteTests iOS.xctest */,
+				F75D81D71FAE7C630071F47F /* SQLite.framework */,
+				F75D81D91FAE7C630071F47F /* SQLiteTests Mac.xctest */,
+				F75D81DB1FAE7C630071F47F /* SQLite.framework */,
+				F75D81DD1FAE7C630071F47F /* SQLiteTests tvOS.xctest */,
+				F75D81DF1FAE7C630071F47F /* SQLite.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F75D81F01FAE7C970071F47F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F75D81E71FAE7C930071F47F /* Database.swift */,
+				F75D81E61FAE7C930071F47F /* Label.swift */,
+				F75D81E91FAE7C930071F47F /* PeopleBank.swift */,
+				F75D81EA1FAE7C930071F47F /* Person.swift */,
+				F75D81E81FAE7C930071F47F /* String.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,12 +285,12 @@
 				F7563BA71F9A9BF90046AC3E /* Sources */,
 				F7563BA81F9A9BF90046AC3E /* Frameworks */,
 				F7563BA91F9A9BF90046AC3E /* Resources */,
-				F7AC46EB1FABCD9300FD1596 /* Embed Frameworks */,
+				F75D81E51FAE7C740071F47F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F7AC46EA1FABCD9200FD1596 /* PBXTargetDependency */,
+				F75D81E41FAE7C740071F47F /* PBXTargetDependency */,
 			);
 			name = PPal;
 			productName = PPal;
@@ -395,8 +383,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = F7AC46CF1FABCD8600FD1596 /* Products */;
-					ProjectRef = F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */;
+					ProductGroup = F75D81C91FAE7C630071F47F /* Products */;
+					ProjectRef = F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -409,53 +397,53 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		F7AC46D91FABCD8600FD1596 /* SQLite.framework */ = {
+		F75D81D31FAE7C630071F47F /* SQLite.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = SQLite.framework;
-			remoteRef = F7AC46D81FABCD8600FD1596 /* PBXContainerItemProxy */;
+			remoteRef = F75D81D21FAE7C630071F47F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F7AC46DB1FABCD8600FD1596 /* SQLiteTests iOS.xctest */ = {
+		F75D81D51FAE7C630071F47F /* SQLiteTests iOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "SQLiteTests iOS.xctest";
-			remoteRef = F7AC46DA1FABCD8600FD1596 /* PBXContainerItemProxy */;
+			remoteRef = F75D81D41FAE7C630071F47F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F7AC46DD1FABCD8600FD1596 /* SQLite.framework */ = {
+		F75D81D71FAE7C630071F47F /* SQLite.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = SQLite.framework;
-			remoteRef = F7AC46DC1FABCD8600FD1596 /* PBXContainerItemProxy */;
+			remoteRef = F75D81D61FAE7C630071F47F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F7AC46DF1FABCD8600FD1596 /* SQLiteTests Mac.xctest */ = {
+		F75D81D91FAE7C630071F47F /* SQLiteTests Mac.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "SQLiteTests Mac.xctest";
-			remoteRef = F7AC46DE1FABCD8600FD1596 /* PBXContainerItemProxy */;
+			remoteRef = F75D81D81FAE7C630071F47F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F7AC46E11FABCD8600FD1596 /* SQLite.framework */ = {
+		F75D81DB1FAE7C630071F47F /* SQLite.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = SQLite.framework;
-			remoteRef = F7AC46E01FABCD8600FD1596 /* PBXContainerItemProxy */;
+			remoteRef = F75D81DA1FAE7C630071F47F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F7AC46E31FABCD8600FD1596 /* SQLiteTests tvOS.xctest */ = {
+		F75D81DD1FAE7C630071F47F /* SQLiteTests tvOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "SQLiteTests tvOS.xctest";
-			remoteRef = F7AC46E21FABCD8600FD1596 /* PBXContainerItemProxy */;
+			remoteRef = F75D81DC1FAE7C630071F47F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		F7AC46E51FABCD8600FD1596 /* SQLite.framework */ = {
+		F75D81DF1FAE7C630071F47F /* SQLite.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = SQLite.framework;
-			remoteRef = F7AC46E41FABCD8600FD1596 /* PBXContainerItemProxy */;
+			remoteRef = F75D81DE1FAE7C630071F47F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -492,19 +480,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D82F761FABFC6200BC4DBE /* addLabelTableViewController.swift in Sources */,
+				F75D81EF1FAE7C930071F47F /* Person.swift in Sources */,
 				F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */,
+				BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */,
+				F75D81EB1FAE7C930071F47F /* Label.swift in Sources */,
 				D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */,
-				D3D234AA1FA96BBC00E5D683 /* String.swift in Sources */,
-				F7DAF2011FAD2D62004A7574 /* LabelTableViewCell.swift in Sources */,
-				71F531E81FA9333D0093886A /* AddItemVC.swift in Sources */,
-				F744DCD11FABD7D900B607D2 /* PersonTableViewController.swift in Sources */,
-				D3D234AE1FA96BD700E5D683 /* Label.swift in Sources */,
-				F7F67B791FABF2A300AF7C85 /* Database.swift in Sources */,
-				D3D234AC1FA96BBC00E5D683 /* PeopleBank.swift in Sources */,
+				F75D81EE1FAE7C930071F47F /* PeopleBank.swift in Sources */,
 				717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */,
-				D3D234AB1FA96BBC00E5D683 /* Person.swift in Sources */,
-				F7AC46EF1FABCFE800FD1596 /* PersonTableViewCell.swift in Sources */,
+				F75D81EC1FAE7C930071F47F /* Database.swift in Sources */,
+				F75D81ED1FAE7C930071F47F /* String.swift in Sources */,
 				F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,12 +497,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7AC46CA1FABCD6E00FD1596 /* PeopleBankTest.swift in Sources */,
+				F75D81FA1FAE7CDD0071F47F /* PersonTest.swift in Sources */,
+				F75D81F81FAE7CDD0071F47F /* PeopleBankTest.swift in Sources */,
 				F7563BC41F9A9BF90046AC3E /* PPalTests.swift in Sources */,
-				F7AC46CB1FABCD6E00FD1596 /* PersonTest.swift in Sources */,
-				F7AC46C91FABCD6E00FD1596 /* PersonLabelTest.swift in Sources */,
-				F7AC46CD1FABCD6E00FD1596 /* DatabaseTest.swift in Sources */,
-				F7AC46CC1FABCD6E00FD1596 /* LabelTest.swift in Sources */,
+				F75D81F71FAE7CDD0071F47F /* DatabaseTest.swift in Sources */,
+				F75D81F61FAE7CDD0071F47F /* PersonLabelTest.swift in Sources */,
+				F75D81F91FAE7CDD0071F47F /* LabelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,10 +527,10 @@
 			target = F7563BAA1F9A9BF90046AC3E /* PPal */;
 			targetProxy = F7563BCB1F9A9BF90046AC3E /* PBXContainerItemProxy */;
 		};
-		F7AC46EA1FABCD9200FD1596 /* PBXTargetDependency */ = {
+		F75D81E41FAE7C740071F47F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "SQLite iOS";
-			targetProxy = F7AC46E91FABCD9200FD1596 /* PBXContainerItemProxy */;
+			targetProxy = F75D81E31FAE7C740071F47F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -10,6 +10,13 @@ import Foundation
 import XCTest
 @testable import PPal
 
+/**
+ # PersonLabelTest Class
+ This class contains the XCTests for the integration of Person and Label class methods.
+
+ Note: One thing to note is the cyclic references as mentioned in Apple's Automatic
+ Reference Counting (ARC) documentation.
+ */
 class PersonLabelTest: XCTestCase {
     var person01: Person? = Person()
     var label01: Label? = Label()

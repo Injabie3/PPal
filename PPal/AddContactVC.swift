@@ -7,52 +7,52 @@
 //
 
 import UIKit
+import Contacts
+import ContactsUI
 
-class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {
 
+    var contact1: CNContact = CNContact()
+    var isImported = Bool()
+    
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var phoneField: UITextField!
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var labelField: UITextField!
-    @IBOutlet weak var addressField: UITextField!
     @IBOutlet weak var contactPhoto: UIImageView!
+    @IBOutlet weak var addressField: UITextField!
+    @IBOutlet weak var labelField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var phoneNumberField: UITextField!
+    @IBOutlet weak var lastNameField: UITextField!
+    @IBOutlet weak var firstNameField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.doneBarButton?.isEnabled = false
-        firstNameTextField?.delegate = self
-        lastNameTextField?.delegate = self
-        phoneField?.delegate = self
+        firstNameField?.delegate = self
+        lastNameField?.delegate = self
+        phoneNumberField?.delegate = self
         emailField?.delegate = self
         labelField?.delegate = self
         addressField?.delegate = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-
         
+        if isImported {
+            isImported = false
+            self.firstNameField.text = contact1.givenName
+            self.lastNameField.text = contact1.familyName
+            self.phoneNumberField.text = (contact1.phoneNumbers.first?.value as! CNPhoneNumber).value(forKey: "digits") as? String
+            self.emailField.text = contact1.emailAddresses.first?.value as String?
+            self.addressField.text = CNPostalAddressFormatter().string(from: (contact1.postalAddresses.first?.value)!)
+            if contact1.imageData != nil {
+                self.contactPhoto.image = UIImage(data: contact1.imageData!)
+            }
+        }
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     // MARK: UIImagePickerControllerDelegate
     @IBAction func selectImageFromLibrary(_ sender: UITapGestureRecognizer) {
         
         // Hide the keyboard
-      // firstNameTextField.resignFirstResponder()
+        firstNameField.resignFirstResponder()
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library
         let imagePickerController = UIImagePickerController()
@@ -83,10 +83,8 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     
     // MARK: Grey out Done button if the fields are not all filled
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if (firstNameTextField?.text?.isEmpty)! || (lastNameTextField?.text?.isEmpty)! || (phoneField?.text?.isEmpty)! || (emailField?.text?.isEmpty)! || (addressField?.text?.isEmpty)! {
-            //self.doneBarButton.isEnabled = false
+        if (firstNameField?.text?.isEmpty)! || (lastNameField?.text?.isEmpty)! || (phoneNumberField?.text?.isEmpty)! || (emailField?.text?.isEmpty)! || (addressField?.text?.isEmpty)! {
         } else {
-            //self.doneBarButton.isEnabled = true
             setHiddenImage()
         }
     }
@@ -98,34 +96,4 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             self.doneBarButton.isEnabled = true
         }
     }
-    
-    @IBAction func cancelPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func donePressed(_ sender: Any) {
-        // 1. Validate data.
-        
-        // 2. Create person class object
-        let profile = Person()
-        let label01 = Label()
-        label01.editLabel(name: "Cool People")
-        PeopleBank.shared.add(label: label01)
-        Database.shared.saveLabelToDatabase(label: label01)
-        profile.set(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!)
-        profile.set(phoneNumber: phoneField.text!)
-        profile.set(email: emailField.text!)
-        profile.add(label: label01)
-        profile.setInfo(pathToPhoto: "test12234", firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, phoneNumber: phoneField.text!, email: emailField.text!, address: addressField.text!, hasHouseKeys: false)
-        // 3. Save to PeopleBank object.
-        PeopleBank.shared.add(person: profile)
-        
-        // 4. Add to database.
-        Database.shared.saveProfileToDatabase(profile: profile)
-        
-        // 5. Go back to previous screen.
-        dismiss(animated: true, completion: nil)
-    }
-    
 }
-

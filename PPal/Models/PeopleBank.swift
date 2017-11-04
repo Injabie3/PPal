@@ -13,7 +13,7 @@ import Foundation
  The encapsulating class that will hold people and labels, and
  their relationships between each other.
  */
-class PeopleBank{
+class PeopleBank {
     
     static var shared = PeopleBank()
     
@@ -50,6 +50,18 @@ class PeopleBank{
             }
             return false
         }
+    }
+    
+    /// Clears all cyclic references and then removes all labels and people from their lists.
+    func clearAll() {
+        for item in people {
+            item.clearAll()
+        }
+        for item in labels {
+            item.clearAll()
+        }
+        people.removeAll()
+        labels.removeAll()
     }
     
     /**
@@ -203,4 +215,3 @@ class PeopleBank{
     }
 
 }
-
