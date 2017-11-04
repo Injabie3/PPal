@@ -15,6 +15,7 @@ class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var LabelViewField: UIView!
     @IBOutlet weak var Segment: UISegmentedControl!
     @IBOutlet weak var listViewTableView: UITableView! // The table view for the list of people.
+    @IBOutlet weak var labelTableView: UITableView! // The table view for the list of label
     @IBAction func SegmentValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -34,37 +35,25 @@ class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    var people = [Person]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        var person01: Person? = nil
-        person01 = Person()
-        person01!.setInfo(pathToPhoto: "asdf1", firstName: "Mirac", lastName: "Chen", phoneNumber: "1234", email: "hah@sfu.ca", address: "1234 fake street", hasHouseKeys: false)
-        var person02: Person? = nil
-        person02 = Person()
         
-        person02!.setInfo(pathToPhoto: "asdf", firstName: "Ranbir", lastName: "Makkar", phoneNumber: "4567", email: "cool@sfu.ca", address: "123 Fake Ave", hasHouseKeys: false)
-        var label01: Label? = nil
-        label01 = Label()
-        label01!.editLabel(name: "Test")
-        person01!.add(label: label01!)
-        person02!.add(label: label01!)
-        people.append(person01!)
-        people.append(person02!)
-        Database.shared.saveLabelToDatabase(label: label01!)
-        Database.shared.saveProfileToDatabase(profile: person01!)
-        Database.shared.saveProfileToDatabase(profile: person02!)
-        person01?.clearAll()
-        person01 = nil
-        person02?.clearAll()
-        label01?.clearAll()
-        label01 = nil
-        Database.shared.getAllData()
         // Associate the table view data source and delegates
         listViewTableView.delegate = self
         listViewTableView.dataSource = self
+        
+        labelTableView.delegate = self
+        labelTableView.dataSource = self
         // Do any additional setup after loading the view.
+    }
+    
+    // Overloading this function as per StackOverflow to reload tableviews when we
+    // come back from adding a label or person.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        listViewTableView.reloadData()
+        labelTableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,7 +89,19 @@ class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDeleg
             }
             let addLabel = UIAlertAction(title: "Add New Label", style: .default) { (action) in
                 print("Add Label in second UIAlertController")
-                self.performSegue(withIdentifier: "SegueToAddLabelToContacts", sender: self)
+                //self.performSegue(withIdentifier: "SegueToAddLabelToContacts", sender: self)
+                let labelName = labelAlert.textFields
+                
+                // Save the label into the database and data model.
+                for item in labelName! {
+                    let label = Label()
+                    label.editLabel(name: item.text!)
+                    _ = PeopleBank.shared.add(label: label)
+                    _ = Database.shared.saveLabelToDatabase(label: label)
+                    
+                }
+                // Reload the table view.
+                self.labelTableView.reloadData()
             }
 
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -129,6 +130,10 @@ class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDeleg
             return PeopleBank.shared.getPeople().count
             // return people.count
         }
+        // Get the number of labels to display for the label list view.
+        if tableView == self.labelTableView {
+            return PeopleBank.shared.getLabels().count
+        }
         return 1
     }
     
@@ -138,25 +143,38 @@ class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         // Table view cells are reused and should be dequeued using a cell identifier.
-        
-        let cellIdentifier = "PersonTableViewCell"
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PersonTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of PersonTableViewCell.")
+        if tableView == self.listViewTableView {
+            let cellIdentifier = "PersonTableViewCell"
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PersonTableViewCell  else {
+                fatalError("The dequeued cell is not an instance of PersonTableViewCell.")
+            }
+            
+            // Fetches the appropriate person for the data source layout.
+            
+            let person = PeopleBank.shared.getPeople()[indexPath.row]
+            
+            cell.nameLabel.text = "\(person.getName().firstName) \(person.getName().lastName)"
+            cell.phoneNumberLabel.text = person.getInfo().phoneNumber
+            
+            return cell
         }
         
-        // Fetches the appropriate meal for the data source layout.
-        
-        //personArray needs to be
-        
-        //let personArray = Database.shared.getAllData().getPeople()[indexPath.row]
-        //let person = people[indexPath.row]
-        let person = PeopleBank.shared.getPeople()[indexPath.row]
-        
-        cell.nameLabel.text = "\(person.getName().firstName) \(person.getName().lastName)"
-        cell.phoneNumberLabel.text = person.getInfo().phoneNumber
-        
-        return cell
+        else { //tableView == self.labelTableView {
+            let cellIdentifier = "LabelTableViewCell"
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? LabelTableViewCell  else {
+                fatalError("The dequeued cell is not an instance of LabelTableViewCell.")
+            }
+            
+            // Fetches the appropriate label for the data source layout.
+            
+            let label = PeopleBank.shared.getLabels()[indexPath.row]
+            
+            cell.labelName.text = label.getName()
+            
+            return cell
+        }
         
     }
     

@@ -108,10 +108,15 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         
         // 2. Create person class object
         let profile = Person()
-        profile.set(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!)
+        let label01 = Label()
+        label01.editLabel(name: "Cool People")
+        PeopleBank.shared.add(label: label01)
+        Database.shared.saveLabelToDatabase(label: label01)
+        profile.set(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!)
         profile.set(phoneNumber: phoneField.text!)
         profile.set(email: emailField.text!)
-        
+        profile.add(label: label01)
+        profile.setInfo(pathToPhoto: "test12234", firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, phoneNumber: phoneField.text!, email: emailField.text!, address: addressField.text!, hasHouseKeys: false)
         // 3. Save to PeopleBank object.
         PeopleBank.shared.add(person: profile)
         

@@ -33,6 +33,7 @@
 		F7AC46E81FABCD9200FD1596 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7AC46D91FABCD8600FD1596 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F7AC46EF1FABCFE800FD1596 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AC46EE1FABCFE800FD1596 /* PersonTableViewCell.swift */; };
 		F7D82F761FABFC6200BC4DBE /* addLabelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D82F751FABFC6200BC4DBE /* addLabelTableViewController.swift */; };
+		F7DAF2011FAD2D62004A7574 /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DAF2001FAD2D62004A7574 /* LabelTableViewCell.swift */; };
 		F7F67B791FABF2A300AF7C85 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F67B721FABF2A300AF7C85 /* Database.swift */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +155,7 @@
 		F7AC46CE1FABCD8600FD1596 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		F7AC46EE1FABCFE800FD1596 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		F7D82F751FABFC6200BC4DBE /* addLabelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addLabelTableViewController.swift; sourceTree = "<group>"; };
+		F7DAF2001FAD2D62004A7574 /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
 		F7F67B721FABF2A300AF7C85 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +224,7 @@
 			children = (
 				F744DCD81FABD7E500B607D2 /* Models */,
 				F7AC46EE1FABCFE800FD1596 /* PersonTableViewCell.swift */,
+				F7DAF2001FAD2D62004A7574 /* LabelTableViewCell.swift */,
 				F744DCD01FABD7D900B607D2 /* PersonTableViewController.swift */,
 				F7D82F751FABFC6200BC4DBE /* addLabelTableViewController.swift */,
 				D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */,
@@ -493,6 +496,7 @@
 				F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */,
 				D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */,
 				D3D234AA1FA96BBC00E5D683 /* String.swift in Sources */,
+				F7DAF2011FAD2D62004A7574 /* LabelTableViewCell.swift in Sources */,
 				71F531E81FA9333D0093886A /* AddItemVC.swift in Sources */,
 				F744DCD11FABD7D900B607D2 /* PersonTableViewController.swift in Sources */,
 				D3D234AE1FA96BD700E5D683 /* Label.swift in Sources */,

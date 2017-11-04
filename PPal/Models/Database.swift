@@ -297,7 +297,7 @@ class Database {
      
      - by Ryan on Oct 31, 2017
      */
-    func getAllData() {
+    func getAllData() -> PeopleBank {
         let bank = PeopleBank.shared
         
         do {
@@ -356,6 +356,7 @@ class Database {
             print (error)
         }
         
+        return bank
     }
     
     
