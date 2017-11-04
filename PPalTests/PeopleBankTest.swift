@@ -13,7 +13,7 @@ import XCTest
 class PeopleBankTest: XCTestCase {
     var label01: Label? = Label()
     var person01: Person? = Person()
-    var listOfPeople: PeopleBank? = PeopleBank()
+    var listOfPeople: PeopleBank? = PeopleBank.shared
     var arrayOfPeople: [Person?] = [Person]()
     var arrayOfLabels: [Label?] = [Label]()
     var mixedUpListOfPeopleToSort: [Person?] = [Person]()
@@ -25,7 +25,8 @@ class PeopleBankTest: XCTestCase {
         // Create objects
         label01 = Label()
         person01 = Person()
-        listOfPeople = PeopleBank()
+        listOfPeople = PeopleBank.shared
+        listOfPeople!.clearAll()
         arrayOfPeople = [Person]()
         arrayOfLabels = [Label]()
         mixedUpListOfPeopleToSort = [Person]()

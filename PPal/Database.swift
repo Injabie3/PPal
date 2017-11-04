@@ -56,6 +56,28 @@ class Database {
         }    //Establish connection to the database file
     }
     
+    /// Recreate tables for the database.  For testing purposes.
+    func recreateDatabase() {
+        do {
+            //creating persons database
+            let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let fileUrl = documentDirectory.appendingPathComponent("persons").appendingPathExtension("sqlite3")
+            let database = try Connection(fileUrl.path)
+            self.database = database
+            self.createTable()
+            
+            //creating labels database
+            let labelDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let labelFileUrl = labelDocumentDirectory.appendingPathComponent("labels").appendingPathExtension("sqlite3")
+            let labelDatabase = try Connection(labelFileUrl.path)
+            self.labelDatabase = labelDatabase
+            self.createTableForLabel()
+            
+        } catch {
+            print(error)
+        }    //Establish connection to the database file
+    }
+    
     /// Table creation for Person class
     private func createTableForLabel() {
         

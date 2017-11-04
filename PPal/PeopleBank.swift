@@ -52,6 +52,18 @@ class PeopleBank {
         }
     }
     
+    /// Clears all cyclic references and then removes all labels and people from their lists.
+    func clearAll() {
+        for item in people {
+            item.clearAll()
+        }
+        for item in labels {
+            item.clearAll()
+        }
+        people.removeAll()
+        labels.removeAll()
+    }
+    
     /**
      Sorts the label list in alphabetical order by name.
      */
