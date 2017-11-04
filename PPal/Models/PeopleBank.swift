@@ -23,14 +23,29 @@ class PeopleBank{
     private var labels = [Label]()
     
     /**
+     If this has no more references, we should clear the references between labels and people,
+     and also clear the lists.
+     */
+    deinit {
+        for item in people {
+            item.clearAll()
+        }
+        for item in labels {
+            item.clearAll()
+        }
+        people.removeAll()
+        labels.removeAll()
+    }
+    
+    /**
      Sorts the people list in alphabetical order by first name, and then by last name.
      */
     private func sortPeople() {
         people.sort { (lhs, rhs) -> Bool in
-            if lhs.getName().firstName < rhs.getName().firstName {
+            if lhs.getName().firstName.lowercased() < rhs.getName().firstName.lowercased() {
                 return true
             }
-            if lhs.getName().firstName == rhs.getName().firstName && lhs.getName().lastName < rhs.getName().lastName {
+            if lhs.getName().firstName.lowercased() == rhs.getName().firstName.lowercased() && lhs.getName().lastName.lowercased() < rhs.getName().lastName.lowercased() {
                 return true
             }
             return false
@@ -42,7 +57,7 @@ class PeopleBank{
      */
     private func sortLabels() {
         labels.sort { (lhs, rhs) -> Bool in
-            return lhs.getName() < rhs.getName()
+            return lhs.getName().lowercased() < rhs.getName().lowercased()
         }
     }
     

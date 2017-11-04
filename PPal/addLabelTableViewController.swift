@@ -27,6 +27,10 @@ class addLabelTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func editPressed(_ sender: UIBarButtonItem) {
+        self.setEditing(true, animated: true)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -75,17 +79,20 @@ class addLabelTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let labels = PeopleBank.shared.getLabels()
+            _ = Database.shared.deleteLabelById(id: labels[indexPath.row].getId())
+            _ = PeopleBank.shared.del(label: labels[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.

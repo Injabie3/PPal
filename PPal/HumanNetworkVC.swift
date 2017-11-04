@@ -10,9 +10,9 @@ import UIKit
 
 class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var ListViewField: UIView!
-    @IBOutlet weak var MapViewField: UIView!
-    @IBOutlet weak var LabelViewField: UIView!
+    @IBOutlet weak var ListViewField: UIView! // People List View
+    @IBOutlet weak var MapViewField: UIView! // Map View
+    @IBOutlet weak var LabelViewField: UIView! // Label List View
     @IBOutlet weak var Segment: UISegmentedControl!
     @IBOutlet weak var listViewTableView: UITableView! // The table view for the list of people.
     @IBOutlet weak var labelTableView: UITableView! // The table view for the list of label
@@ -32,6 +32,28 @@ class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDeleg
             self.LabelViewField.isHidden = false
         default:
             break
+        }
+    }
+    
+    // Edit button pressed on the bar, will toggle the correct table view's edit mode.
+    @IBAction func editPressed(_ sender: UIBarButtonItem) {
+        // People List View
+        if !ListViewField.isHidden {
+            if !listViewTableView.isEditing {
+                listViewTableView.setEditing(true, animated: true)
+            }
+            else {
+                listViewTableView.setEditing(false, animated: true)
+            }
+        }
+        // Label List View
+        else if !LabelViewField.isHidden {
+            if !labelTableView.isEditing {
+                labelTableView.setEditing(true, animated: true)
+            }
+            else {
+                labelTableView.setEditing(false, animated: true)
+            }
         }
     }
     
@@ -89,7 +111,7 @@ class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDeleg
             }
             let addLabel = UIAlertAction(title: "Add New Label", style: .default) { (action) in
                 print("Add Label in second UIAlertController")
-                //self.performSegue(withIdentifier: "SegueToAddLabelToContacts", sender: self)
+                
                 let labelName = labelAlert.textFields
                 
                 // Save the label into the database and data model.
@@ -102,6 +124,8 @@ class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDeleg
                 }
                 // Reload the table view.
                 self.labelTableView.reloadData()
+                
+                self.performSegue(withIdentifier: "SegueToAddLabelToContacts", sender: self)
             }
 
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -176,6 +200,36 @@ class HumanNetworkVC: UIViewController,  UITableViewDataSource, UITableViewDeleg
             return cell
         }
         
+    }
+    
+    // Table view function to support editing.
+    // Override to support editing the table view.
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if tableView == labelTableView {
+            if editingStyle == .delete {
+                // Delete the row from the data source
+                let labels = PeopleBank.shared.getLabels()
+                _ = Database.shared.deleteLabelById(id: labels[indexPath.row].getId())
+                _ = PeopleBank.shared.del(label: labels[indexPath.row])
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            } else if editingStyle == .insert {
+                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            }
+        }
+        // For the People List View
+        else if tableView == listViewTableView {
+            if editingStyle == .delete {
+                // Delete the row from the data source
+                let people = PeopleBank.shared.getPeople()
+                _ = Database.shared.deleteProfileById(id: people[indexPath.row].getId())
+                _ = PeopleBank.shared.del(person: people[indexPath.row])
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+            } else if editingStyle == .insert {
+                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            }
+        }
     }
     
     

@@ -165,7 +165,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vcf-Km-WbA" id="vsy-a5-jlT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8r-4p-tIp">
@@ -204,7 +204,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OOw-RO-jYJ" id="tiK-ou-esc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="89.666666666666671"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgT-TC-BT4">
@@ -243,17 +243,17 @@
                     </view>
                     <navigationItem key="navigationItem" title="Human Network" id="sho-jB-NMa">
                         <rightBarButtonItems>
+                            <barButtonItem style="plain" systemItem="edit" id="VTc-PN-IPB">
+                                <connections>
+                                    <action selector="editPressed:" destination="u2V-8q-vnZ" id="2wh-85-Yhn"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem style="plain" systemItem="add" id="Wgz-Sf-Vwt">
                                 <connections>
                                     <action selector="onAddTapped:" destination="u2V-8q-vnZ" id="fg8-fQ-C4a"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="xad-1Q-5x0">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OYB-5D-k4m">
-                                    <rect key="frame" x="312" y="7" width="46" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button"/>
-                                </button>
+                            <barButtonItem enabled="NO" style="plain" id="xad-1Q-5x0">
                                 <connections>
                                     <segue destination="dgn-Mx-DjP" kind="presentation" identifier="SegueToCreateProfile" id="VJR-AK-Ouv"/>
                                 </connections>
@@ -643,6 +643,11 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Title" id="sAs-U1-qWU">
+                                    <barButtonItem key="leftBarButtonItem" systemItem="edit" id="ncc-NS-soP">
+                                        <connections>
+                                            <action selector="editPressed:" destination="I2p-PG-ehx" id="CFT-Ws-c7o"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="cIo-wT-GFH">
                                         <connections>
                                             <action selector="donePressed:" destination="I2p-PG-ehx" id="3jm-9F-L36"/>
