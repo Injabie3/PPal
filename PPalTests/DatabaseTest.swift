@@ -11,6 +11,19 @@ import XCTest
 import SQLite
 @testable import PPal
 
+/**
+ # DatabaseTest Class
+ This class contains the XCTests for the Database class methods, and additionally
+ requires the following classes and dependencies:
+ - SQLite
+ - Person class (from PPal)
+ - Label class (from PPal)
+ - PeopleBank class (from PPal)
+ 
+ Note: These sets of test will **drop all tables** in the database.  The initial test
+ may also fail if the app currently has data in it.  If the test is re-run, they should
+ all pass.
+ */
 class DatabaseTest: XCTestCase {
     
     var db: Database? = nil
@@ -268,6 +281,7 @@ class DatabaseTest: XCTestCase {
         // Destroy the label object, and fetch the labels from the database from scratch.
         label01 = nil
         
+        PeopleBank.shared.clearAll()
         var labelsFromDatabase = db!.getAllData().getLabels()
         XCTAssertTrue(labelsFromDatabase.count == 1, "Labels were not retrieved properly!")
         

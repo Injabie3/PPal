@@ -10,6 +10,12 @@ import Foundation
 import XCTest
 @testable import PPal
 
+/**
+ # PersonTest Class
+ This class contains the XCTests for the Person class methods, and requires
+ the following class:
+ - Label class (from PPal)
+ */
 class PersonTest: XCTestCase {
     
     var person1: Person? = Person() // A Person object we will continuously use.

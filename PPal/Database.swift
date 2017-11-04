@@ -14,7 +14,7 @@ class Database {
 
     static var shared = Database()
     
-    //Table variable declaration for persons
+    // Table variable declaration for persons
     let personsTable = Table("persons")
     let id = Expression<Int>("id")
     let pathToPhoto = Expression<String>("pathToPhoto")
@@ -27,24 +27,24 @@ class Database {
     let labels = Expression<String>("labels")
     var database: Connection!
     
-    //Table variable declaration for labels
+    // Table variable declaration for labels
     let labelTable = Table("labels")
     let labelId = Expression<Int>("id")
     let label = Expression<String>("label")
     var labelDatabase: Connection!
     
-    //we'll need to discuss how to store the labels ***
-    //create document path URL if not existed
-    private init () {
+    // we'll need to discuss how to store the labels ***
+    // create document path URL if not existed
+    private init() {
         do {
-            //creating persons database
+            // creating persons database
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let fileUrl = documentDirectory.appendingPathComponent("persons").appendingPathExtension("sqlite3")
             let database = try Connection(fileUrl.path)
             self.database = database
             self.createTable()
             
-            //creating labels database
+            // creating labels database
             let labelDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let labelFileUrl = labelDocumentDirectory.appendingPathComponent("labels").appendingPathExtension("sqlite3")
             let labelDatabase = try Connection(labelFileUrl.path)
@@ -53,20 +53,20 @@ class Database {
             
         } catch {
             print(error)
-        }    //Establish connection to the database file
+        }    // Establish connection to the database file
     }
     
     /// Recreate tables for the database.  For testing purposes.
     func recreateDatabase() {
         do {
-            //creating persons database
+            // creating persons database
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let fileUrl = documentDirectory.appendingPathComponent("persons").appendingPathExtension("sqlite3")
             let database = try Connection(fileUrl.path)
             self.database = database
             self.createTable()
             
-            //creating labels database
+            // creating labels database
             let labelDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let labelFileUrl = labelDocumentDirectory.appendingPathComponent("labels").appendingPathExtension("sqlite3")
             let labelDatabase = try Connection(labelFileUrl.path)
@@ -75,7 +75,7 @@ class Database {
             
         } catch {
             print(error)
-        }    //Establish connection to the database file
+        }    // Establish connection to the database file
     }
     
     /// Table creation for Person class
@@ -126,7 +126,7 @@ class Database {
          - True if the label was saved to the database.
          - False if the label could not be saved.
      */
-    func saveLabelToDatabase (label: Label) -> Bool {
+    func saveLabelToDatabase(label: Label) -> Bool {
         
         let saveLabel = self.labelTable.insert(self.label <- label.getName())
         do {
@@ -178,7 +178,7 @@ class Database {
 
     }
     
-    //Search and return label by ID
+    // Search and return label by ID
     func retrieveLabelById(id: Int) {
         
         let label = self.labelTable.filter(self.labelId == id)
@@ -195,7 +195,7 @@ class Database {
     
 	
 
-    //Search and return profile by ID
+    // Search and return profile by ID
     func retrieveProfileById(id: Int) {
 
         let profile = self.personsTable.filter(self.id == id)
@@ -219,7 +219,6 @@ class Database {
          - True if the person was successfully deleted from the database.
          - False if the person could not be deleted.
      */
-    //delete profile entry by ID
     func deleteProfileById(id: Int) -> Bool {
             
         let profile = self.personsTable.filter(self.id == id)
@@ -290,7 +289,6 @@ class Database {
         
     }
     
-    
     /**
      Updates a Label in the database.
      - parameter label: A Label object.
@@ -299,7 +297,6 @@ class Database {
          - False if it could not be updated.
      */
     func updateLabel(label: Label) -> Bool {
-        
 
         let updateLabel = self.labelTable.update(self.label <- label.getName())
         do {
@@ -381,10 +378,5 @@ class Database {
         
         return bank
     }
-    
-    
-    
-    
-	
 
 }

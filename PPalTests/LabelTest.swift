@@ -10,6 +10,16 @@ import Foundation
 import XCTest
 @testable import PPal
 
+/**
+ # LabelTest Class
+ This class contains the XCTests for the Label class methods, and additionally
+ requires the following classes:
+ - Person class (from PPal)
+ 
+ Edit: This class does not have dependencies for the Person class.  The intial
+ setUp() and tearDown() methods used it, but the test cases themselves do not.
+ They are located in the PersonLabelTest class.
+ */
 class LabelTest: XCTestCase {
     var label01: Label? = Label()
     var label02: Label? = Label()

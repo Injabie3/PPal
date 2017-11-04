@@ -60,11 +60,11 @@ class Person {
                 return false
             }
             // Check if the email is valid.
-            else if (email != "" && !email.isValidEmail) {
+            else if email != "" && !email.isValidEmail {
                 return false
             }
             // Check if the person has at least one label.
-            else if (labels.count == 0) {
+            else if labels.count == 0 {
                 return false
             } else {
                 return true
@@ -265,7 +265,7 @@ class Person {
         hasHouseKeys: Bool
         ) -> Bool {
         
-        //Do error checking here.
+        // Do error checking here.
         if photo == "" || firstName == "" || lastName == "" || phoneNumber == "" {
             return false
         }

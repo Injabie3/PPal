@@ -10,6 +10,13 @@ import Foundation
 import XCTest
 @testable import PPal
 
+/**
+ # PeopleBankTest Class
+ This class contains the XCTests for the PeopleBank class methods, and additionally
+ requires the following classes:
+ - Person class (from PPal)
+ - Label class (from PPal)
+ */
 class PeopleBankTest: XCTestCase {
     var label01: Label? = Label()
     var person01: Person? = Person()
