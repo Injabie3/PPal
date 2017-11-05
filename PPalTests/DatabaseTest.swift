@@ -324,4 +324,5 @@ class DatabaseTest: XCTestCase {
         XCTAssertTrue(peopleFromDatabase.count == 0, "The profile was not deleted properly!")
         
     }
+    
 }
