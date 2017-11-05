@@ -159,13 +159,25 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Onq-Ff-phk">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelTableViewCell" id="yiB-qt-3ZL" customClass="LabelTableViewCell" customModule="PPal" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Onq-Ff-phk" id="Rdy-wx-MJa">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yiB-qt-3ZL" id="Wu7-aD-OQc">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cF-iQ-YBl">
+                                                            <rect key="frame" x="8" y="0.0" width="398" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="labelName" destination="8cF-iQ-YBl" id="L1v-lD-zQW"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -181,18 +193,43 @@
                                 <rect key="frame" x="0.0" y="148" width="414" height="588"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T9O-2V-d6w">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T9O-2V-d6w">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="588"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OOw-RO-jYJ">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonTableViewCell" rowHeight="90" id="cew-a0-Ao2" customClass="PersonTableViewCell" customModule="PPal">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OOw-RO-jYJ" id="tiK-ou-esc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cew-a0-Ao2" id="gvK-fP-6Lk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="89.666666666666671"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBH-4Y-QxF">
+                                                            <rect key="frame" x="91" y="46" width="315" height="35"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default-user" translatesAutoresizingMaskIntoConstraints="NO" id="1Jt-Rt-nqI">
+                                                            <rect key="frame" x="8" y="6" width="75" height="75"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First and Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avt-jp-tc6">
+                                                            <rect key="frame" x="91" y="6" width="315" height="35"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="nameLabel" destination="avt-jp-tc6" id="8WJ-JN-R5r"/>
+                                                    <outlet property="phoneNumberLabel" destination="hBH-4Y-QxF" id="F9t-zs-Znx"/>
+                                                    <outlet property="profileImage" destination="1Jt-Rt-nqI" id="s9u-4J-Ybf"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -219,6 +256,8 @@
                         <outlet property="ListViewField" destination="F4l-t3-h7H" id="wtC-gz-QC3"/>
                         <outlet property="MapViewField" destination="HBh-aZ-V4G" id="Ahj-VU-4As"/>
                         <outlet property="Segment" destination="13X-xO-ohY" id="3sb-1W-EmY"/>
+                        <outlet property="labelTableView" destination="Kzs-9B-gTg" id="zJ0-lA-FeU"/>
+                        <outlet property="listViewTableView" destination="T9O-2V-d6w" id="2yE-LH-t7h"/>
                         <segue destination="GLg-Nw-gZy" kind="show" identifier="" id="s6C-zw-Dbh"/>
                         <segue destination="7tX-10-iwA" kind="show" identifier="SegueToAddLabelToContacts" id="0sS-Ii-Aye"/>
                         <segue destination="lxZ-Dr-tdf" kind="show" identifier="SegueToCreateProfile" id="cHR-IY-Z5a"/>
@@ -485,7 +524,7 @@
         <!--Add New Contact-->
         <scene sceneID="pJM-bx-7CC">
             <objects>
-                <viewController id="lxZ-Dr-tdf" customClass="AddContactVC" customModule="PPal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddContactVC" id="lxZ-Dr-tdf" customClass="AddContactVC" customModule="PPal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9gR-e4-LUN"/>
                         <viewControllerLayoutGuide type="bottom" id="Bi6-E9-1Nw"/>
@@ -565,6 +604,7 @@
                         <barButtonItem key="backBarButtonItem" title="g" id="QiL-eN-ZRE"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="ofl-Md-Pny">
                             <connections>
+                                <action selector="donePressed:" destination="lxZ-Dr-tdf" id="Vt5-US-VnE"/>
                                 <segue destination="87A-DM-zja" kind="unwind" unwindAction="unwindFromCreateProfileVCWithUnwindSegue:" id="16h-Wo-TPa"/>
                             </connections>
                         </barButtonItem>
