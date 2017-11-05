@@ -10,14 +10,14 @@ import Foundation
 
 class Person {
     
-    init () {
+    init() {
         self.labels = []
     }
     
-    init (pathToPhoto photo: String,
-          firstName: String,
-          lastName: String,
-          phoneNumber: String) {
+    init(pathToPhoto photo: String,
+         firstName: String,
+         lastName: String,
+         phoneNumber: String) {
         self.photo = photo
         self.firstName = firstName
         self.lastName = lastName
@@ -51,20 +51,20 @@ class Person {
      */
     var valid: Bool {
         get {
-            //Do error checking here.
-            if (photo == "" || firstName == "" || lastName == "" || phoneNumber == "") {
+            // Do error checking here.
+            if photo == "" || firstName == "" || lastName == "" || phoneNumber == "" {
                 return false
             }
             // Check if the phone number is valid.
-            else if (!phoneNumber.isValidPhoneNumber) {
+            else if !phoneNumber.isValidPhoneNumber {
                 return false
             }
             // Check if the email is valid.
-            else if (email != "" && !email.isValidEmail) {
+            else if email != "" && !email.isValidEmail {
                 return false
             }
             // Check if the person has at least one label.
-            else if (labels.count == 0) {
+            else if labels.count == 0 {
                 return false
             } else {
                 return true
@@ -82,7 +82,7 @@ class Person {
          - False if the name was not set, due to a blank String supplied.
      */
     func set(firstName: String, lastName: String) -> Bool {
-        if (firstName == "" || lastName == "") {
+        if firstName == "" || lastName == "" {
             return false
         }
         
@@ -99,7 +99,7 @@ class Person {
          - False if it was not set, due to a blank String, or invalid email address.
      */
     func set(email: String) -> Bool {
-        if (email == "" || !email.isValidEmail) {
+        if email == "" || !email.isValidEmail {
             return false
         }
         
@@ -115,12 +115,28 @@ class Person {
          - False if it was not set, due to a blank String, or invalid email address.
      */
     func set(phoneNumber: String) -> Bool {
-        if (phoneNumber == "" || !phoneNumber.isValidPhoneNumber) {
+        if phoneNumber == "" || !phoneNumber.isValidPhoneNumber {
             return false
         }
         
         self.phoneNumber = phoneNumber
         return true
+    }
+    
+    /**
+     Sets the ID of the person in the database table.
+     - parameter id: The primary key id in the table.
+     */
+    func set(id: Int) {
+        self.id = id
+    }
+    
+    /**
+     Gets the ID of the person, which is associated with the database.
+     - returns: The primary key id in the table.
+     */
+    func getId() -> Int {
+        return id
     }
     
     /**
@@ -239,7 +255,7 @@ class Person {
      
      - returns: true or false
     */
-    func setInfo (
+    func setInfo(
         pathToPhoto photo: String,
         firstName: String,
         lastName: String,
@@ -249,16 +265,16 @@ class Person {
         hasHouseKeys: Bool
         ) -> Bool {
         
-        //Do error checking here.
-        if (photo == "" || firstName == "" || lastName == "" || phoneNumber == "") {
+        // Do error checking here.
+        if photo == "" || firstName == "" || lastName == "" || phoneNumber == "" {
             return false
         }
         // Check if the phone number is valid.
-        else if (!phoneNumber.isValidPhoneNumber) {
+        else if !phoneNumber.isValidPhoneNumber {
             return false
         }
         // Check if the email is valid.
-        else if (email != "" && !email.isValidEmail ) {
+        else if email != "" && !email.isValidEmail {
             return false
         } else {
             self.photo = photo
@@ -318,6 +334,7 @@ class Person {
 }
 
 extension Person: Equatable {
+    
     /**
      Defines the equality operator to signify what is meant by
      having two Person objects being "equivalent"
@@ -335,4 +352,5 @@ extension Person: Equatable {
             lhsInfo.email == rhsInfo.email &&
             lhsInfo.hasHouseKeys == rhsInfo.hasHouseKeys
     }
+    
 }

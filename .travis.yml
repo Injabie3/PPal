@@ -7,5 +7,5 @@ xcode_sdk: iphonesimulator11.0
 before_install:
 - brew install tailor
 script:
-- tailor PPal
-- tailor PPalTests
+- tailor PPal --except=trailing-whitespace
+- tailor PPalTests --except=trailing-whitespace

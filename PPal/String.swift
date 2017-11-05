@@ -19,7 +19,7 @@ public extension String {
     var isValidEmail: Bool {
         get {
             let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-            let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+            let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
             return emailPredicate.evaluate(with: self)
         }
     }
@@ -30,11 +30,11 @@ public extension String {
      - True if the phone number is valid.
      - false if the phone number is invalid.
      */
-    
     var isValidPhoneNumber: Bool {
         get {
             let validPhoneNumberCharacters = CharacterSet(charactersIn: "-+1234567890")
             return self.rangeOfCharacter(from: validPhoneNumberCharacters.inverted) == nil
         }
     }
+    
 }
