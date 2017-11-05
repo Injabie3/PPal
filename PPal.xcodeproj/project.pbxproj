@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46BBC2C21FAEE0A3005B0710 /* EmergencySettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */; };
 		717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717749B61FA8061800C33286 /* HumanNetworkVC.swift */; };
 		BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */; };
 		D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */; };
@@ -36,7 +37,7 @@
 		F75D82201FAE94E80071F47F /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D821A1FAE94E70071F47F /* Label.swift */; };
 		F75D82211FAE94E80071F47F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D821B1FAE94E80071F47F /* Person.swift */; };
 		F75D82221FAE94E80071F47F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D821C1FAE94E80071F47F /* String.swift */; };
-		F75D82261FAE9B6D0071F47F /* Emergency .swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82251FAE9B6D0071F47F /* Emergency .swift */; };
+		F75D82261FAE9B6D0071F47F /* Emergency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82251FAE9B6D0071F47F /* Emergency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		46BBC2BC1FAEB2D9005B0710 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencySettingsVC.swift; sourceTree = "<group>"; };
 		717749B61FA8061800C33286 /* HumanNetworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanNetworkVC.swift; sourceTree = "<group>"; };
 		BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserProfileVC.swift; sourceTree = "<group>"; };
 		D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
@@ -160,7 +163,7 @@
 		F75D821A1FAE94E70071F47F /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Label.swift; path = Models/Label.swift; sourceTree = "<group>"; };
 		F75D821B1FAE94E80071F47F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Models/Person.swift; sourceTree = "<group>"; };
 		F75D821C1FAE94E80071F47F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Models/String.swift; sourceTree = "<group>"; };
-		F75D82251FAE9B6D0071F47F /* Emergency .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emergency .swift"; sourceTree = "<group>"; };
+		F75D82251FAE9B6D0071F47F /* Emergency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emergency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,7 +225,7 @@
 				F75D821C1FAE94E80071F47F /* String.swift */,
 				F75D82151FAE94220071F47F /* Models */,
 				D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */,
-				F75D82251FAE9B6D0071F47F /* Emergency .swift */,
+				F75D82251FAE9B6D0071F47F /* Emergency.swift */,
 				F75D82071FAE7F570071F47F /* addLabelTableViewController.swift */,
 				F75D82051FAE7F570071F47F /* LabelTableViewCell.swift */,
 				F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */,
@@ -235,6 +238,7 @@
 				F7563BB51F9A9BF90046AC3E /* Assets.xcassets */,
 				F7563BB71F9A9BF90046AC3E /* LaunchScreen.storyboard */,
 				F7563BBA1F9A9BF90046AC3E /* Info.plist */,
+				46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */,
 			);
 			path = PPal;
 			sourceTree = "<group>";
@@ -265,6 +269,7 @@
 		F7563BDC1F9A9C230046AC3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				46BBC2BC1FAEB2D9005B0710 /* MapKit.framework */,
 				F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */,
 				F7563BDD1F9A9C230046AC3E /* libsqlite3.tbd */,
 			);
@@ -504,8 +509,9 @@
 				F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */,
 				F75D821D1FAE94E80071F47F /* Database.swift in Sources */,
 				F75D82221FAE94E80071F47F /* String.swift in Sources */,
+				46BBC2C21FAEE0A3005B0710 /* EmergencySettingsVC.swift in Sources */,
 				F75D820B1FAE7F580071F47F /* addLabelTableViewController.swift in Sources */,
-				F75D82261FAE9B6D0071F47F /* Emergency .swift in Sources */,
+				F75D82261FAE9B6D0071F47F /* Emergency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

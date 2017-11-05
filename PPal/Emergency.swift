@@ -15,8 +15,9 @@ import MessageUI
 class Emergency: UIViewController{
     
     
+   
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var coordinates: UITextField!
+    
     
     let locationManager = CLLocationManager()
     var sliderVar = 0.0
@@ -61,13 +62,19 @@ class Emergency: UIViewController{
     
     
     
-    @IBAction func emergencyCall(_ sender: AnyObject) {
-        
-        let url: NSURL = URL(string: "TEL://7789293728")! as NSURL
-        UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
-        
-        
-        
+    @IBAction func emergencyCall(_ sender: AnyObject)
+    {
+        if copyPerson.getInfo().phoneNumber.isEmpty
+        {
+            
+        }
+        else
+        {
+            let url: NSURL = URL(string: "TEL://\(copyPerson.getInfo().phoneNumber)")! as NSURL
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+            
+            print(copyPerson.getInfo().phoneNumber)
+        }
     }
     
     
@@ -211,7 +218,7 @@ extension Emergency: CLLocationManagerDelegate{
         //locationManager.stopUpdatingLocation()
         
         
-        coordinates.text = String(manager.location!.coordinate.latitude) + ", " + String(manager.location!.coordinate.longitude)
+        
         print(manager.location!.coordinate.latitude)
         print(manager.location!.coordinate.longitude)
         
