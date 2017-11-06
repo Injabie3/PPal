@@ -19,7 +19,7 @@
                         <viewControllerLayoutGuide type="bottom" id="a3X-st-ZNx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bJd-k0-f8Q">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="GAD-l3-n4A">
@@ -101,22 +101,23 @@
                         <viewControllerLayoutGuide type="bottom" id="IDs-PX-oq1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="381-Nr-WzY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZA3-61-0c5">
-                                <rect key="frame" x="36" y="76" width="343" height="456"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZA3-61-0c5">
+                                <rect key="frame" x="36" y="56" width="343" height="412"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="hI6-av-e7i" id="lEt-LQ-Hka"/>
                                     <outletCollection property="gestureRecognizers" destination="JNv-Jv-gMc" appends="YES" id="rOi-vQ-6Zq"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZD-Nu-jMK">
-                                <rect key="frame" x="36" y="581" width="343" height="107"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZD-Nu-jMK">
+                                <rect key="frame" x="36" y="517" width="343" height="107"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.16078431369999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="107" id="on0-EW-TPr"/>
+                                </constraints>
                                 <state key="normal" title="Request Assistance">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -124,15 +125,29 @@
                                     <action selector="emergencyCall:" destination="hI6-av-e7i" eventType="touchUpInside" id="Bhr-EB-ik5"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zSl-Ss-4KQ">
-                                <rect key="frame" x="68" y="540" width="278" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zSl-Ss-4KQ">
+                                <rect key="frame" x="68" y="476" width="278" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="LtE-Dz-Lh6"/>
+                                </constraints>
                                 <connections>
                                     <action selector="sliderAction:" destination="hI6-av-e7i" eventType="valueChanged" id="Qkc-3d-t1c"/>
                                 </connections>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZA3-61-0c5" firstAttribute="centerX" secondItem="381-Nr-WzY" secondAttribute="centerX" id="4YV-Ev-S8l"/>
+                            <constraint firstItem="IDs-PX-oq1" firstAttribute="top" secondItem="dZD-Nu-jMK" secondAttribute="bottom" constant="48" id="6Ya-4k-qR1"/>
+                            <constraint firstItem="ZA3-61-0c5" firstAttribute="leading" secondItem="dZD-Nu-jMK" secondAttribute="leading" id="Aat-wZ-SCM"/>
+                            <constraint firstItem="ZA3-61-0c5" firstAttribute="leading" secondItem="381-Nr-WzY" secondAttribute="leadingMargin" constant="16" id="Lbv-QY-boq"/>
+                            <constraint firstItem="ZA3-61-0c5" firstAttribute="trailing" secondItem="dZD-Nu-jMK" secondAttribute="trailing" id="Q38-oT-3n4"/>
+                            <constraint firstItem="zSl-Ss-4KQ" firstAttribute="centerX" secondItem="dZD-Nu-jMK" secondAttribute="centerX" id="WQZ-dx-gxa"/>
+                            <constraint firstItem="zSl-Ss-4KQ" firstAttribute="leading" secondItem="381-Nr-WzY" secondAttribute="leadingMargin" constant="50" id="YcD-V3-Ogo"/>
+                            <constraint firstItem="dZD-Nu-jMK" firstAttribute="top" secondItem="zSl-Ss-4KQ" secondAttribute="bottom" constant="12" id="dEh-tE-yAg"/>
+                            <constraint firstItem="zSl-Ss-4KQ" firstAttribute="top" secondItem="ZA3-61-0c5" secondAttribute="bottom" constant="8" symbolic="YES" id="glm-U4-RvV"/>
+                            <constraint firstItem="ZA3-61-0c5" firstAttribute="top" secondItem="zcz-O9-k9X" secondAttribute="bottom" constant="56" id="i6X-v1-4Wo"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Emergency" id="Msh-Pl-tTr"/>
                     <connections>
@@ -157,26 +172,28 @@
                         <viewControllerLayoutGuide type="bottom" id="0qc-5O-yod"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="C4v-7C-5S7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lEY-mq-Sir">
-                                <rect key="frame" x="328" y="63" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="toggle:" destination="hOA-9J-eWi" eventType="valueChanged" id="IM2-1e-qPU"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable Emergency Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLI-nF-4Sy">
-                                <rect key="frame" x="71" y="63" width="218" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gfB-lO-P03">
-                                <rect key="frame" x="121" y="128" width="273" height="311"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-MH-43r">
+                                <rect key="frame" x="74" y="56" width="266.33333333333331" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Emergency Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLI-nF-4Sy">
+                                        <rect key="frame" x="0.0" y="0.0" width="207.33333333333334" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lEY-mq-Sir">
+                                        <rect key="frame" x="217.33333333333331" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="toggle:" destination="hOA-9J-eWi" eventType="valueChanged" id="Jg0-hl-9kS"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gfB-lO-P03">
+                                <rect key="frame" x="71" y="142" width="273" height="311"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifier" id="ycC-DO-2GP">
@@ -196,9 +213,19 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MQh-MH-43r" firstAttribute="centerX" secondItem="gfB-lO-P03" secondAttribute="centerX" id="EyN-nx-421"/>
+                            <constraint firstItem="MQh-MH-43r" firstAttribute="top" secondItem="JZa-0Y-YiM" secondAttribute="bottom" constant="56" id="M2k-eq-8gw"/>
+                            <constraint firstItem="gfB-lO-P03" firstAttribute="leading" secondItem="C4v-7C-5S7" secondAttribute="leadingMargin" constant="51" id="Vuc-n4-WYq"/>
+                            <constraint firstItem="MQh-MH-43r" firstAttribute="centerX" secondItem="C4v-7C-5S7" secondAttribute="centerX" id="tes-no-Wzv"/>
+                            <constraint firstItem="0qc-5O-yod" firstAttribute="top" secondItem="gfB-lO-P03" secondAttribute="bottom" constant="219" id="wzh-Ua-vun"/>
+                            <constraint firstItem="gfB-lO-P03" firstAttribute="top" secondItem="MQh-MH-43r" secondAttribute="bottom" constant="55" id="z2n-zA-eSR"/>
+                        </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="List" destination="gfB-lO-P03" id="2HE-fX-LaZ"/>
+                        <outlet property="toggle" destination="lEY-mq-Sir" id="eyk-HI-Bz4"/>
                         <segue destination="2YZ-ow-fXW" kind="show" identifier="backtomainmenu" id="i0u-2t-zK9"/>
                     </connections>
                 </viewController>
@@ -818,6 +845,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="cHR-IY-Z5a"/>
         <segue reference="nFN-W1-4PI"/>
-        <segue reference="fKh-Q2-mQo"/>
+        <segue reference="i0u-2t-zK9"/>
     </inferredMetricsTieBreakers>
 </document>

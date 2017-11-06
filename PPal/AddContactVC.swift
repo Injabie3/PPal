@@ -171,8 +171,10 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             
         }
         
+        // 5. Clear variables
+        selectedLabels.removeAll()
         
-        // 5. Go back to previous screen.
+        // 6. Go back to previous screen.
         // This did not work, but will remind us of the nice progress we made :)
         // performSegue(withIdentifier: "unwindFromCreateProfileVCWithUnwindSegue", sender: self)
         self.navigationController!.popViewController(animated: true)
@@ -250,6 +252,8 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     }
 
     @IBAction func cancelPressed(_ sender: Any) {
+        // Clear the variables and go back.
+        selectedLabels.removeAll()
         self.navigationController!.popViewController(animated: true)
     }
 }

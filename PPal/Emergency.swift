@@ -14,8 +14,6 @@ import MessageUI
 
 class Emergency: UIViewController{
     
-    
-   
     @IBOutlet weak var mapView: MKMapView!
     
     
@@ -27,29 +25,22 @@ class Emergency: UIViewController{
         super.viewDidLoad()
         
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in }  //request the background notification from user
         
         
-        locationManager.delegate = self
-        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        
-        
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
-        
-        
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        locationManager.delegate = self //setting the delegate CCLocationManager to this UIViewcontroller class
+        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters //Zoom in on the user location to the nearest to Ten Meters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest //Accuracy of the user location - there are many desired Accuracies to choose from ie. kCLLocationAccuracyNearestTenMeters
         
         
         
+        mapView.delegate = self  //setting the map delegate to this UIViewController class
+        mapView.showsUserLocation = true //shows the location of the user with a blue dot
+        mapView.userTrackingMode = .follow //tracks the user - blue dot is always in the center of the mapview
         
         
-        
-        
+        locationManager.requestAlwaysAuthorization() //Requests location access from user when in use of the application and in the background
+        locationManager.startUpdatingLocation() //starts updating the location of the user
         
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -62,67 +53,30 @@ class Emergency: UIViewController{
     
     
     
-    @IBAction func emergencyCall(_ sender: AnyObject)
+    @IBAction func emergencyCall(_ sender: AnyObject)  //emergency call when "Emergency Button" pressed
     {
-        if copyPerson.getInfo().phoneNumber.isEmpty
+        if buttonState == false     //global var to check if the button is off or on in "Emergency Settings" to check
         {
+            if (copyPerson.getInfo().phoneNumber.isEmpty) //check to see if the user has tapped on one of the emergency contacts if tapped that contact is guaranteed to have a phonenumber
+            {
+                print("please set emergency contact")
+            }
+            else  //this will call the set contact number
+            {
+                let url: NSURL = URL(string: "TEL://\(copyPerson.getInfo().phoneNumber)")! as NSURL
+                UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                print(copyPerson.getInfo().phoneNumber)
+            }
             
         }
         else
         {
-            let url: NSURL = URL(string: "TEL://\(copyPerson.getInfo().phoneNumber)")! as NSURL
-            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+            print("please set emergency contact")
             
-            print(copyPerson.getInfo().phoneNumber)
         }
     }
     
-    
-    /* func enableLocationServices()
-     {
-     if CLLocationManager.authorizationStatus() == .notDetermined{
-     
-     print("not determined")
-     locationManager.requestAlwaysAuthorization()
-     
-     }
-     if CLLocationManager.authorizationStatus() == .denied{
-     // Disable location features
-     inAppAlert(tle: "Location Service is Denied", msg: "Please enable Location Service in Settings")
-     }
-     
-     else if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
-     // Enable basic location features
-     print("authorize when in use")
-     
-     }
-     
-     else if CLLocationManager.authorizationStatus() == .authorizedAlways{
-     // Enable any of your app's location features
-     print("always authorized")
-     locationManager.startUpdatingLocation()
-     
-     }
-     
-     
-     
-     }*/
-    
-    /*  func sendMessage()
-     {
-     PeopleBank.shared.getPeople()
-     let messageVC = MFMessageComposeViewController()
-     messageVC.body = "The AD patient has left the designated region"
-     messageVC.recipients = ["7789293728"]
-     messageVC.messageComposeDelegate = self
-     
-     present(messageVC, animated: true, completion: nil)
-     
-     
-     }*/
-    
-    
-    func escalateLocationServiceAuthorization() {
+    func escalateLocationServiceAuthorization() {   //can be used to upgrade the location access to "always location access" only if the user chose "When in use" in the beginning
         // Escalate only when the authorization is set to when-in-use
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.requestAlwaysAuthorization()
@@ -130,7 +84,7 @@ class Emergency: UIViewController{
     }
     
     
-    func setRegion()
+    func setRegion()  //sets the circular region (but not draw the circular region) and then begin to monitor the user with respect to the region
     {
         let region = CLCircularRegion(center: coordinate, radius: CLLocationDistance(sliderVar), identifier: "Safe Zone")
         mapView.removeOverlays(mapView.overlays)
@@ -141,7 +95,7 @@ class Emergency: UIViewController{
     }
     
     
-    @IBAction func addRegion(_ sender: Any) {
+    @IBAction func addRegion(_ sender: Any) {  //this function turns the position of the long press by the user into a coordinate on the mapview
         
         guard let longPress = sender as? UILongPressGestureRecognizer else{return}
         
@@ -154,7 +108,7 @@ class Emergency: UIViewController{
     }
     
     
-    @IBAction func sliderAction(_ sender: Any) {
+    @IBAction func sliderAction(_ sender: Any) { //this function gets the value of the slider into a temporary variable where is then passed into setregion function
         
         guard let Slider = sender as? UISlider else{return}
         
@@ -163,14 +117,14 @@ class Emergency: UIViewController{
         
     }
     
-    func inAppAlert (tle: String, msg: String){
+    func inAppAlert (tle: String, msg: String){  //in app alert function
         let Alert = UIAlertController(title: tle, message: msg, preferredStyle: .alert)
         let Action = UIAlertAction(title: "Dismiss Alert", style: .default, handler: nil)
         Alert.addAction(Action)
         present(Alert, animated: true, completion: nil)
     }
     
-    func backGroundNotification(tle: String, msg: String) {
+    func backGroundNotification(tle: String, msg: String) { // background notification
         let content = UNMutableNotificationContent()
         content.title = tle
         content.body = msg
@@ -181,40 +135,13 @@ class Emergency: UIViewController{
     }
     
     
-    
 }
 
 
-
-/*extension ViewController:MFMessageComposeViewControllerDelegate
- {
- 
- 
- 
- func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
- switch result.rawValue {
- case MessageComposeResult.cancelled.rawValue :
- print("message canceled")
- 
- case MessageComposeResult.failed.rawValue :
- print("message failed")
- 
- case MessageComposeResult.sent.rawValue :
- print("message sent")
- 
- default:
- break
- }
- controller.dismiss(animated: true, completion: nil)
- }
- 
- 
- }*/
-
-extension Emergency: CLLocationManagerDelegate{
+extension Emergency: CLLocationManagerDelegate{  //extension to the Emergency class including the CLLocationManager's delegate
     
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {  //this delegate function is called every time the user location is updated
         //locationManager.stopUpdatingLocation()
         
         
@@ -233,7 +160,7 @@ extension Emergency: CLLocationManagerDelegate{
     }
     
     
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {  // this delegate function is called every time the user exits the the monitored circular region
         let title = "EMERGENCY ALERT"
         let message = "The AD patient has left the designated region"
         inAppAlert(tle: title, msg: message)
@@ -242,17 +169,17 @@ extension Emergency: CLLocationManagerDelegate{
         
     }
     
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {  //this delegate function is called every time the user enters the the monitored circular region
         let title = "REGION NOTIFICATION"
         let message = "The AD patient has come back to the designated region"
-        inAppAlert(tle: title, msg: message)
-        backGroundNotification(tle: title, msg: message)
+        inAppAlert(tle: title, msg: message)  //calling the in app alert function with the title and message set above
+        backGroundNotification(tle: title, msg: message) //notify the user in background with the same title and message
         
     }
     
 }
 
-extension Emergency: MKMapViewDelegate {
+extension Emergency: MKMapViewDelegate { //this mapview delegate is use to draw a green circular region
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let circleOverlay = overlay as? MKCircle else { return MKOverlayRenderer() }
