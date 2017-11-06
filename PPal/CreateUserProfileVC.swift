@@ -21,6 +21,9 @@ class CreateUserProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
     var contact: CNContact = CNContact()
     var isImported = Bool()
     
+    var isPhotoSelected = Bool()
+    var isTextFieldsFilled = Bool()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,17 +35,44 @@ class CreateUserProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
         emailField?.delegate = self
         addressField?.delegate = self
         
+        isPhotoSelected = false
+        isTextFieldsFilled = false
+        
+        firstNameTextField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        lastNameTextField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        phoneField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        emailField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        addressField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        
         if isImported {
             isImported = false
-            self.firstNameTextField.text = contact.givenName
-            self.lastNameTextField.text = contact.familyName
-            self.phoneField.text = (contact.phoneNumbers.first?.value as! CNPhoneNumber).value(forKey: "digits") as? String
-            self.emailField.text = contact.emailAddresses.first?.value as String?
-            self.addressField.text = CNPostalAddressFormatter().string(from: (contact.postalAddresses.first?.value)!)
+            if contact.givenName != "" {
+                self.firstNameTextField.text = contact.givenName
+            }
+            if contact.familyName != "" {
+                self.lastNameTextField.text = contact.familyName
+            }
+            
+            if contact.phoneNumbers.count > 0 {
+                print("there is a number here")
+                self.phoneField.text = ((contact.phoneNumbers.first?.value)! as CNPhoneNumber).stringValue
+            }
+            
+            if contact.postalAddresses.count > 0 {
+                print("there is an address here")
+                self.addressField.text = CNPostalAddressFormatter().string(from: (contact.postalAddresses.first?.value)!)
+            }
+            
+            if contact.emailAddresses.first?.value as String? != "" {
+                self.emailField.text = contact.emailAddresses.first?.value as String?
+            }
             if contact.imageData != nil {
                 self.photoImageView.image = UIImage(data: contact.imageData!)
             }
         }
+        
+        textFieldDidChange(firstNameTextField)
+        //setHiddenImage()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -74,19 +104,40 @@ class CreateUserProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     // Checks if the fields are full, greys out the Done button if not
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         
         if (firstNameTextField?.text?.isEmpty)! || (lastNameTextField?.text?.isEmpty)! || (phoneField?.text?.isEmpty)! || (emailField?.text?.isEmpty)! || (addressField?.text?.isEmpty)! {
+            isTextFieldsFilled = false
         } else {
-            setHiddenImage()
+            isTextFieldsFilled = true
         }
+        fieldsAllFilled()
     }
     
     func setHiddenImage() {
         
-        self.doneBarButton.isEnabled = false
+        isPhotoSelected = false
+        //let img = UIImage(named: "default-user.png")
+        
         if (photoImageView.image != nil) {
-            self.doneBarButton.isEnabled = true
+            isPhotoSelected = true
+            print("there is an image here")
+        }
+        fieldsAllFilled()
+    }
+    
+    func fieldsAllFilled() {
+        print("check if all fields are filled")
+        doneBarButton.isEnabled = false
+        //if isTextFieldsFilled && isPhotoSelected {
+        if isTextFieldsFilled {
+            doneBarButton.isEnabled = true
         }
     }
+    
+    //hides keyboard when the view sees a touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
 }

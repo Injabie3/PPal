@@ -100,7 +100,7 @@ class Database {
         
         let tryCreatingTable = self.personsTable.create { (table) in
             table.column(self.id, primaryKey: true)
-            table.column(self.pathToPhoto, unique: true)
+            table.column(self.pathToPhoto)
             table.column(self.firstName)
             table.column(self.lastName)
             table.column(self.phoneNumber, unique: true)

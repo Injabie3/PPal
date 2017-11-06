@@ -50,6 +50,12 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         labelTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Reload data upon loading this screen.
+        listViewTableView.reloadData()
+        labelTableView.reloadData()
+    }
 
     @IBAction func importFromContactsButton(_ sender: Any) {
         let entityType = CNEntityType.contacts

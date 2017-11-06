@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		46BBC2C21FAEE0A3005B0710 /* EmergencySettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */; };
+		6D1E1E851FB020DB0055C01A /* LabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1E801FB020DB0055C01A /* LabelTest.swift */; };
+		6D1E1E861FB020DB0055C01A /* PeopleBankTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1E811FB020DB0055C01A /* PeopleBankTest.swift */; };
+		6D1E1E871FB020DB0055C01A /* PersonLabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1E821FB020DB0055C01A /* PersonLabelTest.swift */; };
+		6D1E1E881FB020DB0055C01A /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1E831FB020DB0055C01A /* DatabaseTest.swift */; };
+		6D1E1E891FB020DB0055C01A /* PersonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1E841FB020DB0055C01A /* PersonTest.swift */; };
+		6D3A00051FAFA469004141E5 /* xLabelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A00041FAFA469004141E5 /* xLabelsTableViewController.swift */; };
 		717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717749B61FA8061800C33286 /* HumanNetworkVC.swift */; };
 		BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */; };
 		D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */; };
@@ -16,17 +22,11 @@
 		F7563BB41F9A9BF90046AC3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7563BB21F9A9BF90046AC3E /* Main.storyboard */; };
 		F7563BB61F9A9BF90046AC3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7563BB51F9A9BF90046AC3E /* Assets.xcassets */; };
 		F7563BB91F9A9BF90046AC3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7563BB71F9A9BF90046AC3E /* LaunchScreen.storyboard */; };
-		F7563BC41F9A9BF90046AC3E /* PPalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BC31F9A9BF90046AC3E /* PPalTests.swift */; };
 		F7563BCF1F9A9BF90046AC3E /* PPalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BCE1F9A9BF90046AC3E /* PPalUITests.swift */; };
 		F7563BDE1F9A9C230046AC3E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F7563BDD1F9A9C230046AC3E /* libsqlite3.tbd */; settings = {ATTRIBUTES = (Required, ); }; };
 		F75D81E01FAE7C6F0071F47F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75D81D31FAE7C630071F47F /* SQLite.framework */; };
 		F75D81E11FAE7C740071F47F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75D81D31FAE7C630071F47F /* SQLite.framework */; };
 		F75D81E21FAE7C740071F47F /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F75D81D31FAE7C630071F47F /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F75D81F61FAE7CDD0071F47F /* PersonLabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F11FAE7CDD0071F47F /* PersonLabelTest.swift */; };
-		F75D81F71FAE7CDD0071F47F /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F21FAE7CDD0071F47F /* DatabaseTest.swift */; };
-		F75D81F81FAE7CDD0071F47F /* PeopleBankTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F31FAE7CDD0071F47F /* PeopleBankTest.swift */; };
-		F75D81F91FAE7CDD0071F47F /* LabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F41FAE7CDD0071F47F /* LabelTest.swift */; };
-		F75D81FA1FAE7CDD0071F47F /* PersonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D81F51FAE7CDD0071F47F /* PersonTest.swift */; };
 		F75D82081FAE7F580071F47F /* PersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82041FAE7F570071F47F /* PersonTableViewController.swift */; };
 		F75D82091FAE7F580071F47F /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82051FAE7F570071F47F /* LabelTableViewCell.swift */; };
 		F75D820A1FAE7F580071F47F /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */; };
@@ -130,6 +130,12 @@
 /* Begin PBXFileReference section */
 		46BBC2BC1FAEB2D9005B0710 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencySettingsVC.swift; sourceTree = "<group>"; };
+		6D1E1E801FB020DB0055C01A /* LabelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTest.swift; sourceTree = "<group>"; };
+		6D1E1E811FB020DB0055C01A /* PeopleBankTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBankTest.swift; sourceTree = "<group>"; };
+		6D1E1E821FB020DB0055C01A /* PersonLabelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonLabelTest.swift; sourceTree = "<group>"; };
+		6D1E1E831FB020DB0055C01A /* DatabaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
+		6D1E1E841FB020DB0055C01A /* PersonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTest.swift; sourceTree = "<group>"; };
+		6D3A00041FAFA469004141E5 /* xLabelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xLabelsTableViewController.swift; sourceTree = "<group>"; };
 		717749B61FA8061800C33286 /* HumanNetworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanNetworkVC.swift; sourceTree = "<group>"; };
 		BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserProfileVC.swift; sourceTree = "<group>"; };
 		D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
@@ -141,18 +147,12 @@
 		F7563BB81F9A9BF90046AC3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F7563BBA1F9A9BF90046AC3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7563BBF1F9A9BF90046AC3E /* PPalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7563BC31F9A9BF90046AC3E /* PPalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPalTests.swift; sourceTree = "<group>"; };
 		F7563BC51F9A9BF90046AC3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7563BCA1F9A9BF90046AC3E /* PPalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7563BCE1F9A9BF90046AC3E /* PPalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPalUITests.swift; sourceTree = "<group>"; };
 		F7563BD01F9A9BF90046AC3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7563BDD1F9A9C230046AC3E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
-		F75D81F11FAE7CDD0071F47F /* PersonLabelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonLabelTest.swift; sourceTree = "<group>"; };
-		F75D81F21FAE7CDD0071F47F /* DatabaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
-		F75D81F31FAE7CDD0071F47F /* PeopleBankTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBankTest.swift; sourceTree = "<group>"; };
-		F75D81F41FAE7CDD0071F47F /* LabelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTest.swift; sourceTree = "<group>"; };
-		F75D81F51FAE7CDD0071F47F /* PersonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTest.swift; sourceTree = "<group>"; };
 		F75D82041FAE7F570071F47F /* PersonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewController.swift; sourceTree = "<group>"; };
 		F75D82051FAE7F570071F47F /* LabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
 		F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
@@ -233,6 +233,7 @@
 				F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */,
 				F7563BB01F9A9BF90046AC3E /* ViewController.swift */,
 				F7563BB21F9A9BF90046AC3E /* Main.storyboard */,
+				6D3A00041FAFA469004141E5 /* xLabelsTableViewController.swift */,
 				717749B61FA8061800C33286 /* HumanNetworkVC.swift */,
 				BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */,
 				F7563BB51F9A9BF90046AC3E /* Assets.xcassets */,
@@ -246,12 +247,11 @@
 		F7563BC21F9A9BF90046AC3E /* PPalTests */ = {
 			isa = PBXGroup;
 			children = (
-				F7563BC31F9A9BF90046AC3E /* PPalTests.swift */,
-				F75D81F21FAE7CDD0071F47F /* DatabaseTest.swift */,
-				F75D81F41FAE7CDD0071F47F /* LabelTest.swift */,
-				F75D81F31FAE7CDD0071F47F /* PeopleBankTest.swift */,
-				F75D81F11FAE7CDD0071F47F /* PersonLabelTest.swift */,
-				F75D81F51FAE7CDD0071F47F /* PersonTest.swift */,
+				6D1E1E831FB020DB0055C01A /* DatabaseTest.swift */,
+				6D1E1E801FB020DB0055C01A /* LabelTest.swift */,
+				6D1E1E811FB020DB0055C01A /* PeopleBankTest.swift */,
+				6D1E1E821FB020DB0055C01A /* PersonLabelTest.swift */,
+				6D1E1E841FB020DB0055C01A /* PersonTest.swift */,
 				F7563BC51F9A9BF90046AC3E /* Info.plist */,
 			);
 			path = PPalTests;
@@ -497,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */,
+				6D3A00051FAFA469004141E5 /* xLabelsTableViewController.swift in Sources */,
 				BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */,
 				D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */,
 				717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */,
@@ -519,12 +520,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F75D81FA1FAE7CDD0071F47F /* PersonTest.swift in Sources */,
-				F75D81F81FAE7CDD0071F47F /* PeopleBankTest.swift in Sources */,
-				F7563BC41F9A9BF90046AC3E /* PPalTests.swift in Sources */,
-				F75D81F71FAE7CDD0071F47F /* DatabaseTest.swift in Sources */,
-				F75D81F61FAE7CDD0071F47F /* PersonLabelTest.swift in Sources */,
-				F75D81F91FAE7CDD0071F47F /* LabelTest.swift in Sources */,
+				6D1E1E871FB020DB0055C01A /* PersonLabelTest.swift in Sources */,
+				6D1E1E861FB020DB0055C01A /* PeopleBankTest.swift in Sources */,
+				6D1E1E881FB020DB0055C01A /* DatabaseTest.swift in Sources */,
+				6D1E1E891FB020DB0055C01A /* PersonTest.swift in Sources */,
+				6D1E1E851FB020DB0055C01A /* LabelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,7 +622,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -671,7 +671,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -687,6 +687,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FJ4RVNXQ3A;
 				INFOPLIST_FILE = PPal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.sfu.cmpt275.PPal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -704,6 +705,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FJ4RVNXQ3A;
 				INFOPLIST_FILE = PPal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.sfu.cmpt275.PPal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -717,11 +719,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FJ4RVNXQ3A;
 				INFOPLIST_FILE = PPalTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.sfu.cmpt275.PPalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PPal.app/PPal";
 			};
@@ -732,6 +736,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FJ4RVNXQ3A;
 				INFOPLIST_FILE = PPalTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

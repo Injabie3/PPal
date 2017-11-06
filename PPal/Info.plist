@@ -23,9 +23,9 @@
 	<key>NSContactsUsageDescription</key>
 	<string>Allows access to contacts.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Allow Access to Your Location In and Out of App</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Allow Access to Your Location when in Use </string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
