@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AddContactVC.viewWillDisappear(_:):AddContactVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedLabels">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddContactVC.donePressed():AddContactVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Emergency.emergencyCall(_:):Emergency.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "copyPerson.getInfo().phoneNumber">
+            </PersistentString>
+            <PersistentString
+               value = "phoneNumber">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

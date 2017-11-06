@@ -20,6 +20,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSContactsUsageDescription</key>
+	<string>Allows access to contacts.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow Access to Your Location In and Out of App</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow Access to Your Location when in Use </string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
