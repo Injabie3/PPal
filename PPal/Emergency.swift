@@ -63,7 +63,9 @@ class Emergency: UIViewController{
             }
             else  //this will call the set contact number
             {
-                let url: NSURL = URL(string: "TEL://\(copyPerson.getInfo().phoneNumber)")! as NSURL
+                var phoneNumber = copyPerson.getInfo().phoneNumber
+                phoneNumber = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                let url: NSURL = URL(string: "TEL://\(phoneNumber)")! as NSURL
                 UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
                 print(copyPerson.getInfo().phoneNumber)
             }

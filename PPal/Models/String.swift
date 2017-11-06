@@ -32,7 +32,7 @@ public extension String {
      */
     var isValidPhoneNumber: Bool {
         get {
-            let validPhoneNumberCharacters = CharacterSet(charactersIn: "-()+1234567890")
+            let validPhoneNumberCharacters = CharacterSet(charactersIn: "-()+1234567890").union(CharacterSet.whitespaces)
             return self.rangeOfCharacter(from: validPhoneNumberCharacters.inverted) == nil
         }
     }
