@@ -56,12 +56,11 @@ class XLabelsTableViewController: UITableViewController {
 //        tableView.cellForRow(at: indexPath)?.accessoryType = .none
      }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var labelExists = Bool()
         labelExists = false
         for label in selectedLabels {
-            if label == PeopleBank.shared.getLabels()[indexPath.row]{
+            if label == PeopleBank.shared.getLabels()[indexPath.row] {
                 labelExists = true
             }
         }
