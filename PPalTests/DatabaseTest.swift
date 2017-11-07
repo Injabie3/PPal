@@ -182,7 +182,7 @@ class DatabaseTest: XCTestCase {
             XCTAssertTrue(personInfo.address == "\(indexOfPerson) Street", "The address does not match!")
             XCTAssertFalse(personInfo.hasHouseKeys, "The person is not supposed to have keys!")
             for label in labelArray {
-                XCTAssertTrue(personInfo.labels.contains(label!),"The label is supposed to be in this array, but it's not!")
+                XCTAssertTrue(personInfo.labels.contains(label!), "The label is supposed to be in this array, but it's not!")
             }
         }
         
@@ -324,4 +324,5 @@ class DatabaseTest: XCTestCase {
         XCTAssertTrue(peopleFromDatabase.count == 0, "The profile was not deleted properly!")
         
     }
+    
 }

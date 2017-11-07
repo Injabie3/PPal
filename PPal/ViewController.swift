@@ -73,4 +73,3 @@ class ViewController: UIViewController, CNContactPickerDelegate {
         }
     }
 }
-
