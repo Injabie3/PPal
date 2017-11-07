@@ -175,7 +175,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-MH-43r">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-MH-43r">
                                 <rect key="frame" x="74" y="56" width="266.33333333333331" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Emergency Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLI-nF-4Sy">
@@ -224,7 +224,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="List" destination="gfB-lO-P03" id="2HE-fX-LaZ"/>
+                        <outlet property="list" destination="gfB-lO-P03" id="2HE-fX-LaZ"/>
                         <outlet property="toggle" destination="lEY-mq-Sir" id="eyk-HI-Bz4"/>
                         <segue destination="2YZ-ow-fXW" kind="show" identifier="backtomainmenu" id="i0u-2t-zK9"/>
                     </connections>
@@ -258,7 +258,7 @@
                                     <segment title="Label View"/>
                                 </segments>
                                 <connections>
-                                    <action selector="SegmentValueChanged:" destination="u2V-8q-vnZ" eventType="valueChanged" id="hiA-Om-k3b"/>
+                                    <action selector="segmentValueChanged:" destination="u2V-8q-vnZ" eventType="valueChanged" id="hiA-Om-k3b"/>
                                 </connections>
                             </segmentedControl>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWV-Sh-sif" userLabel="Label View">
@@ -364,12 +364,12 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="LabelViewField" destination="iWV-Sh-sif" id="EN4-0I-i7H"/>
-                        <outlet property="ListViewField" destination="F4l-t3-h7H" id="wtC-gz-QC3"/>
-                        <outlet property="MapViewField" destination="HBh-aZ-V4G" id="Ahj-VU-4As"/>
-                        <outlet property="Segment" destination="13X-xO-ohY" id="3sb-1W-EmY"/>
                         <outlet property="labelTableView" destination="Kzs-9B-gTg" id="zJ0-lA-FeU"/>
+                        <outlet property="labelViewField" destination="iWV-Sh-sif" id="EN4-0I-i7H"/>
+                        <outlet property="listViewField" destination="F4l-t3-h7H" id="wtC-gz-QC3"/>
                         <outlet property="listViewTableView" destination="T9O-2V-d6w" id="2yE-LH-t7h"/>
+                        <outlet property="mapViewField" destination="HBh-aZ-V4G" id="Ahj-VU-4As"/>
+                        <outlet property="segment" destination="13X-xO-ohY" id="3sb-1W-EmY"/>
                         <segue destination="GLg-Nw-gZy" kind="show" identifier="" id="s6C-zw-Dbh"/>
                         <segue destination="7tX-10-iwA" kind="show" identifier="SegueToAddLabelToContacts" id="0sS-Ii-Aye"/>
                         <segue destination="lxZ-Dr-tdf" kind="show" identifier="SegueToCreateProfile" id="cHR-IY-Z5a"/>
@@ -773,7 +773,7 @@
         <!--Labels Table View Controller-->
         <scene sceneID="7Nh-zJ-uuN">
             <objects>
-                <tableViewController id="rUJ-ze-T5g" customClass="xLabelsTableViewController" customModule="PPal" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="rUJ-ze-T5g" customClass="XLabelsTableViewController" customModule="PPal" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BLo-Bo-9Pt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

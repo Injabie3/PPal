@@ -10,7 +10,7 @@ import UIKit
 
 class PersonTableViewCell: UITableViewCell {
     
-    //MARK: Properties
+    // MARK: Properties
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

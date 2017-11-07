@@ -8,14 +8,14 @@
 
 import UIKit
 
-class xLabelsTableViewController: UITableViewController {
+class XLabelsTableViewController: UITableViewController {
 
-    @IBOutlet weak var List: UITableView!
+    @IBOutlet weak var list: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //use these the two below to enable multiselect (should also uncomment deSelectfunction below to work hand in hand)
+        // use these the two below to enable multiselect (should also uncomment deSelectfunction below to work hand in hand)
         
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.setEditing(false, animated: false)
@@ -29,16 +29,15 @@ class xLabelsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return PeopleBank.shared.getLabels().count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         
-        cell.textLabel?.text = PeopleBank.shared.getLabels()[indexPath.row].getName()//get person name with index.row from peoplebank
+        cell.textLabel?.text = PeopleBank.shared.getLabels()[indexPath.row].getName() // get person name with index.row from peoplebank
         
         return cell
         
