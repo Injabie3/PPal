@@ -13,28 +13,28 @@ import ContactsUI
 class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource {
     var fromRoot = false
     var selectedContact1: CNContact = CNContact()
-    @IBOutlet weak var ListViewField: UIView!
-    @IBOutlet weak var MapViewField: UIView!
-    @IBOutlet weak var LabelViewField: UIView!
+    @IBOutlet weak var listViewField: UIView!
+    @IBOutlet weak var mapViewField: UIView!
+    @IBOutlet weak var labelViewField: UIView!
     @IBOutlet weak var Segment: UISegmentedControl!
     
     @IBOutlet weak var labelTableView: UITableView! // The table view for the list of label
     @IBOutlet weak var listViewTableView: UITableView! // The table view for the list of people.
     
-    @IBAction func SegmentValueChanged(_ sender: UISegmentedControl) {
+    @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            self.ListViewField.isHidden = false
-            self.MapViewField.isHidden = true
-            self.LabelViewField.isHidden = true
+            self.listViewField.isHidden = false
+            self.mapViewField.isHidden = true
+            self.labelViewField.isHidden = true
         case 1:
-            self.ListViewField.isHidden = true
-            self.MapViewField.isHidden = false
-            self.LabelViewField.isHidden = true
+            self.listViewField.isHidden = true
+            self.mapViewField.isHidden = false
+            self.labelViewField.isHidden = true
         case 2:
-            self.ListViewField.isHidden = true
-            self.MapViewField.isHidden = true
-            self.LabelViewField.isHidden = false
+            self.listViewField.isHidden = true
+            self.mapViewField.isHidden = true
+            self.labelViewField.isHidden = false
         default:
             break
         }
@@ -186,9 +186,8 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
 
     // Table view function to get the number of items to display.
     // This will need to be modified for both the label and people table views.
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        //return Database.shared.getAllData().numberOfPeople
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // return Database.shared.getAllData().numberOfPeople
         
         // Get the number of people to display for the list view.
         if tableView == self.listViewTableView {
@@ -205,8 +204,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     // Table view function to display each item
     // This will need to be modified for both the label and people table views.
     // Should do a check for the respective table views.
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         if tableView == self.listViewTableView {
             let cellIdentifier = "PersonTableViewCell"
@@ -225,7 +223,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             return cell
         }
             
-        else { //tableView == self.labelTableView {
+        else { // tableView == self.labelTableView {
             let cellIdentifier = "LabelTableViewCell"
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? LabelTableViewCell  else {
@@ -292,7 +290,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    @IBAction func unwindFromCreateProfileVC(unwindSegue: UIStoryboardSegue){
+    @IBAction func unwindFromCreateProfileVC(unwindSegue: UIStoryboardSegue) {
     }
     
 }
