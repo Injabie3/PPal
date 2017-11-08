@@ -16,6 +16,8 @@
 		6D3A00051FAFA469004141E5 /* XLabelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */; };
 		717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717749B61FA8061800C33286 /* HumanNetworkVC.swift */; };
 		BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */; };
+		D343E0F71FB3A47900151675 /* MainQuizPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D343E0F61FB3A47900151675 /* MainQuizPageVC.swift */; };
+		D343E0FF1FB3AABC00151675 /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D343E0FE1FB3AABC00151675 /* MainScreenVC.swift */; };
 		D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */; };
 		F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */; };
 		F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BB01F9A9BF90046AC3E /* ViewController.swift */; };
@@ -138,6 +140,8 @@
 		6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLabelsTableViewController.swift; sourceTree = "<group>"; };
 		717749B61FA8061800C33286 /* HumanNetworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanNetworkVC.swift; sourceTree = "<group>"; };
 		BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserProfileVC.swift; sourceTree = "<group>"; };
+		D343E0F61FB3A47900151675 /* MainQuizPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQuizPageVC.swift; sourceTree = "<group>"; };
+		D343E0FE1FB3AABC00151675 /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
 		D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactVC.swift; sourceTree = "<group>"; };
 		F7563BAB1F9A9BF90046AC3E /* PPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 				F7563BB51F9A9BF90046AC3E /* Assets.xcassets */,
 				F7563BB71F9A9BF90046AC3E /* LaunchScreen.storyboard */,
 				F7563BBA1F9A9BF90046AC3E /* Info.plist */,
+				D343E0F61FB3A47900151675 /* MainQuizPageVC.swift */,
+				D343E0FE1FB3AABC00151675 /* MainScreenVC.swift */,
 			);
 			path = PPal;
 			sourceTree = "<group>";
@@ -497,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */,
+				D343E0FF1FB3AABC00151675 /* MainScreenVC.swift in Sources */,
 				6D3A00051FAFA469004141E5 /* XLabelsTableViewController.swift in Sources */,
 				BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */,
 				D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */,
@@ -505,6 +512,7 @@
 				F75D821F1FAE94E80071F47F /* PeopleBank.swift in Sources */,
 				F75D82201FAE94E80071F47F /* Label.swift in Sources */,
 				F75D82081FAE7F580071F47F /* PersonTableViewController.swift in Sources */,
+				D343E0F71FB3A47900151675 /* MainQuizPageVC.swift in Sources */,
 				F75D82091FAE7F580071F47F /* LabelTableViewCell.swift in Sources */,
 				F75D820A1FAE7F580071F47F /* PersonTableViewCell.swift in Sources */,
 				F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */,

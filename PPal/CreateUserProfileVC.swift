@@ -26,7 +26,8 @@ class CreateUserProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationController?.navigationBar.isHidden = false
         // Do any additional setup after loading the view.
         self.doneBarButton?.isEnabled = false
         firstNameTextField?.delegate = self
