@@ -8,7 +8,7 @@
 
 import UIKit
 
-class addLabelTableViewController: UITableViewController {
+class AddLabelTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +59,10 @@ class addLabelTableViewController: UITableViewController {
         
         // Fetches the appropriate meal for the data source layout.
         
-        //personArray needs to be
+        // personArray needs to be
         
-        //let personArray = Database.shared.getAllData().getPeople()[indexPath.row]
-        //let person = people[indexPath.row]
+        // let personArray = Database.shared.getAllData().getPeople()[indexPath.row]
+        // let person = people[indexPath.row]
         let label = PeopleBank.shared.getLabels()[indexPath.row]
         
         cell.labelName.text = label.getName()

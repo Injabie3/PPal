@@ -77,7 +77,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         }
         
         textFieldDidChange(firstNameField)
-        //setHiddenImage()
+        // setHiddenImage()
         
         // Set the fields if we're passing in a person.
         if let person = person {
@@ -92,7 +92,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             for item in person.getInfo().labels {
                 labelTextArray.append(item.getName())
             }
-            //labelField.text = labelTextArray.joined(separator: ",")
+            // labelField.text = labelTextArray.joined(separator: ",")
         }
         updateDisplayLabelsTextbox()
     }
@@ -101,8 +101,8 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         updateDisplayLabelsTextbox()
     }
     
-    //update label text field
-    func updateDisplayLabelsTextbox () {
+    // update label text field
+    func updateDisplayLabelsTextbox() {
         var labelArray = [String]()
         for label in selectedLabels {
             labelArray.append(label.getName())
@@ -134,7 +134,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             _ = profile.set(firstName: self.firstNameField.text!, lastName: self.lastNameField.text!)
             _ = profile.set(phoneNumber: phoneNumberField.text!)
             _ = profile.set(email: emailField.text!)
-            //profile.add(label: label01)
+            // profile.add(label: label01)
             // Setting the photo to this for now.
             _ = profile.setInfo(pathToPhoto: firstNameField.text!, firstName: firstNameField.text!, lastName: lastNameField.text!, phoneNumber: phoneNumberField.text!, email: emailField.text!, address: addressField.text!, hasHouseKeys: false)
             // 3. Save to PeopleBank object.
@@ -146,19 +146,19 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             }
             
         } else {
-            //label01.editLabel(name: "Cool People")
+            // label01.editLabel(name: "Cool People")
             
             for label in selectedLabels {
-                //_ = PeopleBank.shared.add(label: label)
-                //_ = Database.shared.saveLabelToDatabase(label: label)
+                // _ = PeopleBank.shared.add(label: label)
+                // _ = Database.shared.saveLabelToDatabase(label: label)
                 _ = person!.add(label: label)
             }
-            //_ = PeopleBank.shared.add(label: label01)
-            //_ = Database.shared.saveLabelToDatabase(label: label01)
+            // _ = PeopleBank.shared.add(label: label01)
+            // _ = Database.shared.saveLabelToDatabase(label: label01)
             _ = person!.set(firstName: self.firstNameField.text!, lastName: self.lastNameField.text!)
             _ = person!.set(phoneNumber: phoneNumberField.text!)
             _ = person!.set(email: emailField.text!)
-            //_ = person!.add(label: label01)
+            // _ = person!.add(label: label01)
             _ = person!.setInfo(pathToPhoto: "test12234", firstName: firstNameField.text!, lastName: lastNameField.text!, phoneNumber: phoneNumberField.text!, email: emailField.text!, address: addressField.text!, hasHouseKeys: false)
             
             
@@ -195,12 +195,13 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         present(imagePickerController, animated: true, completion: nil)
         
     }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         
         // The info dictionary may contain multiple representations of the image. You want to use the original
         guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
@@ -228,9 +229,9 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     func setHiddenImage() {
         
         isPhotoSelected = false
-        //let img = UIImage(named: "default-user.png")
+        // let img = UIImage(named: "default-user.png")
         
-        if (contactPhoto.image != nil) {
+        if contactPhoto.image != nil {
             isPhotoSelected = true
             print("there is an image here")
         }
@@ -240,13 +241,13 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     func fieldsAllFilled() {
         print("check if all fields are filled")
         doneBarButton.isEnabled = false
-        //if isTextFieldsFilled && isPhotoSelected {
+        // if isTextFieldsFilled && isPhotoSelected {
         if isTextFieldsFilled {
             doneBarButton.isEnabled = true
         }
     }
     
-    //hides keyboard when the view sees a touch
+    // hides keyboard when the view sees a touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -256,4 +257,5 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         selectedLabels.removeAll()
         self.navigationController!.popViewController(animated: true)
     }
+    
 }

@@ -72,13 +72,14 @@ class CreateUserProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
         }
         
         textFieldDidChange(firstNameTextField)
-        //setHiddenImage()
+        // setHiddenImage()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         // The info dictionary may contain multiple representations of the image. You want to use the original
         guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
@@ -117,9 +118,9 @@ class CreateUserProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
     func setHiddenImage() {
         
         isPhotoSelected = false
-        //let img = UIImage(named: "default-user.png")
+        // let img = UIImage(named: "default-user.png")
         
-        if (photoImageView.image != nil) {
+        if photoImageView.image != nil {
             isPhotoSelected = true
             print("there is an image here")
         }
@@ -129,13 +130,13 @@ class CreateUserProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
     func fieldsAllFilled() {
         print("check if all fields are filled")
         doneBarButton.isEnabled = false
-        //if isTextFieldsFilled && isPhotoSelected {
+        // if isTextFieldsFilled && isPhotoSelected {
         if isTextFieldsFilled {
             doneBarButton.isEnabled = true
         }
     }
     
-    //hides keyboard when the view sees a touch
+    // hides keyboard when the view sees a touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
