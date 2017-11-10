@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.0
+osx_image: xcode9
 xcode_project: PPal.xcodeproj # path to your xcodeproj folder
 xcode_scheme: PPal
 xcode_sdk: iphonesimulator11.0
