@@ -31,13 +31,15 @@
 		F75D82091FAE7F580071F47F /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82051FAE7F570071F47F /* LabelTableViewCell.swift */; };
 		F75D820A1FAE7F580071F47F /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */; };
 		F75D820B1FAE7F580071F47F /* AddLabelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82071FAE7F570071F47F /* AddLabelTableViewController.swift */; };
-		F75D82161FAE94220071F47F /* Models in Resources */ = {isa = PBXBuildFile; fileRef = F75D82151FAE94220071F47F /* Models */; };
-		F75D821D1FAE94E80071F47F /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82171FAE94E70071F47F /* Database.swift */; };
-		F75D821F1FAE94E80071F47F /* PeopleBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82191FAE94E70071F47F /* PeopleBank.swift */; };
-		F75D82201FAE94E80071F47F /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D821A1FAE94E70071F47F /* Label.swift */; };
-		F75D82211FAE94E80071F47F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D821B1FAE94E80071F47F /* Person.swift */; };
-		F75D82221FAE94E80071F47F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D821C1FAE94E80071F47F /* String.swift */; };
 		F75D82261FAE9B6D0071F47F /* Emergency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82251FAE9B6D0071F47F /* Emergency.swift */; };
+		F7E99F6D1FB50BA20063F2C2 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F681FB50BA20063F2C2 /* Database.swift */; };
+		F7E99F6E1FB50BA20063F2C2 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F691FB50BA20063F2C2 /* Label.swift */; };
+		F7E99F6F1FB50BA20063F2C2 /* PeopleBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F6A1FB50BA20063F2C2 /* PeopleBank.swift */; };
+		F7E99F701FB50BA20063F2C2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F6B1FB50BA20063F2C2 /* Person.swift */; };
+		F7E99F711FB50BA20063F2C2 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F6C1FB50BA20063F2C2 /* String.swift */; };
+		F7E99F731FB50BD20063F2C2 /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F721FB50BD20063F2C2 /* Choice.swift */; };
+		F7E99F751FB50E090063F2C2 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F741FB50E090063F2C2 /* Question.swift */; };
+		F7E99F771FB5189B0063F2C2 /* ChoiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F761FB5189B0063F2C2 /* ChoiceTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,13 +159,15 @@
 		F75D82051FAE7F570071F47F /* LabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
 		F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		F75D82071FAE7F570071F47F /* AddLabelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLabelTableViewController.swift; sourceTree = "<group>"; };
-		F75D82151FAE94220071F47F /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
-		F75D82171FAE94E70071F47F /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Database.swift; path = Models/Database.swift; sourceTree = "<group>"; };
-		F75D82191FAE94E70071F47F /* PeopleBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeopleBank.swift; path = Models/PeopleBank.swift; sourceTree = "<group>"; };
-		F75D821A1FAE94E70071F47F /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Label.swift; path = Models/Label.swift; sourceTree = "<group>"; };
-		F75D821B1FAE94E80071F47F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Models/Person.swift; sourceTree = "<group>"; };
-		F75D821C1FAE94E80071F47F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Models/String.swift; sourceTree = "<group>"; };
 		F75D82251FAE9B6D0071F47F /* Emergency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emergency.swift; sourceTree = "<group>"; };
+		F7E99F681FB50BA20063F2C2 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		F7E99F691FB50BA20063F2C2 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		F7E99F6A1FB50BA20063F2C2 /* PeopleBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBank.swift; sourceTree = "<group>"; };
+		F7E99F6B1FB50BA20063F2C2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		F7E99F6C1FB50BA20063F2C2 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		F7E99F721FB50BD20063F2C2 /* Choice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Choice.swift; sourceTree = "<group>"; };
+		F7E99F741FB50E090063F2C2 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		F7E99F761FB5189B0063F2C2 /* ChoiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,12 +222,7 @@
 		F7563BAD1F9A9BF90046AC3E /* PPal */ = {
 			isa = PBXGroup;
 			children = (
-				F75D82171FAE94E70071F47F /* Database.swift */,
-				F75D821A1FAE94E70071F47F /* Label.swift */,
-				F75D82191FAE94E70071F47F /* PeopleBank.swift */,
-				F75D821B1FAE94E80071F47F /* Person.swift */,
-				F75D821C1FAE94E80071F47F /* String.swift */,
-				F75D82151FAE94220071F47F /* Models */,
+				F7E99F671FB50BA20063F2C2 /* Models */,
 				D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */,
 				F75D82251FAE9B6D0071F47F /* Emergency.swift */,
 				46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */,
@@ -247,6 +246,7 @@
 		F7563BC21F9A9BF90046AC3E /* PPalTests */ = {
 			isa = PBXGroup;
 			children = (
+				F7E99F761FB5189B0063F2C2 /* ChoiceTest.swift */,
 				6D1E1E831FB020DB0055C01A /* DatabaseTest.swift */,
 				6D1E1E801FB020DB0055C01A /* LabelTest.swift */,
 				6D1E1E811FB020DB0055C01A /* PeopleBankTest.swift */,
@@ -289,6 +289,21 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		F7E99F671FB50BA20063F2C2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F7E99F681FB50BA20063F2C2 /* Database.swift */,
+				F7E99F691FB50BA20063F2C2 /* Label.swift */,
+				F7E99F6A1FB50BA20063F2C2 /* PeopleBank.swift */,
+				F7E99F6B1FB50BA20063F2C2 /* Person.swift */,
+				F7E99F6C1FB50BA20063F2C2 /* String.swift */,
+				F7E99F721FB50BD20063F2C2 /* Choice.swift */,
+				F7E99F741FB50E090063F2C2 /* Question.swift */,
+			);
+			name = Models;
+			path = PPal/Models;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -468,7 +483,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F75D82161FAE94220071F47F /* Models in Resources */,
 				F7563BB91F9A9BF90046AC3E /* LaunchScreen.storyboard in Resources */,
 				F7563BB61F9A9BF90046AC3E /* Assets.xcassets in Resources */,
 				F7563BB41F9A9BF90046AC3E /* Main.storyboard in Resources */,
@@ -500,18 +514,20 @@
 				6D3A00051FAFA469004141E5 /* XLabelsTableViewController.swift in Sources */,
 				BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */,
 				D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */,
+				F7E99F6F1FB50BA20063F2C2 /* PeopleBank.swift in Sources */,
 				717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */,
-				F75D82211FAE94E80071F47F /* Person.swift in Sources */,
-				F75D821F1FAE94E80071F47F /* PeopleBank.swift in Sources */,
-				F75D82201FAE94E80071F47F /* Label.swift in Sources */,
 				F75D82081FAE7F580071F47F /* PersonTableViewController.swift in Sources */,
 				F75D82091FAE7F580071F47F /* LabelTableViewCell.swift in Sources */,
 				F75D820A1FAE7F580071F47F /* PersonTableViewCell.swift in Sources */,
 				F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */,
-				F75D821D1FAE94E80071F47F /* Database.swift in Sources */,
-				F75D82221FAE94E80071F47F /* String.swift in Sources */,
 				46BBC2C21FAEE0A3005B0710 /* EmergencySettingsVC.swift in Sources */,
 				F75D820B1FAE7F580071F47F /* AddLabelTableViewController.swift in Sources */,
+				F7E99F731FB50BD20063F2C2 /* Choice.swift in Sources */,
+				F7E99F751FB50E090063F2C2 /* Question.swift in Sources */,
+				F7E99F6D1FB50BA20063F2C2 /* Database.swift in Sources */,
+				F7E99F6E1FB50BA20063F2C2 /* Label.swift in Sources */,
+				F7E99F711FB50BA20063F2C2 /* String.swift in Sources */,
+				F7E99F701FB50BA20063F2C2 /* Person.swift in Sources */,
 				F75D82261FAE9B6D0071F47F /* Emergency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +538,7 @@
 			files = (
 				6D1E1E871FB020DB0055C01A /* PersonLabelTest.swift in Sources */,
 				6D1E1E861FB020DB0055C01A /* PeopleBankTest.swift in Sources */,
+				F7E99F771FB5189B0063F2C2 /* ChoiceTest.swift in Sources */,
 				6D1E1E881FB020DB0055C01A /* DatabaseTest.swift in Sources */,
 				6D1E1E891FB020DB0055C01A /* PersonTest.swift in Sources */,
 				6D1E1E851FB020DB0055C01A /* LabelTest.swift in Sources */,
