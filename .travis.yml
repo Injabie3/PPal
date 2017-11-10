@@ -9,4 +9,4 @@ before_install:
 script:
 - tailor PPal --except=trailing-whitespace --max-severity=error
 - tailor PPalTests --except=trailing-whitespace --max-severity=error
-- xcodebuild test -project PPal.xcodeproj -scheme PPal -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=11.0.1'
+- xcodebuild test -project PPal.xcodeproj -scheme PPal -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=11.0'
