@@ -16,8 +16,7 @@ class Question {
     
     init() {
         id = -1
-        choices = [Choice]()
-        choices.reserveCapacity(4)
+        choices = Array(repeating: Choice(), count: 4)
         correctAnswer = -1
         selectedAnswer = -1
     }
@@ -53,7 +52,7 @@ class Question {
     }
     
     /**
-     Sets the correct answer in the array.
+     Sets the correct Choice in the array for this question.
      - parameter index: The index corresponding to the correct Choice in the choices array stored by the class.
      - returns: true or false.
          - True if the correct answer index was set successfully.
@@ -107,11 +106,27 @@ class Question {
     }
     
     /**
+     Sets the ID fo the question in the database table.
+     - parameter id: The primary key id in the table.
+     */
+    func set(id: Int) {
+        self.id = id
+    }
+    
+    /**
      Returns the index to the correct choice/answer.
      - returns: An index to the correct answer.  Use this index to access the correct element of the getChoices() method.
      */
     func getCorrectAnswer() -> Int {
         return correctAnswer
+    }
+    
+    /**
+     Returns the index to the selected choice/answer that the user made to the question.
+     - returns: An index to the selected answer.  Use this index to access the correct element of the getChoices() method.  If this returns -1, then the user has not answered this question.
+     */
+    func getSelectedAnswer() -> Int {
+        return selectedAnswer
     }
     
     /**
