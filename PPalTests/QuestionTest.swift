@@ -93,7 +93,7 @@ class QuestionTest: XCTestCase {
         XCTAssertFalse(false, "You managed to set it even though you're not supposed to be able to!")
     }
     
-    /// Test to see if the question is valid if we give it 4 valid choices, and set the correct answer.
+    /// Test to see if the question is valid if we give it 4 valid choices, set the question text, and set the correct answer.
     func testValidQuestion() {
         
         // Let's create some valid choices.
@@ -110,6 +110,8 @@ class QuestionTest: XCTestCase {
             _ = question.set(choice: choiceArray[index], atIndex: index)
         }
         
+        question.text = "What is the meaning of life?"
+        
         // and let's set the correct index, arbitrary for now.
         _ = question.set(correctAnswerIndex: 2)
         
@@ -120,6 +122,7 @@ class QuestionTest: XCTestCase {
     /// Test the validity of the question, this time don't add any choices.
     func testValidQuestionBlankChoicesOnly() {
         _ = question01.set(correctAnswerIndex: 1)
+        question01.text = "What is the meaning of life?"
         XCTAssertFalse(question01.valid, "This question is valid even though it's not supposed to be!")
     }
     
@@ -133,11 +136,15 @@ class QuestionTest: XCTestCase {
             choiceArray[index].pathToPhoto = "anImageOf42.png"
         }
         
+        
         // Let's add these valid choices to the question.
         let question = Question()
         for index in 0..<4 {
             _ = question.set(choice: choiceArray[index], atIndex: index)
         }
+        
+        // Set the question text.
+        question.text = "What is the meaning of life?"
         
         // Alright, let's check the validity.
         XCTAssertFalse(question.valid, "The question shouldn't be valid, but it is!")

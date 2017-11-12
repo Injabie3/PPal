@@ -16,6 +16,8 @@ class Question {
     
     init() {
         id = -1
+        text = ""
+        image = ""
         choices = Array(repeating: Choice(), count: 4)
         correctAnswer = -1
         selectedAnswer = -1
@@ -23,6 +25,12 @@ class Question {
     
     /// The database primary key, used to store this question
     private var id: Int
+    
+    /// The actual question (text) itself.
+    var text: String
+    
+    /// A corresponding image for the question, in base64
+    var image: String
     
     /// An array to hold the four possible choices for each question.
     private var choices: [Choice]
@@ -37,16 +45,25 @@ class Question {
     /**
      Determines if the Question is valid.
      Must contain:
+     - Text that explains the question.
      - 4 valid questions.
      - A correct answer
      */
     var valid: Bool {
         get {
+            // Check for blank question.
+            if text == "" {
+                return false
+            }
+            
+            // Check that choices are valid.
             for choice in choices {
                 if !choice.valid {
                     return false
                 }
             }
+            
+            // And check if the correct answer is set.
             return choices.count == 4 && correctAnswer != -1
         }
     }
