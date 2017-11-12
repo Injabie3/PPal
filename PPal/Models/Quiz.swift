@@ -18,6 +18,9 @@ import Foundation
  */
 class Quiz {
    
+    /// Primary key for the database
+    var id: Int
+    
     /// The number of correct answers that the user had for this quiz.
     var score: Int
     
@@ -28,6 +31,7 @@ class Quiz {
     var dateTaken: Date
     
     init() {
+        id = -1
         score = 0
         questions = [Question]()
         dateTaken = Date(timeIntervalSince1970: 0)
