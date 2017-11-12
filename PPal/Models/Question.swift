@@ -147,6 +147,14 @@ class Question {
     }
     
     /**
+     Gets the ID fo the question in the database table.
+     - returns: The primary key id in the table.
+     */
+    func getId() -> Int {
+        return self.id
+    }
+    
+    /**
      Gets the array of choices for the question.
      - returns: An array of Choice(s)
      */
