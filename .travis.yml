@@ -10,3 +10,6 @@ script:
 - tailor PPal --except=trailing-whitespace --max-severity=error
 - tailor PPalTests --except=trailing-whitespace --max-severity=error
 - xcodebuild test -project PPal.xcodeproj -scheme PPal -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=11.0'
+
+notifications:
+  webhooks: https://injabie3.moe/travis-ci-cmpt275.php
