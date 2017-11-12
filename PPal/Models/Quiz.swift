@@ -19,7 +19,7 @@ import Foundation
 class Quiz {
    
     /// The number of correct answers that the user had for this quiz.
-    var correctAnswers: Int
+    var score: Int
     
     /// The Question(s) associated with this quiz.
     var questions: [Question]
@@ -28,7 +28,7 @@ class Quiz {
     var dateTaken: Date
     
     init() {
-        correctAnswers = 0
+        score = 0
         questions = [Question]()
         dateTaken = Date(timeIntervalSince1970: 0)
     }
