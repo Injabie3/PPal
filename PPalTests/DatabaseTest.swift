@@ -85,6 +85,9 @@ class DatabaseTest: XCTestCase {
         {
             try db?.database.run(db!.personsTable.drop())
             try db?.labelDatabase.run(db!.labelTable.drop())
+            try db?.choicesDatabase.run(db!.choiceTable.drop())
+            try db?.questionsDatabase.run(db!.questionTable.drop())
+            try db?.quizzesDatabase.run(db!.quizTable.drop())
         } catch {
             print(error)
         }
@@ -323,6 +326,84 @@ class DatabaseTest: XCTestCase {
         peopleFromDatabase = db!.getAllData().getPeople()
         XCTAssertTrue(peopleFromDatabase.count == 0, "The profile was not deleted properly!")
         
+    }
+    
+    /**
+     The code below will be for testing the Quiz portions of our application.
+     */
+    
+    /// Test saving a valid choice to the database.
+    func testSavingChoice() {
+        let choice01 = Choice()
+        let photoToTest = "eventuallyThisWillBeABase64Image"
+        let textToTest = "Testin1 23 4"
+        choice01.pathToPhoto = photoToTest
+        choice01.text = textToTest
+        
+        // Save the choice to the database.
+        let result = db!.saveChoiceToDatabase(choice: choice01)
+        
+        XCTAssertTrue(result, "Should be able to save, but we can't for some reason!")
+        
+        // Let's retrieve the choice from the database.
+        do {
+            let choicesInTable = try db!.choicesDatabase!.prepare(db!.choiceTable)
+            for item in choicesInTable {
+                XCTAssertTrue(item[db!.choiceId] == choice01.id, "ID does not match")
+                XCTAssertTrue(item[db!.choicePhoto] == photoToTest, "Photo does not match!")
+                XCTAssertTrue(item[db!.choiceText] == textToTest, "Text does not match!")
+            }
+        } catch {
+            print(error)
+            XCTAssert(false, "We errored out!")
+        }
+        
+        
+    }
+    
+    /// Test saving a valid "question" to the database.
+    /// In this case, we will force set some IDs
+    func testSavingQuestionDefaultCase() {
+        let question = Question()
+        
+        // Let's create 4 valid choices, and add it to the question
+        var choicesArray = [Choice]()
+        for index in 0..<4 {
+            choicesArray.append(Choice())
+            choicesArray[index].id = index
+            choicesArray[index].pathToPhoto = "base64String\(index)"
+            choicesArray[index].text = "testChoice\(index)"
+            _ = question.set(choice: choicesArray[index], atIndex: index)
+        }
+        
+        // Set other parameters of the question
+        let photoToTest = "base64String"
+        let textToTest = "Which choice is the correct answer?"
+        _ = question.set(correctAnswerIndex: 1)
+        _ = question.image = photoToTest
+        _ = question.text = textToTest
+        
+        let result = db!.saveQuestionToDatabase(question: question)
+        
+        XCTAssertTrue(result, "Cannot add this question to the database for some reason!")
+        
+        // Let's retrieve the question from the database.
+        do {
+            let questionInTable = try db!.questionsDatabase!.prepare(db!.questionTable)
+            for item in questionInTable {
+                XCTAssertTrue(item[db!.questionId] == question.getId(), "ID does not match")
+                XCTAssertTrue(item[db!.questionPhoto] == photoToTest, "Photo does not match!")
+                XCTAssertTrue(item[db!.question] == textToTest, "Text does not match!")
+                XCTAssertTrue(item[db!.choice1] == 0, "Index does not match!")
+                XCTAssertTrue(item[db!.choice2] == 1, "Index does not match!")
+                XCTAssertTrue(item[db!.choice3] == 2, "Index does not match!")
+                XCTAssertTrue(item[db!.choice4] == 3, "Index does not match!")
+                
+            }
+        } catch {
+            print(error)
+            XCTAssert(false, "We errored out!")
+        }
     }
     
 }
