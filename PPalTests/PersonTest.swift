@@ -206,6 +206,22 @@ class PersonTest: XCTestCase {
         label01.clearAll()
     }
     
+    /// Tests validity of a person if this is a profile.
+    func testValidBoolForProfile() {
+        
+        // Alright, to test this, I'm just going to set some valid information for this person, and not add labels.
+        let result = person1!.setInfo(pathToPhoto: "aPathToAPhoto.jpg", firstName: "Bob", lastName: "Ross", phoneNumber: "+16041234567", email: "bross@sfu.ca", address: "123 Fake Street", hasHouseKeys: false)
+        
+        XCTAssert(result, "Person information was not set correctly!")
+        
+        // Okay, at this point, the person should not be valid because I haven't set the flag, and there are no labels.
+        XCTAssertFalse(person1!.valid, "The person is not supposed to be valid, but it is for some reason!")
+        
+        // Set the flag and retest.
+        person1!.isProfile = true
+        XCTAssertTrue(person1!.valid, "The person is supposed to be valid, but it's not!")
+        
+    }
     
 //    func testExample() {
 //        // This is an example of a functional test case.

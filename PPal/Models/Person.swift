@@ -64,13 +64,17 @@ class Person {
                 return false
             }
             // Check if the person has at least one label.
-            else if labels.count == 0 {
+            else if labels.count == 0 && !isProfile {
                 return false
             } else {
                 return true
             }
         }
     }
+    
+    /// Identifies if the person in question is the profile of the user.
+    /// If true, then label constraints does not apply to this person.
+    var isProfile = false
     
     /**
      Sets a Person's first and last name.
