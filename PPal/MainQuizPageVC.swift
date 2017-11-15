@@ -15,5 +15,7 @@ class MainQuizPageVC: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
     }
-
+    
+    @IBAction func unwindBackToQuizMenu(unwindSegue: UIStoryboardSegue) {
+    }
 }
