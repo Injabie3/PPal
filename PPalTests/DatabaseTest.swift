@@ -361,6 +361,7 @@ class DatabaseTest: XCTestCase {
         
     }
     
+    
     /// Test saving a valid "question" to the database.
     /// In this case, we will force set some IDs
     func testSavingQuestionDefaultCase() {
@@ -404,6 +405,95 @@ class DatabaseTest: XCTestCase {
             print(error)
             XCTAssert(false, "We errored out!")
         }
+    }
+    
+    /// Let's test retreiving a quiz.
+    func testGetAllQuizData() {
+        
+        // Lets declare some things to test.
+        let quizTimeToTest = 15
+        let quizScoreToTest = 0
+
+        
+        // Okay so let's save a mock quiz with 2 questions, and see if we can retreive them.
+        var choiceArray = [Choice]()
+        var questionArray = [Question]()
+        var quiz = Quiz()
+        for questionIndex in 0..<2 {
+            // Reset the choiceArray before doing anything.
+            choiceArray.removeAll()
+            
+            questionArray.append(Question())
+            
+            // Let's set the question parameters.
+            _ = questionArray[questionIndex].set(correctAnswerIndex: 0)
+            _ = questionArray[questionIndex].set(selectedAnswerIndex: 1)
+            questionArray[questionIndex].text = "What is the correct answer?"
+            questionArray[questionIndex].image = "aBase64StringImage\(questionIndex)"
+            
+            for choiceIndex in 0..<4 {
+                choiceArray.append(Choice())
+                
+                // Create a choice.
+                choiceArray[choiceIndex].pathToPhoto = "aBase64StringImage\(choiceIndex)"
+                choiceArray[choiceIndex].text = "Choice \(choiceIndex)"
+                
+                // and add this to the current question.
+                _ = questionArray[questionIndex].set(choice: choiceArray[choiceIndex], atIndex: choiceIndex)
+                
+                // Save the choice into the database.
+                // Hmm, maybe we could optimize this later.
+                _ = db!.saveChoiceToDatabase(choice: choiceArray[choiceIndex])
+                
+            } // End choice loop
+            
+            quiz.questions.append(questionArray[questionIndex])
+            
+            // Save the question into the database.
+            _ = db!.saveQuestionToDatabase(question: questionArray[questionIndex])
+            
+        } // End question loop
+        
+        // Let's set some parameters for the quiz.
+        quiz.dateTaken = Date(timeIntervalSince1970: 15)
+        quiz.score = 0 // Wow this person is bad...
+     
+        // Let's save the quiz to the database.
+        _ = db!.saveQuizToDatabase(quiz: quiz)
+     
+        // Get rid of this quiz.
+        quiz = Quiz()
+        
+        // Alright, now let's get the quiz data back.
+        db!.getAllQuizData()
+        
+        // Let's check this over.
+        let quizHistory = QuizBank.shared.quizHistory
+        
+        // There is only one quiz, so we will hard code the index 0 in.
+        // Check the quiz portion of it first.
+        XCTAssertTrue(quizHistory[0].dateTaken == Date(timeIntervalSince1970: TimeInterval(quizTimeToTest)) , "The time set above doesn't match!")
+        XCTAssertTrue(quizHistory[0].questions.count == 2, "The should be two questions, but there isn't!")
+        XCTAssertTrue(quizHistory[0].score == quizScoreToTest, "The score doesn't match what we put in!")
+        
+        // Alright, let's now check each question.
+        questionArray = quizHistory[0].questions
+        for questionIndex in 0..<2 {
+            
+            // Check the question parameters
+            XCTAssertTrue(questionArray[questionIndex].text == "What is the correct answer?", "The question text does not match what we entered!")
+            XCTAssertTrue(questionArray[questionIndex].image == "aBase64StringImage\(questionIndex)", "The question (test) image (text) does not match what we entered!")
+            
+            choiceArray = questionArray[questionIndex].getChoices()
+            for choiceIndex in 0..<4 {
+                
+                XCTAssertTrue(choiceArray[choiceIndex].pathToPhoto == "aBase64StringImage\(choiceIndex)", "The choice (test) image (text) does not match what we entered!")
+                XCTAssertTrue(choiceArray[choiceIndex].text == "Choice \(choiceIndex)", "The choice text does not match what we entered!")
+                
+            } // End choice loop
+            
+        } // End question loop
+        
     }
     
 }
