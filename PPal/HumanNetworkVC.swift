@@ -217,6 +217,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             
             let person = PeopleBank.shared.getPeople()[indexPath.row]
             
+            cell.profileImage.image = person.getInfo().pathToPhoto.toImage
             cell.nameLabel.text = "\(person.getName().firstName) \(person.getName().lastName)"
             cell.phoneNumberLabel.text = person.getInfo().phoneNumber
             

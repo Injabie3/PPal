@@ -1031,6 +1031,9 @@
                                     <constraint firstAttribute="height" constant="130" id="42y-VB-D3a"/>
                                     <constraint firstAttribute="width" constant="130" id="LUA-G2-ymT"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="I7q-xl-cy1" appends="YES" id="md9-d7-ecJ"/>
+                                </connections>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="inA-pm-PHE">
                                 <rect key="frame" x="161" y="79" width="198" height="69"/>
@@ -1122,6 +1125,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vlt-k2-gaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="87A-DM-zja" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="I7q-xl-cy1">
+                    <connections>
+                        <action selector="selectImageFromLibrary:" destination="lxZ-Dr-tdf" id="6gh-Iq-cLR"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3272" y="852"/>
         </scene>
