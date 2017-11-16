@@ -361,7 +361,6 @@ class DatabaseTest: XCTestCase {
         
     }
     
-    
     /// Test saving a valid "question" to the database.
     /// In this case, we will force set some IDs
     func testSavingQuestionDefaultCase() {
@@ -407,11 +406,44 @@ class DatabaseTest: XCTestCase {
         }
     }
     
+    /// Test saving a "mock" quiz into the database.
+    func testSavingQuizDefaultCase() {
+        let quizToSave = Quiz()
+        
+        // Values we want to compare with at the end:
+        let scoreToTest = 15
+        let dateToTest = Date(timeIntervalSince1970: 19)
+        
+        // Set some variables.
+        quizToSave.score = scoreToTest
+        quizToSave.dateTaken = dateToTest
+        
+        let result = db!.saveQuizToDatabase(quiz: quizToSave)
+        
+        XCTAssertTrue(result, "The quiz could not be saved to the database!")
+        
+        // Let's retrieve the quiz from the database and check.
+        do {
+            let quizInTable = try db!.quizzesDatabase!.prepare(db!.quizTable)
+            for item in quizInTable {
+                XCTAssertTrue(item[db!.score] == scoreToTest, "The score doen't match what we put into the database!")
+                XCTAssertTrue(item[db!.date] == dateToTest, "The date doesn't match the one we put in!")
+            }
+            
+        } catch {
+            print(error)
+            XCTAssert(false, "We errored out!")
+        }
+        
+        
+    }
+    
+    
     /// Let's test retreiving a quiz.
     func testGetAllQuizData() {
         
-        // Lets declare some things to test.
-        let quizTimeToTest = 15
+        // Lets declare some things to test for the quiz portion
+        let quizDateToTest = Date(timeIntervalSince1970: 14)
         let quizScoreToTest = 0
 
         
@@ -455,8 +487,8 @@ class DatabaseTest: XCTestCase {
         } // End question loop
         
         // Let's set some parameters for the quiz.
-        quiz.dateTaken = Date(timeIntervalSince1970: 15)
-        quiz.score = 0 // Wow this person is bad...
+        quiz.dateTaken = quizDateToTest
+        quiz.score = quizScoreToTest
      
         // Let's save the quiz to the database.
         _ = db!.saveQuizToDatabase(quiz: quiz)
@@ -472,7 +504,7 @@ class DatabaseTest: XCTestCase {
         
         // There is only one quiz, so we will hard code the index 0 in.
         // Check the quiz portion of it first.
-        XCTAssertTrue(quizHistory[0].dateTaken == Date(timeIntervalSince1970: TimeInterval(quizTimeToTest)) , "The time set above doesn't match!")
+        XCTAssertTrue(quizHistory[0].dateTaken == quizDateToTest, "The time set above doesn't match!")
         XCTAssertTrue(quizHistory[0].questions.count == 2, "The should be two questions, but there isn't!")
         XCTAssertTrue(quizHistory[0].score == quizScoreToTest, "The score doesn't match what we put in!")
         
