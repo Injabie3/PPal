@@ -142,4 +142,5 @@ class PlayQuizVC: UIViewController {
             viewVC.endPoints = points
         }
     }
+    
 }
