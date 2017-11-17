@@ -82,13 +82,7 @@ class QuizBank {
         var randomNum = 0
         let quizToReturn = Quiz()
         let sizeOfPeopleBank = PeopleBank.shared.getPeople().count
-        var listOfPeople = PeopleBank.shared.getPeople()
-    
-        //var storePeople = [Person]()
-        
-        
-        var idForChoices = 0
-        var idForQuestions = 0
+        let listOfPeople = PeopleBank.shared.getPeople()
         
         var randomizedQuestionsArray = [Question]()
         var previousChoiceIndices = [Int]()
@@ -96,24 +90,20 @@ class QuizBank {
         
         var tempQuestion = Question()
         var tempChoice = Choice()
-
-        // var hashTable_Choices = [Choice]()
-        // var hashTable_People = [Person]()
-        
         
         //PeopleBank.shared.getPeople()[].getInfo().lastName
         for index in 0...sizeOfPeopleBank-1
         {
             var tempListOfPeople = listOfPeople
             var choiceIndex : [Int] = [0,1,2,3]
-//choice 1
+
             tempQuestion = Question()
+            
+//choice 1
             tempChoice = Choice()
             
             tempQuestion.image = tempListOfPeople[index].getInfo().pathToPhoto //stored but can be chosen not to be shown for this question
             tempQuestion.text = "Who is this person?"
-            
-            //storePeople.append(listOfPeople[index]) //adds a person into the array. Later used to check if a person is already in the array when randomly selecting the other 3 false choices from listOfPeople
             
             tempChoice.pathToPhoto = "\(tempListOfPeople[index].getInfo().pathToPhoto)"
             tempChoice.person = tempListOfPeople[index] //.person is optional. What im getting from you here Ryan is that you only want to associate the person with the choices that are the names of the person and not when choices are addresses?
@@ -170,8 +160,6 @@ class QuizBank {
             randomizedQuestionsArray.append(tempQuestion)
              //remember to set the correct index for the correct answer
 
-            
-            
           //quizToReturn.questions[index] = arc4random_uniform(UInt32(sizeOfPeopleBank))
             
         }
@@ -182,8 +170,6 @@ class QuizBank {
             randomNum = Int(arc4random_uniform(UInt32(randomizedQuestionsArray.count)))
             quizToReturn.questions.append(randomizedQuestionsArray[randomNum])
         }
-        
-        
         
         return quizToReturn
     }
