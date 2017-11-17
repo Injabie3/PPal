@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource {
+class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     var fromRoot = false
     var selectedContact1: CNContact = CNContact()
     @IBOutlet weak var listViewField: UIView!
@@ -18,8 +18,12 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     @IBOutlet weak var labelViewField: UIView!
     @IBOutlet weak var segment: UISegmentedControl!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var labelTableView: UITableView! // The table view for the list of label
     @IBOutlet weak var listViewTableView: UITableView! // The table view for the list of people.
+    
+    // To implement the search bar
+    var filteredArrayToSearch = [Person]()
     
     @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -48,13 +52,21 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         
         labelTableView.delegate = self
         labelTableView.dataSource = self
+        
+        // Associate the search bar delegate
+        searchBar.delegate = self
+        
+        filteredArrayToSearch = PeopleBank.shared.getPeople()
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // Reload data upon loading this screen.
+        filteredArrayToSearch = PeopleBank.shared.getPeople()
         listViewTableView.reloadData()
         labelTableView.reloadData()
+        
     }
 
     @IBAction func importFromContactsButton(_ sender: Any) {
@@ -191,7 +203,8 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         
         // Get the number of people to display for the list view.
         if tableView == self.listViewTableView {
-            return PeopleBank.shared.getPeople().count
+            return filteredArrayToSearch.count // Use this to implement search bar.
+            // return PeopleBank.shared.getPeople().count
             // return people.count
         }
         // Get the number of labels to display for the label list view.
@@ -215,7 +228,8 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             
             // Fetches the appropriate person for the data source layout.
             
-            let person = PeopleBank.shared.getPeople()[indexPath.row]
+            // let person = PeopleBank.shared.getPeople()[indexPath.row]
+            let person = self.filteredArrayToSearch[indexPath.row]
             
             cell.profileImage.image = person.getInfo().pathToPhoto.toImage
             cell.nameLabel.text = "\(person.getName().firstName) \(person.getName().lastName)"
@@ -292,6 +306,15 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     }
     
     @IBAction func unwindFromCreateProfileVC(unwindSegue: UIStoryboardSegue) {
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            filteredArrayToSearch = PeopleBank.shared.getPeople()
+        } else {
+            filteredArrayToSearch = PeopleBank.shared.getPeople().filter { "\($0.getName().firstName) \($0.getName().lastName)".lowercased().contains(searchText.lowercased())}
+        }
+        self.listViewTableView.reloadData()
     }
     
 }
