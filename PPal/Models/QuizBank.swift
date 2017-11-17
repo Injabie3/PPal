@@ -7,13 +7,6 @@
 //
 import Foundation
 
-
-/**
- An encapsulating class that will hold the following:
- - Quiz history
- - Custom quiz questions (version 3)
- */
-
 /*extension MutableCollection where Index == Int {
     /// Shuffle the elements of `self` in-place.
     mutating func shuffle() {
@@ -28,6 +21,12 @@ import Foundation
         }
     }
 }*/
+
+/**
+ An encapsulating class that will hold the following:
+ - Quiz history
+ - Custom quiz questions (version 3)
+ */
 class QuizBank {
     
     /**
@@ -86,50 +85,50 @@ class QuizBank {
         
         var randomizedQuestionsArray = [Question]()
         var previousChoiceIndices = [Int]()
-        //var randomizeChoiceIndex = 0
+        // var randomizeChoiceIndex = 0
         
         var tempQuestion = Question()
         var tempChoice = Choice()
         
-        //PeopleBank.shared.getPeople()[].getInfo().lastName
+        // PeopleBank.shared.getPeople()[].getInfo().lastName
         for index in 0...sizeOfPeopleBank-1
         {
             var tempListOfPeople = listOfPeople
-            var choiceIndex : [Int] = [0,1,2,3]
+            var choiceIndex: [Int] = [0, 1, 2, 3]
 
             tempQuestion = Question()
             
-//choice 1
+// choice 1
             tempChoice = Choice()
             
-            tempQuestion.image = tempListOfPeople[index].getInfo().pathToPhoto //stored but can be chosen not to be shown for this question
+            tempQuestion.image = tempListOfPeople[index].getInfo().pathToPhoto // stored but can be chosen not to be shown for this question
             tempQuestion.text = "Who is this person?"
             
             tempChoice.pathToPhoto = "\(tempListOfPeople[index].getInfo().pathToPhoto)"
-            tempChoice.person = tempListOfPeople[index] //.person is optional. What im getting from you here Ryan is that you only want to associate the person with the choices that are the names of the person and not when choices are addresses?
+            tempChoice.person = tempListOfPeople[index] // .person is optional. What im getting from you here Ryan is that you only want to associate the person with the choices that are the names of the person and not when choices are addresses?
             tempChoice.text = "\(tempListOfPeople[index].getName().firstName) " + "\(tempListOfPeople[index].getName().lastName)"
-            //ummm so the tempChoice.valid checks the whether photostring and text are empty. What im getting from you Ryan is that you would still want these fields to not be null but just choose to display one of the two depending on the context of the question? Not sure how i would use this when i already set the fields. Or is it purely for testing purposes?
+            // ummm so the tempChoice.valid checks the whether photostring and text are empty. What im getting from you Ryan is that you would still want these fields to not be null but just choose to display one of the two depending on the context of the question? Not sure how i would use this when i already set the fields. Or is it purely for testing purposes?
             randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))// returns an index in the range of 0 - 3. Purpose is to randomize the position of the correct answer
-            previousChoiceIndices.append(randomNum) //append the choice positions so when randomly generating positions for other choices there will be no collision
+            previousChoiceIndices.append(randomNum) // append the choice positions so when randomly generating positions for other choices there will be no collision
             
-            _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum]) //assuming result unused warning is due to the returned boolean for you to use in testing?
-            _ = tempQuestion.set(correctAnswerIndex: choiceIndex[randomNum]) //set the correct index right away
+            _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum]) // assuming result unused warning is due to the returned boolean for you to use in testing?
+            _ = tempQuestion.set(correctAnswerIndex: choiceIndex[randomNum]) // set the correct index right away
             choiceIndex.remove(at: randomNum)
-//choice 2
+// choice 2
             tempChoice = Choice()
             
-            randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count))) //randomly selecting a person from the listofpeople and get that person's info to set the appropriate fields below
+            randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count))) // randomly selecting a person from the listofpeople and get that person's info to set the appropriate fields below
             
             tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
             tempChoice.person = tempListOfPeople[randomNum]
             tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
             tempListOfPeople.remove(at: randomNum)
             
-            randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count))) //randomize the choice positions
+            randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count))) // randomize the choice positions
            
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
             
-//choice 3
+// choice 3
             tempChoice = Choice()
             
             randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count)))
@@ -145,7 +144,7 @@ class QuizBank {
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
          
             
-//choice 4
+// choice 4
             tempChoice = Choice()
 
             randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count)))
@@ -153,19 +152,18 @@ class QuizBank {
             tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
             tempChoice.person = tempListOfPeople[randomNum]
             tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
-            //tempListOfPeople.remove(at: randomNum)
+            // tempListOfPeople.remove(at: randomNum)
 
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[0])
 
             randomizedQuestionsArray.append(tempQuestion)
-             //remember to set the correct index for the correct answer
+             // remember to set the correct index for the correct answer
 
-          //quizToReturn.questions[index] = arc4random_uniform(UInt32(sizeOfPeopleBank))
+          // quizToReturn.questions[index] = arc4random_uniform(UInt32(sizeOfPeopleBank))
             
         }
         
-        for _ in 0...9 //randomizing the resulting question array to be returned as a quiz
-        {
+        for _ in 0...9 { // randomizing the resulting question array to be returned as a quiz
             
             randomNum = Int(arc4random_uniform(UInt32(randomizedQuestionsArray.count)))
             quizToReturn.questions.append(randomizedQuestionsArray[randomNum])
