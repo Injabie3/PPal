@@ -136,12 +136,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="Zm1-XU-GPb"/>
+                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="itu-no-rYX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-iH-Hnz">
                                         <rect key="frame" x="176.5" y="0.0" width="166.5" height="80"/>
-                                        <color key="backgroundColor" red="0.49846693460000002" green="0.51611935109999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.49803921569999998" green="0.51764705879999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <state key="normal" title="Button">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -152,7 +152,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="QbA-tE-fcS"/>
+                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="PRO-1x-QcT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -176,12 +176,15 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="1aC-Hy-AcK"/>
+                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="yRu-9h-KAn"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzn-Zd-zCA">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgy-Mt-zGH">
                                         <rect key="frame" x="176.5" y="0.0" width="166.5" height="80"/>
                                         <color key="backgroundColor" red="0.49846693460000002" green="0.51611935109999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="gQI-AW-c5B"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <state key="normal" title="Button">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -192,7 +195,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="DGX-gR-IXf"/>
+                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="Y2d-Hx-g8s"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -220,12 +223,60 @@
                                     <constraint firstAttribute="width" secondItem="0cy-Bh-E8U" secondAttribute="height" multiplier="1:1" id="Evb-H9-7lr"/>
                                 </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JBJ-jW-Gwb">
+                                <rect key="frame" x="16" y="547" width="343" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXf-aK-7U9">
+                                        <rect key="frame" x="0.0" y="0.0" width="166.5" height="80"/>
+                                        <color key="backgroundColor" red="0.7405133928571429" green="0.35901227678571429" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="6kk-Vx-URI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="Review">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="In7-X9-HZ0">
+                                        <rect key="frame" x="176.5" y="0.0" width="166.5" height="80"/>
+                                        <color key="backgroundColor" red="0.25329241071428571" green="0.76065848214285714" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="Next Question">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="nextQuestion:" destination="zBS-xm-QIg" eventType="touchUpInside" id="ydC-TO-xuO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XW-Vc-3tR">
+                                <rect key="frame" x="16" y="323.5" width="343" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="qew-Fp-cnI" firstAttribute="top" secondItem="6XW-Vc-3tR" secondAttribute="bottom" constant="16" id="4d4-3m-u2E"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6XW-Vc-3tR" secondAttribute="trailing" id="5Cr-Sy-BTC"/>
                             <constraint firstItem="15G-Ss-vFw" firstAttribute="leading" secondItem="tr1-yk-KjP" secondAttribute="leadingMargin" id="74e-wz-7bf"/>
+                            <constraint firstItem="JBJ-jW-Gwb" firstAttribute="leading" secondItem="tr1-yk-KjP" secondAttribute="leadingMargin" id="842-8o-Pir"/>
                             <constraint firstItem="15G-Ss-vFw" firstAttribute="top" secondItem="qew-Fp-cnI" secondAttribute="bottom" constant="10" id="DDe-l8-Ogx"/>
                             <constraint firstItem="CZl-jT-0sz" firstAttribute="top" secondItem="15G-Ss-vFw" secondAttribute="bottom" constant="130" id="EiQ-K4-o3a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JBJ-jW-Gwb" secondAttribute="trailing" id="KGL-eL-oDE"/>
+                            <constraint firstItem="JBJ-jW-Gwb" firstAttribute="top" secondItem="15G-Ss-vFw" secondAttribute="bottom" constant="10" id="PZg-VP-Ne3"/>
                             <constraint firstItem="qew-Fp-cnI" firstAttribute="leading" secondItem="tr1-yk-KjP" secondAttribute="leadingMargin" id="Pvx-hw-scV"/>
                             <constraint firstItem="qew-Fp-cnI" firstAttribute="trailing" secondItem="tr1-yk-KjP" secondAttribute="trailingMargin" id="Qtd-On-7DT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="15G-Ss-vFw" secondAttribute="trailing" id="Rbf-Tl-F5w"/>
@@ -233,7 +284,9 @@
                             <constraint firstItem="CqA-rb-rd9" firstAttribute="top" secondItem="bVA-I8-TEU" secondAttribute="bottom" id="aXH-68-py8"/>
                             <constraint firstItem="0cy-Bh-E8U" firstAttribute="leading" secondItem="tr1-yk-KjP" secondAttribute="leading" constant="72" id="abD-Dx-KIG"/>
                             <constraint firstItem="gA8-lc-cL5" firstAttribute="top" secondItem="0cy-Bh-E8U" secondAttribute="bottom" constant="35" id="cAP-d8-ePd"/>
-                            <constraint firstItem="qew-Fp-cnI" firstAttribute="top" secondItem="gA8-lc-cL5" secondAttribute="bottom" constant="35" id="jP1-tm-Ktz"/>
+                            <constraint firstItem="qew-Fp-cnI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gA8-lc-cL5" secondAttribute="bottom" constant="35" id="jP1-tm-Ktz"/>
+                            <constraint firstItem="6XW-Vc-3tR" firstAttribute="leading" secondItem="tr1-yk-KjP" secondAttribute="leadingMargin" id="kaS-Tt-kaj"/>
+                            <constraint firstItem="0cy-Bh-E8U" firstAttribute="top" secondItem="bVA-I8-TEU" secondAttribute="bottom" constant="20" id="mYw-WP-h62"/>
                             <constraint firstItem="gA8-lc-cL5" firstAttribute="leading" secondItem="tr1-yk-KjP" secondAttribute="leadingMargin" id="mn2-mR-dIS"/>
                             <constraint firstItem="gA8-lc-cL5" firstAttribute="trailing" secondItem="tr1-yk-KjP" secondAttribute="trailingMargin" id="r0P-Cj-28s"/>
                             <constraint firstItem="CqA-rb-rd9" firstAttribute="leading" secondItem="tr1-yk-KjP" secondAttribute="leading" id="rHR-LJ-UT6"/>
@@ -242,9 +295,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="answerButton" destination="lzn-Zd-zCA" id="Q9w-Tx-xQZ"/>
+                        <outlet property="nextQuestionButton" destination="In7-X9-HZ0" id="pOu-xA-cVm"/>
                         <outlet property="questionText" destination="gA8-lc-cL5" id="zEB-42-e0Y"/>
                         <outlet property="quizPhoto" destination="0cy-Bh-E8U" id="j3x-wi-nTa"/>
+                        <outlet property="resultText" destination="6XW-Vc-3tR" id="yVl-GE-sOR"/>
+                        <outlet property="reviewButton" destination="uXf-aK-7U9" id="Qu4-X1-rHy"/>
                         <segue destination="Umi-Hf-DW7" kind="show" identifier="segueToEndQuiz" id="dQ2-62-XMK"/>
                     </connections>
                 </viewController>
@@ -275,9 +330,57 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QET-qR-Kit">
+                                <rect key="frame" x="16" y="457" width="343" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1HA-GG-RVE">
+                                        <rect key="frame" x="0.0" y="0.0" width="166.5" height="80"/>
+                                        <color key="backgroundColor" red="0.49846693460000002" green="0.51611935109999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="1eg-Mn-FAU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="Return to Main">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="5IY-9c-l04"/>
+                                            <segue destination="a3H-ju-9Ge" kind="unwind" unwindAction="unwindBackToHomeScreenWithUnwindSegue:" id="3cP-lb-Ufa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRf-39-ApD">
+                                        <rect key="frame" x="176.5" y="0.0" width="166.5" height="80"/>
+                                        <color key="backgroundColor" red="0.49846693460000002" green="0.51611935109999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="idf-Os-oOH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="Play Again!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="buttonAction:" destination="zBS-xm-QIg" eventType="touchUpInside" id="vP4-J8-AGf"/>
+                                            <segue destination="a3H-ju-9Ge" kind="unwind" unwindAction="unwindBackToQuizMenuWithUnwindSegue:" id="SUC-tT-Z9v"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QET-qR-Kit" firstAttribute="leading" secondItem="qr7-1D-rEi" secondAttribute="leadingMargin" id="FEa-vy-uQ5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QET-qR-Kit" secondAttribute="trailing" id="fSc-bc-n0K"/>
+                            <constraint firstItem="zWG-q7-Tmj" firstAttribute="top" secondItem="QET-qR-Kit" secondAttribute="bottom" constant="130" id="lWS-Ao-RL4"/>
                             <constraint firstItem="ZIQ-zZ-Iyh" firstAttribute="centerY" secondItem="qr7-1D-rEi" secondAttribute="centerY" id="rgq-u7-c07"/>
                             <constraint firstItem="ZIQ-zZ-Iyh" firstAttribute="centerX" secondItem="qr7-1D-rEi" secondAttribute="centerX" id="wh4-Vs-TmD"/>
                         </constraints>
@@ -287,6 +390,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laj-fK-kUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="a3H-ju-9Ge" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="556" y="1622.3388305847077"/>
         </scene>
