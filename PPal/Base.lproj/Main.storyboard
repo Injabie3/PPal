@@ -820,6 +820,7 @@
                         <outlet property="listViewField" destination="F4l-t3-h7H" id="wtC-gz-QC3"/>
                         <outlet property="listViewTableView" destination="T9O-2V-d6w" id="2yE-LH-t7h"/>
                         <outlet property="mapViewField" destination="HBh-aZ-V4G" id="Ahj-VU-4As"/>
+                        <outlet property="searchBar" destination="9gz-le-Tll" id="ZhK-0u-gbM"/>
                         <outlet property="segment" destination="13X-xO-ohY" id="3sb-1W-EmY"/>
                         <segue destination="GLg-Nw-gZy" kind="show" identifier="" id="s6C-zw-Dbh"/>
                         <segue destination="7tX-10-iwA" kind="show" identifier="SegueToAddLabelToContacts" id="0sS-Ii-Aye"/>
