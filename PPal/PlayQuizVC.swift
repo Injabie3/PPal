@@ -20,7 +20,7 @@ class PlayQuizVC: UIViewController {
     let photos = ["test1.jpg", "test2.jpg", "test3.jpeg", "test4.jpg"]
     
     var currentQuestion = 0
-    var rightAnswerPlacement:UInt32 = 0
+    var rightAnswerPlacement: UInt32 = 0
     var points = 0
     
     @IBOutlet weak var questionText: UILabel!
@@ -36,7 +36,7 @@ class PlayQuizVC: UIViewController {
             print("wrong answer")
         }
         
-        if(currentQuestion != questions.count) {
+        if currentQuestion != questions.count {
             newQuestion()
         }
         else {
@@ -53,7 +53,7 @@ class PlayQuizVC: UIViewController {
         quizPhoto.image = UIImage(named: photos[currentQuestion])
         rightAnswerPlacement = arc4random_uniform(4) + 1
         
-        var button:UIButton = UIButton()
+        var button: UIButton = UIButton()
         var questionNumber = 1
         
         for i in 1...4 {
