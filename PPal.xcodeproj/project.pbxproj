@@ -32,6 +32,10 @@
 		F75D820A1FAE7F580071F47F /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */; };
 		F75D820B1FAE7F580071F47F /* AddLabelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82071FAE7F570071F47F /* AddLabelTableViewController.swift */; };
 		F75D82261FAE9B6D0071F47F /* Emergency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D82251FAE9B6D0071F47F /* Emergency.swift */; };
+		F768428F1FBE5BE0004EB264 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76842861FBE5BE0004EB264 /* Quiz.swift */; };
+		F76842901FBE5BE0004EB264 /* QuizBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F768428D1FBE5BE0004EB264 /* QuizBank.swift */; };
+		F76842911FBE5BE0004EB264 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F768428E1FBE5BE0004EB264 /* UIImage.swift */; };
+		F76842931FBE5C24004EB264 /* QuizBankTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76842921FBE5C24004EB264 /* QuizBankTest.swift */; };
 		F7E99F6D1FB50BA20063F2C2 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F681FB50BA20063F2C2 /* Database.swift */; };
 		F7E99F6E1FB50BA20063F2C2 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F691FB50BA20063F2C2 /* Label.swift */; };
 		F7E99F6F1FB50BA20063F2C2 /* PeopleBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E99F6A1FB50BA20063F2C2 /* PeopleBank.swift */; };
@@ -160,6 +164,10 @@
 		F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		F75D82071FAE7F570071F47F /* AddLabelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLabelTableViewController.swift; sourceTree = "<group>"; };
 		F75D82251FAE9B6D0071F47F /* Emergency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emergency.swift; sourceTree = "<group>"; };
+		F76842861FBE5BE0004EB264 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		F768428D1FBE5BE0004EB264 /* QuizBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizBank.swift; sourceTree = "<group>"; };
+		F768428E1FBE5BE0004EB264 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		F76842921FBE5C24004EB264 /* QuizBankTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizBankTest.swift; sourceTree = "<group>"; };
 		F7E99F681FB50BA20063F2C2 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		F7E99F691FB50BA20063F2C2 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		F7E99F6A1FB50BA20063F2C2 /* PeopleBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleBank.swift; sourceTree = "<group>"; };
@@ -252,6 +260,7 @@
 				6D1E1E811FB020DB0055C01A /* PeopleBankTest.swift */,
 				6D1E1E821FB020DB0055C01A /* PersonLabelTest.swift */,
 				6D1E1E841FB020DB0055C01A /* PersonTest.swift */,
+				F76842921FBE5C24004EB264 /* QuizBankTest.swift */,
 				F7563BC51F9A9BF90046AC3E /* Info.plist */,
 			);
 			path = PPalTests;
@@ -300,6 +309,9 @@
 				F7E99F6C1FB50BA20063F2C2 /* String.swift */,
 				F7E99F721FB50BD20063F2C2 /* Choice.swift */,
 				F7E99F741FB50E090063F2C2 /* Question.swift */,
+				F76842861FBE5BE0004EB264 /* Quiz.swift */,
+				F768428D1FBE5BE0004EB264 /* QuizBank.swift */,
+				F768428E1FBE5BE0004EB264 /* UIImage.swift */,
 			);
 			name = Models;
 			path = PPal/Models;
@@ -511,11 +523,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */,
+				F76842911FBE5BE0004EB264 /* UIImage.swift in Sources */,
 				6D3A00051FAFA469004141E5 /* XLabelsTableViewController.swift in Sources */,
 				BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */,
 				D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */,
 				F7E99F6F1FB50BA20063F2C2 /* PeopleBank.swift in Sources */,
+				F76842901FBE5BE0004EB264 /* QuizBank.swift in Sources */,
 				717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */,
+				F768428F1FBE5BE0004EB264 /* Quiz.swift in Sources */,
 				F75D82081FAE7F580071F47F /* PersonTableViewController.swift in Sources */,
 				F75D82091FAE7F580071F47F /* LabelTableViewCell.swift in Sources */,
 				F75D820A1FAE7F580071F47F /* PersonTableViewCell.swift in Sources */,
@@ -542,6 +557,7 @@
 				6D1E1E881FB020DB0055C01A /* DatabaseTest.swift in Sources */,
 				6D1E1E891FB020DB0055C01A /* PersonTest.swift in Sources */,
 				6D1E1E851FB020DB0055C01A /* LabelTest.swift in Sources */,
+				F76842931FBE5C24004EB264 /* QuizBankTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
