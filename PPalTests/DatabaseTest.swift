@@ -37,9 +37,22 @@ class DatabaseTest: XCTestCase {
         super.setUp()
         // Set up the objects
         db = Database.shared
-        db!.recreateDatabase()
+        
         person01 = Person()
         personArray = [Person]()
+        
+        // Recreate the database
+        do
+        {
+            try db!.database.run(db!.personsTable.drop())
+            try db!.labelDatabase.run(db!.labelTable.drop())
+            try db!.choicesDatabase.run(db!.choiceTable.drop())
+            try db!.questionsDatabase.run(db!.questionTable.drop())
+            try db!.quizzesDatabase.run(db!.quizTable.drop())
+        } catch {
+            print(error)
+        }
+        db!.recreateDatabase()
         
         // Create some labels
         for index in 0..<3 {
