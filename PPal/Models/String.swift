@@ -42,7 +42,7 @@ public extension String {
     /// May throw an error if this is not a base64 image.
     var toImage: UIImage {
         get {
-            let dataDecoded: NSData = NSData(base64Encoded: self, options: NSData.Base64DecodingOptions(rawValue: 0))!
+            let dataDecoded: NSData = NSData(base64Encoded: self, options: NSData.Base64DecodingOptions(rawValue: 0)) ?? NSData(base64Encoded: #imageLiteral(resourceName: "default-user").toBase64, options: NSData.Base64DecodingOptions(rawValue: 0))!
             return UIImage(data: dataDecoded as Data)!
         }
     }
