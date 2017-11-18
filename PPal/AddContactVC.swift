@@ -15,6 +15,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
 
     var contact1: CNContact = CNContact()
     var isImported = Bool()
+    var isFirstTimeLoaded = false
     
     var isPhotoSelected = Bool()
     var isTextFieldsFilled = Bool()
@@ -86,27 +87,42 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             phoneNumberField.text = person.getInfo().phoneNumber
             emailField.text = person.getInfo().email
             addressField.text = person.getInfo().address
+            contactPhoto.image = person.getInfo().pathToPhoto.toImage
             
             // We don't have the selection implemented right now, so put it in a text field.
-            var labelTextArray = [String]()
-            for item in person.getInfo().labels {
-                labelTextArray.append(item.getName())
+            var labelArray = [String]()
+            for label in person.getLabels() {
+                labelArray.append(label.getName())
+                selectedLabels.append(label)
             }
+            let labelString = labelArray.joined(separator: ",")
+            self.displayLabels.text = labelString
             // labelField.text = labelTextArray.joined(separator: ",")
         }
-        updateDisplayLabelsTextbox()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateDisplayLabelsTextbox()
+        if !isFirstTimeLoaded {
+            isFirstTimeLoaded = true
+        }
+        else {
+            updateDisplayLabelsTextbox()
+        }
     }
     
     // update label text field
     func updateDisplayLabelsTextbox() {
         var labelArray = [String]()
+        //        if let person = person {
+        //            for label in person.getLabels() {
+        //                labelArray.append(label.getName())
+        //            }
+        //        }
+        // else {
         for label in selectedLabels {
             labelArray.append(label.getName())
         }
+        // }
         
         let labelString = labelArray.joined(separator: ",")
         
@@ -120,6 +136,23 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     @IBAction func donePressed() {
         // 1. Validate data.
         
+        // Check valid phone number
+        if !phoneNumberField.text!.isValidPhoneNumber {
+            self.customAlert(title: "Error", message: "Please check the phone number, and try again!")
+            return
+        }
+        
+        // Check valid email
+        if !emailField.text!.isValidEmail {
+            self.customAlert(title: "Error", message: "Please check the email, and try again!")
+            return
+        }
+        
+        // Check for labels.
+        if selectedLabels.count < 1 {
+            self.customAlert(title: "Error", message: "Please select at least one label, and try again!")
+            return
+        }
         // 2. Create person class object
         
         
@@ -136,7 +169,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             _ = profile.set(email: emailField.text!)
             // profile.add(label: label01)
             // Setting the photo to this for now.
-            _ = profile.setInfo(pathToPhoto: firstNameField.text!, firstName: firstNameField.text!, lastName: lastNameField.text!, phoneNumber: phoneNumberField.text!, email: emailField.text!, address: addressField.text!, hasHouseKeys: false)
+            _ = profile.setInfo(pathToPhoto: contactPhoto.image!.resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64, firstName: firstNameField.text!, lastName: lastNameField.text!, phoneNumber: phoneNumberField.text!, email: emailField.text!, address: addressField.text!, hasHouseKeys: false)
             // 3. Save to PeopleBank object.
             _ = PeopleBank.shared.add(person: profile)
             
@@ -159,7 +192,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             _ = person!.set(phoneNumber: phoneNumberField.text!)
             _ = person!.set(email: emailField.text!)
             // _ = person!.add(label: label01)
-            _ = person!.setInfo(pathToPhoto: "test12234", firstName: firstNameField.text!, lastName: lastNameField.text!, phoneNumber: phoneNumberField.text!, email: emailField.text!, address: addressField.text!, hasHouseKeys: false)
+            _ = person!.setInfo(pathToPhoto: contactPhoto.image!.resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64, firstName: firstNameField.text!, lastName: lastNameField.text!, phoneNumber: phoneNumberField.text!, email: emailField.text!, address: addressField.text!, hasHouseKeys: false)
             
             
             // 4. Update database.
@@ -256,6 +289,14 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         // Clear the variables and go back.
         selectedLabels.removeAll()
         self.navigationController!.popViewController(animated: true)
+    }
+    
+    /// Displays a custom alert message.
+    func customAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
     }
     
 }

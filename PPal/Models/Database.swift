@@ -9,6 +9,7 @@
 
 import Foundation
 import SQLite
+import UIKit
 
 class Database {
 
@@ -33,7 +34,35 @@ class Database {
     let label = Expression<String>("label")
     var labelDatabase: Connection!
     
-    // we'll need to discuss how to store the labels ***
+    //Table variable declaration for questions
+    let questionTable = Table("question")
+    let questionId = Expression<Int>("questionId")
+    let question = Expression<String>("question")
+    let questionPhoto = Expression<String>("questionPhoto")
+    let choice1 = Expression<Int>("choice1")
+    let choice2 = Expression<Int>("choice2")
+    let choice3 = Expression<Int>("choice3")
+    let choice4 = Expression<Int>("choice4")
+    let correctAns = Expression<Int>("correctAns")
+    let selectedAns = Expression<Int>("selectedAns")
+    var questionsDatabase: Connection!
+    
+    //Table variable declaration for choices
+    let choiceTable = Table("choices")
+    let choiceId = Expression<Int>("choiceId")
+    let choiceText = Expression<String>("choiceText")
+    let choicePhoto = Expression<String>("choicePhoto")
+    let personId = Expression<Int?>("personId")
+    var choicesDatabase: Connection!
+    
+    //Table variable declaration for quiz
+    let quizTable = Table("quizzes")
+    let sessionId = Expression<Int>("sessionId")
+    let date = Expression<Date>("date")
+    let questions = Expression<String>("questions")
+    let score = Expression<Int>("score")
+    var quizzesDatabase: Connection!
+    
     // create document path URL if not existed
     private init() {
         do {
@@ -50,6 +79,27 @@ class Database {
             let labelDatabase = try Connection(labelFileUrl.path)
             self.labelDatabase = labelDatabase
             self.createTableForLabel()
+            
+            // creating questions database
+            let questionsDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let questionsFileUrl = questionsDocumentDirectory.appendingPathComponent("questions").appendingPathExtension("sqlite3")
+            let questionsDatabase = try Connection(questionsFileUrl.path)
+            self.questionsDatabase = questionsDatabase
+            self.createTableForQuestions()
+            
+            // creating choices database
+            let choicesDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let choicesFileUrl = choicesDocumentDirectory.appendingPathComponent("choices").appendingPathExtension("sqlite3")
+            let choicesDatabase = try Connection(choicesFileUrl.path)
+            self.choicesDatabase = choicesDatabase
+            self.createTableForChoices()
+            
+            // creating quizzes database
+            let quizzesDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let quizzesFileUrl = quizzesDocumentDirectory.appendingPathComponent("quizzes").appendingPathExtension("sqlite3")
+            let quizzesDatabase = try Connection(quizzesFileUrl.path)
+            self.quizzesDatabase = quizzesDatabase
+            self.createTableForQuizzes()
             
         } catch {
             print(error)
@@ -73,29 +123,35 @@ class Database {
             self.labelDatabase = labelDatabase
             self.createTableForLabel()
             
+            // creating questions database
+            let questionsDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let questionsFileUrl = questionsDocumentDirectory.appendingPathComponent("questions").appendingPathExtension("sqlite3")
+            let questionsDatabase = try Connection(questionsFileUrl.path)
+            self.questionsDatabase = questionsDatabase
+            self.createTableForQuestions()
+            
+            // creating choices database
+            let choicesDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let choicesFileUrl = choicesDocumentDirectory.appendingPathComponent("choices").appendingPathExtension("sqlite3")
+            let choicesDatabase = try Connection(choicesFileUrl.path)
+            self.choicesDatabase = choicesDatabase
+            self.createTableForChoices()
+            
+            // creating quizzes database
+            let quizzesDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let quizzesFileUrl = quizzesDocumentDirectory.appendingPathComponent("quizzes").appendingPathExtension("sqlite3")
+            let quizzesDatabase = try Connection(quizzesFileUrl.path)
+            self.quizzesDatabase = quizzesDatabase
+            self.createTableForQuizzes()
+            
+            
         } catch {
             print(error)
         }    // Establish connection to the database file
     }
     
-    /// Table creation for Person class
-    private func createTableForLabel() {
-        
-        let tryCreatingLabelTable = self.labelTable.create { (table) in
-            table.column(self.labelId, primaryKey: true)
-            table.column(self.label, unique: true)
-            print("Label Table Created!")
-        }
-
-        do {
-            try self.labelDatabase.run(tryCreatingLabelTable)
-        } catch {
-            print(error)
-        }
- 	
-    }
     
-    /// Table creation for Person class
+    /// Table creation for Persons
     private func createTable() {
         
         let tryCreatingTable = self.personsTable.create { (table) in
@@ -119,26 +175,84 @@ class Database {
         
     }
     
-    /**
-     Saves a label to the database for the first time.
-     - parameter label: A Label object.
-     - returns: true or false.
-         - True if the label was saved to the database.
-         - False if the label could not be saved.
-     */
-    func saveLabelToDatabase(label: Label) -> Bool {
+    
+    /// Table creation for Labels
+    private func createTableForLabel() {
         
-        let saveLabel = self.labelTable.insert(self.label <- label.getName())
-        do {
-            let rowid = try self.labelDatabase.run(saveLabel)
-            label.set(id: Int(truncatingIfNeeded: rowid))
-            print("Saved label (rowid: \(rowid)) to database")
-            return true
-        } catch {
-            print(error)
-            return false
+        let tryCreatingLabelTable = self.labelTable.create { (table) in
+            table.column(self.labelId, primaryKey: true)
+            table.column(self.label, unique: true)
+            print("Label Table Created!")
         }
         
+        do {
+            try self.labelDatabase.run(tryCreatingLabelTable)
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    
+    
+    
+    /// Table creation for Questions
+    private func createTableForQuestions() {
+        
+        let tryCreatingQuestionsTable = self.questionTable.create { (table) in
+            table.column(self.questionId, primaryKey: true)
+            table.column(self.question)
+            table.column(self.questionPhoto)
+            table.column(self.choice1)
+            table.column(self.choice2)
+            table.column(self.choice3)
+            table.column(self.choice4)
+            table.column(self.correctAns)
+            table.column(self.selectedAns)
+            print("Questions Table Created!")
+        }
+        
+        do {
+            try self.questionsDatabase.run(tryCreatingQuestionsTable)
+        } catch {
+            print(error)
+        }
+    }
+    
+    /// Table creation for Choices
+    private func createTableForChoices() {
+        
+        let tryCreatingChoicesTable = self.choiceTable.create { (table) in
+            table.column(self.choiceId, primaryKey: true)
+            table.column(self.choiceText)
+            table.column(self.choicePhoto)
+            table.column(self.personId)
+            print("Choices Table Created!")
+        }
+        
+        do {
+            try self.choicesDatabase.run(tryCreatingChoicesTable)
+        } catch {
+            print(error)
+        }
+    }
+    
+    /// Table creation for Quizzes
+    private func createTableForQuizzes() {
+        
+        let tryCreatingQuizTable = self.quizTable.create { (table) in
+            table.column(self.sessionId, primaryKey: true)
+            table.column(self.date)
+            table.column(self.questions)
+            table.column(self.score)
+            print("Quizzes Table Created!")
+        }
+        
+        do {
+            try self.quizzesDatabase.run(tryCreatingQuizTable)
+        } catch {
+            print(error)
+        }
     }
     
     /**
@@ -177,6 +291,106 @@ class Database {
         }
 
     }
+    
+    /**
+     Saves a label to the database for the first time.
+     - parameter label: A Label object.
+     - returns: true or false.
+     - True if the label was saved to the database.
+     - False if the label could not be saved.
+     */
+    func saveLabelToDatabase(label: Label) -> Bool {
+        
+        let saveLabel = self.labelTable.insert(self.label <- label.getName())
+        do {
+            let rowid = try self.labelDatabase.run(saveLabel)
+            label.set(id: Int(truncatingIfNeeded: rowid))
+            print("Saved label (rowid: \(rowid)) to database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+        
+    }
+    
+    
+    
+    /**
+     Saves a question to the database for the first time.
+     - parameter label: A Question object.
+     - returns: true or false.
+     - True if the question was saved to the database.
+     - False if the question could not be saved.
+     */
+    func saveQuestionToDatabase(question: Question) -> Bool {
+        
+        let saveQuestion = self.questionTable.insert(self.question <- question.text, self.questionPhoto <- question.image, self.choice1 <- question.getChoices()[0].id, self.choice2 <- question.getChoices()[1].id, self.choice3 <- question.getChoices()[2].id, self.choice4 <- question.getChoices()[3].id, self.correctAns <- question.getCorrectAnswer(), self.selectedAns <- question.getSelectedAnswer())
+        do {
+            let rowid = try self.questionsDatabase.run(saveQuestion)
+            question.set(id: Int(truncatingIfNeeded: rowid))
+            print("Saved question (rowid: \(rowid)) to database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+    
+    
+    /**
+     Saves a choice to the database for the first time.
+     - parameter choice: A Label object.
+     - returns: true or false.
+     - True if the choice was saved to the database.
+     - False if the choice could not be saved.
+     */
+    func saveChoiceToDatabase(choice: Choice) -> Bool {
+        
+        let saveChoice = self.choiceTable.insert(self.choiceText <- choice.text, self.choicePhoto <- choice.pathToPhoto) //self.personId <- choice.person.getId()
+        do {
+            let rowid = try self.choicesDatabase.run(saveChoice)
+            choice.id = Int(truncatingIfNeeded: rowid)
+            print("Saved choice (rowid: \(rowid)) to database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+        
+    }
+    
+    
+    /**
+     Saves a quiz to the database for the first time.
+     - parameter quiz: A Label object.
+     - returns: true or false.
+     - True if the quiz was saved to the database.
+     - False if the quiz could not be saved.
+     */
+    func saveQuizToDatabase(quiz: Quiz) -> Bool {
+        
+        var questionArray = [String]()
+        for question in quiz.questions {
+            questionArray.append("\(question.getId())")
+        }
+        
+        let questionString = questionArray.joined(separator: ",")
+        
+        let saveQuiz = self.quizTable.insert(self.date <- quiz.dateTaken, self.questions <- questionString, self.score <- quiz.score)
+        do {
+            let rowid = try self.quizzesDatabase.run(saveQuiz)
+            quiz.id = Int(truncatingIfNeeded: rowid)
+            print("Saved quiz (rowid: \(rowid)) to database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+        
+    }
+    
+    
     
     // Search and return label by ID
     func retrieveLabelById(id: Int) {
@@ -268,7 +482,10 @@ class Database {
         
         let labelString = labelArray.joined(separator: ",")
         
-        let updateProfile = self.personsTable.update(self.pathToPhoto <- profile.getInfo().pathToPhoto,
+        // Get the ID we want to update, or else we're updating EVERY row.
+        let personToUpdate = self.personsTable.filter(self.id == profile.getId())
+        
+        let updateProfile = personToUpdate.update(self.pathToPhoto <- profile.getInfo().pathToPhoto,
                                                      self.firstName <- profile.getInfo().firstName,
                                                      self.lastName <- profile.getInfo().lastName,
                                                      self.phoneNumber <- profile.getInfo().phoneNumber,
@@ -297,8 +514,10 @@ class Database {
          - False if it could not be updated.
      */
     func updateLabel(label: Label) -> Bool {
-
-        let updateLabel = self.labelTable.update(self.label <- label.getName())
+        // Get the ID we want to update, or else we're updating EVERY row.
+        let labelToUpdate = self.labelTable.filter(self.labelId == label.getId())
+        
+        let updateLabel = labelToUpdate.update(self.label <- label.getName())
         do {
             try self.labelDatabase.run(updateLabel)
             let rowid = label.getId()
@@ -377,6 +596,99 @@ class Database {
         }
         
         return bank
+    }
+	
+	
+    /**
+     Builds the QuizBank class from the database.
+     
+     - returns: A QuizBank object.
+     */
+    func getAllQuizData() { //-> QuizBank or not?
+        let bank = QuizBank.shared
+        var choiceArray = [Choice]()
+        var questionArray = [Question]()
+
+        //loading choices from database into choiceArray
+        do {
+            let choicesInDatabase = try self.choicesDatabase!.prepare(choiceTable)
+            for choice in choicesInDatabase {
+                print("Id: \(choice[self.choiceId]), choiceText: \(choice[self.choiceText]), personID: \(String(describing: choice[self.personId]))")
+
+                // Create a Choice object per result, and add this choice into the choiceArray.
+                let choiceObject = Choice()
+                choiceObject.id = choice[self.choiceId]
+                choiceObject.text = choice[self.choiceText]
+                choiceObject.pathToPhoto = choice[self.choicePhoto]
+                //not sure about the following line yet***
+                //choiceObject.person = choice[self.person]
+                choiceArray.append(choiceObject)
+            }
+        } catch {
+            print (error)
+        }
+        
+        //At this point, we should have an array of choices ready to be loaded into questions
+        do {
+            let questionInDatabase = try self.questionsDatabase!.prepare(questionTable)
+            for question in questionInDatabase {
+                print("Id: \(question[self.questionId]), question: \(question[self.question]), choice1: \(question[self.choice1]), choice2: \(question[self.choice2]), choice3: \(question[self.choice3]), choice4: \(question[self.choice4]), correctAns: \(question[self.correctAns]), selectedAns: \(question[self.selectedAns])")
+                let questionObject = Question()
+                // Set the question id from the primary key in the database.
+                questionObject.set(id: question[self.questionId])
+                
+                // Set the text and image.
+                questionObject.text = question[self.question]
+                questionObject.image = question[self.questionPhoto]
+                
+                // Add each choice in from the choice array above, will double check to make sure the index is not nil.
+                if let index0 = choiceArray.index(where: { $0.id == question[self.choice1] }) {
+                    _ = questionObject.set(choice: choiceArray[index0], atIndex: 0)
+                }
+                if let index1 = choiceArray.index(where: { $0.id == question[self.choice2] }) {
+                    _ = questionObject.set(choice: choiceArray[index1], atIndex: 1)
+                }
+                if let index2 = choiceArray.index(where: { $0.id == question[self.choice3] }) {
+                    _ = questionObject.set(choice: choiceArray[index2], atIndex: 2)
+                }
+                if let index3 = choiceArray.index(where: { $0.id == question[self.choice4] }) {
+                    _ = questionObject.set(choice: choiceArray[index3], atIndex: 3)
+                }
+                
+                // Set the correct answer, and selected answer indices.
+                _ = questionObject.set(correctAnswerIndex: question[self.correctAns])
+                _ = questionObject.set(selectedAnswerIndex: question[self.selectedAns])
+                questionArray.append(questionObject)
+            }
+        } catch {
+            print (error)
+        }
+
+
+        // At this point, all the questions are loaded in questionArray
+        do {
+            let quizInDatabase = try self.quizzesDatabase!.prepare(quizTable)
+            for quiz in quizInDatabase {
+                print("Id: \(quiz[self.sessionId]), date: \(quiz[self.date]), questions: \(quiz[self.questions]), score: \(quiz[self.score])")
+                // Create a Choice object per result, and add this choice into the bank.
+                let quizObject = Quiz()
+                quizObject.id = quiz[self.sessionId]
+                quizObject.dateTaken = quiz[self.date]
+                quizObject.score = quiz[self.score]
+                //Make the question ID string back to an array of question IDs
+                //***The following code needs to be tested
+                let array = quiz[self.questions].components(separatedBy: ",")
+                //Above might be a String array, need to think of a way cast them back to Int before next lines to work
+                for questionID in array {
+                    quizObject.questions.append(questionArray[Int(questionID)!-1])
+		}
+                bank.quizHistory.append(quizObject)
+            }
+        } catch {
+            print (error)
+        }
+
+        //return bank or not
     }
 
 }

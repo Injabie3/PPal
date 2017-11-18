@@ -37,9 +37,22 @@ class DatabaseTest: XCTestCase {
         super.setUp()
         // Set up the objects
         db = Database.shared
-        db!.recreateDatabase()
+        
         person01 = Person()
         personArray = [Person]()
+        
+        // Recreate the database
+        do
+        {
+            try db!.database.run(db!.personsTable.drop())
+            try db!.labelDatabase.run(db!.labelTable.drop())
+            try db!.choicesDatabase.run(db!.choiceTable.drop())
+            try db!.questionsDatabase.run(db!.questionTable.drop())
+            try db!.quizzesDatabase.run(db!.quizTable.drop())
+        } catch {
+            print(error)
+        }
+        db!.recreateDatabase()
         
         // Create some labels
         for index in 0..<3 {
@@ -85,6 +98,9 @@ class DatabaseTest: XCTestCase {
         {
             try db?.database.run(db!.personsTable.drop())
             try db?.labelDatabase.run(db!.labelTable.drop())
+            try db?.choicesDatabase.run(db!.choiceTable.drop())
+            try db?.questionsDatabase.run(db!.questionTable.drop())
+            try db?.quizzesDatabase.run(db!.quizTable.drop())
         } catch {
             print(error)
         }
@@ -322,6 +338,206 @@ class DatabaseTest: XCTestCase {
         PeopleBank.shared.clearAll() // Must clear here because static.
         peopleFromDatabase = db!.getAllData().getPeople()
         XCTAssertTrue(peopleFromDatabase.count == 0, "The profile was not deleted properly!")
+        
+    }
+    
+    /**
+     The code below will be for testing the Quiz portions of our application.
+     */
+    
+    /// Test saving a valid choice to the database.
+    func testSavingChoice() {
+        let choice01 = Choice()
+        let photoToTest = "eventuallyThisWillBeABase64Image"
+        let textToTest = "Testin1 23 4"
+        choice01.pathToPhoto = photoToTest
+        choice01.text = textToTest
+        
+        // Save the choice to the database.
+        let result = db!.saveChoiceToDatabase(choice: choice01)
+        
+        XCTAssertTrue(result, "Should be able to save, but we can't for some reason!")
+        
+        // Let's retrieve the choice from the database.
+        do {
+            let choicesInTable = try db!.choicesDatabase!.prepare(db!.choiceTable)
+            for item in choicesInTable {
+                XCTAssertTrue(item[db!.choiceId] == choice01.id, "ID does not match")
+                XCTAssertTrue(item[db!.choicePhoto] == photoToTest, "Photo does not match!")
+                XCTAssertTrue(item[db!.choiceText] == textToTest, "Text does not match!")
+            }
+        } catch {
+            print(error)
+            XCTAssert(false, "We errored out!")
+        }
+        
+        
+    }
+    
+    /// Test saving a valid "question" to the database.
+    /// In this case, we will force set some IDs
+    func testSavingQuestionDefaultCase() {
+        let question = Question()
+        
+        // Let's create 4 valid choices, and add it to the question
+        var choicesArray = [Choice]()
+        for index in 0..<4 {
+            choicesArray.append(Choice())
+            choicesArray[index].id = index
+            choicesArray[index].pathToPhoto = "base64String\(index)"
+            choicesArray[index].text = "testChoice\(index)"
+            _ = question.set(choice: choicesArray[index], atIndex: index)
+        }
+        
+        // Set other parameters of the question
+        let photoToTest = "base64String"
+        let textToTest = "Which choice is the correct answer?"
+        _ = question.set(correctAnswerIndex: 1)
+        _ = question.image = photoToTest
+        _ = question.text = textToTest
+        
+        let result = db!.saveQuestionToDatabase(question: question)
+        
+        XCTAssertTrue(result, "Cannot add this question to the database for some reason!")
+        
+        // Let's retrieve the question from the database.
+        do {
+            let questionInTable = try db!.questionsDatabase!.prepare(db!.questionTable)
+            for item in questionInTable {
+                XCTAssertTrue(item[db!.questionId] == question.getId(), "ID does not match")
+                XCTAssertTrue(item[db!.questionPhoto] == photoToTest, "Photo does not match!")
+                XCTAssertTrue(item[db!.question] == textToTest, "Text does not match!")
+                XCTAssertTrue(item[db!.choice1] == 0, "Index does not match!")
+                XCTAssertTrue(item[db!.choice2] == 1, "Index does not match!")
+                XCTAssertTrue(item[db!.choice3] == 2, "Index does not match!")
+                XCTAssertTrue(item[db!.choice4] == 3, "Index does not match!")
+                
+            }
+        } catch {
+            print(error)
+            XCTAssert(false, "We errored out!")
+        }
+    }
+    
+    /// Test saving a "mock" quiz into the database.
+    func testSavingQuizDefaultCase() {
+        let quizToSave = Quiz()
+        
+        // Values we want to compare with at the end:
+        let scoreToTest = 15
+        let dateToTest = Date(timeIntervalSince1970: 19)
+        
+        // Set some variables.
+        quizToSave.score = scoreToTest
+        quizToSave.dateTaken = dateToTest
+        
+        let result = db!.saveQuizToDatabase(quiz: quizToSave)
+        
+        XCTAssertTrue(result, "The quiz could not be saved to the database!")
+        
+        // Let's retrieve the quiz from the database and check.
+        do {
+            let quizInTable = try db!.quizzesDatabase!.prepare(db!.quizTable)
+            for item in quizInTable {
+                XCTAssertTrue(item[db!.score] == scoreToTest, "The score doen't match what we put into the database!")
+                XCTAssertTrue(item[db!.date] == dateToTest, "The date doesn't match the one we put in!")
+            }
+            
+        } catch {
+            print(error)
+            XCTAssert(false, "We errored out!")
+        }
+        
+        
+    }
+    
+    
+    /// Let's test retreiving a quiz.
+    func testGetAllQuizData() {
+        
+        // Lets declare some things to test for the quiz portion
+        let quizDateToTest = Date(timeIntervalSince1970: 14)
+        let quizScoreToTest = 0
+
+        
+        // Okay so let's save a mock quiz with 2 questions, and see if we can retreive them.
+        var choiceArray = [Choice]()
+        var questionArray = [Question]()
+        var quiz = Quiz()
+        for questionIndex in 0..<2 {
+            // Reset the choiceArray before doing anything.
+            choiceArray.removeAll()
+            
+            questionArray.append(Question())
+            
+            // Let's set the question parameters.
+            _ = questionArray[questionIndex].set(correctAnswerIndex: 0)
+            _ = questionArray[questionIndex].set(selectedAnswerIndex: 1)
+            questionArray[questionIndex].text = "What is the correct answer?"
+            questionArray[questionIndex].image = "aBase64StringImage\(questionIndex)"
+            
+            for choiceIndex in 0..<4 {
+                choiceArray.append(Choice())
+                
+                // Create a choice.
+                choiceArray[choiceIndex].pathToPhoto = "aBase64StringImage\(choiceIndex)"
+                choiceArray[choiceIndex].text = "Choice \(choiceIndex)"
+                
+                // and add this to the current question.
+                _ = questionArray[questionIndex].set(choice: choiceArray[choiceIndex], atIndex: choiceIndex)
+                
+                // Save the choice into the database.
+                // Hmm, maybe we could optimize this later.
+                _ = db!.saveChoiceToDatabase(choice: choiceArray[choiceIndex])
+                
+            } // End choice loop
+            
+            quiz.questions.append(questionArray[questionIndex])
+            
+            // Save the question into the database.
+            _ = db!.saveQuestionToDatabase(question: questionArray[questionIndex])
+            
+        } // End question loop
+        
+        // Let's set some parameters for the quiz.
+        quiz.dateTaken = quizDateToTest
+        quiz.score = quizScoreToTest
+     
+        // Let's save the quiz to the database.
+        _ = db!.saveQuizToDatabase(quiz: quiz)
+     
+        // Get rid of this quiz.
+        quiz = Quiz()
+        
+        // Alright, now let's get the quiz data back.
+        db!.getAllQuizData()
+        
+        // Let's check this over.
+        let quizHistory = QuizBank.shared.quizHistory
+        
+        // There is only one quiz, so we will hard code the index 0 in.
+        // Check the quiz portion of it first.
+        XCTAssertTrue(quizHistory[0].dateTaken == quizDateToTest, "The time set above doesn't match!")
+        XCTAssertTrue(quizHistory[0].questions.count == 2, "The should be two questions, but there isn't!")
+        XCTAssertTrue(quizHistory[0].score == quizScoreToTest, "The score doesn't match what we put in!")
+        
+        // Alright, let's now check each question.
+        questionArray = quizHistory[0].questions
+        for questionIndex in 0..<2 {
+            
+            // Check the question parameters
+            XCTAssertTrue(questionArray[questionIndex].text == "What is the correct answer?", "The question text does not match what we entered!")
+            XCTAssertTrue(questionArray[questionIndex].image == "aBase64StringImage\(questionIndex)", "The question (test) image (text) does not match what we entered!")
+            
+            choiceArray = questionArray[questionIndex].getChoices()
+            for choiceIndex in 0..<4 {
+                
+                XCTAssertTrue(choiceArray[choiceIndex].pathToPhoto == "aBase64StringImage\(choiceIndex)", "The choice (test) image (text) does not match what we entered!")
+                XCTAssertTrue(choiceArray[choiceIndex].text == "Choice \(choiceIndex)", "The choice text does not match what we entered!")
+                
+            } // End choice loop
+            
+        } // End question loop
         
     }
     

@@ -67,7 +67,11 @@ class ViewController: UIViewController, CNContactPickerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         fromRoot = true
         if segue.identifier == "SegueToCreateUserProfile" {
-            let viewVC = segue.destination as! CreateUserProfileVC
+            
+            // Pass the data from this class (ViewController.swift) to the create user profile page (CreateUserProfile.swift)
+            //let navVC = segue.destination as! loginNavigationVC
+            let navVC = segue.destination as! UINavigationController
+            let viewVC = navVC.viewControllers.first as! CreateUserProfileVC
             viewVC.contact = self.selectedContact
             viewVC.isImported = fromRoot
         }

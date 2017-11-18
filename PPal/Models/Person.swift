@@ -26,7 +26,7 @@ class Person {
     }
     
     private var id: Int = 0 // This holds the ID of the person.  To be used with the database.
-    private var photo: String = "" // An image of the person. Not sure if we should use UIImage here, probably want a path here.
+    private var photo: String = "" // An image of the person encoded in base64.
     private var firstName: String = "" // The first name of the person. Must not be empty as per requirements.
     private var lastName: String = "" // The last name of the person. Must not be empty as per requirements.
     private var phoneNumber: String = "" // The phone number of the person. Must not be empty as per requirements.
@@ -64,13 +64,17 @@ class Person {
                 return false
             }
             // Check if the person has at least one label.
-            else if labels.count == 0 {
+            else if labels.count == 0 && !isProfile {
                 return false
             } else {
                 return true
             }
         }
     }
+    
+    /// Identifies if the person in question is the profile of the user.
+    /// If true, then label constraints does not apply to this person.
+    var isProfile = false
     
     /**
      Sets a Person's first and last name.
@@ -244,7 +248,7 @@ class Person {
      Returns false if the above is not satisfied, and do not set anything.
      
      - parameters:
-         - pathToPhoto: The path to the photo of the person. Cannot be empty.
+         - pathToPhoto: The base64 encoding of the image. Cannot be empty.
          - firstName: The first name of the person. Cannot be empty.
          - lastName: The last name of the person. Cannot be empty.
          - phoneNumber: The phone number of the person.  Can only contain numbers and + - symbols. Cannot be empty.

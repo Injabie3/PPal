@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public extension String {
     
@@ -34,6 +35,15 @@ public extension String {
         get {
             let validPhoneNumberCharacters = CharacterSet(charactersIn: "-()+1234567890").union(CharacterSet.whitespaces)
             return self.rangeOfCharacter(from: validPhoneNumberCharacters.inverted) == nil
+        }
+    }
+    
+    /// Assumes a base64 encoded image, and converts this into a UIImage
+    /// May throw an error if this is not a base64 image.
+    var toImage: UIImage {
+        get {
+            let dataDecoded: NSData = NSData(base64Encoded: self, options: NSData.Base64DecodingOptions(rawValue: 0)) ?? NSData(base64Encoded: #imageLiteral(resourceName: "default-user").toBase64, options: NSData.Base64DecodingOptions(rawValue: 0))!
+            return UIImage(data: dataDecoded as Data)!
         }
     }
     
