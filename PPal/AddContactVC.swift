@@ -15,6 +15,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
 
     var contact1: CNContact = CNContact()
     var isImported = Bool()
+    var isFirstTimeLoaded = false
     
     var isPhotoSelected = Bool()
     var isTextFieldsFilled = Bool()
@@ -89,25 +90,39 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             contactPhoto.image = person.getInfo().pathToPhoto.toImage
             
             // We don't have the selection implemented right now, so put it in a text field.
-            var labelTextArray = [String]()
-            for item in person.getInfo().labels {
-                labelTextArray.append(item.getName())
+            var labelArray = [String]()
+            for label in person.getLabels() {
+                labelArray.append(label.getName())
+                selectedLabels.append(label)
             }
+            let labelString = labelArray.joined(separator: ",")
+            self.displayLabels.text = labelString
             // labelField.text = labelTextArray.joined(separator: ",")
         }
-        updateDisplayLabelsTextbox()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateDisplayLabelsTextbox()
+        if !isFirstTimeLoaded {
+            isFirstTimeLoaded = true
+        }
+        else {
+            updateDisplayLabelsTextbox()
+        }
     }
     
     // update label text field
     func updateDisplayLabelsTextbox() {
         var labelArray = [String]()
+        //        if let person = person {
+        //            for label in person.getLabels() {
+        //                labelArray.append(label.getName())
+        //            }
+        //        }
+        // else {
         for label in selectedLabels {
             labelArray.append(label.getName())
         }
+        // }
         
         let labelString = labelArray.joined(separator: ",")
         

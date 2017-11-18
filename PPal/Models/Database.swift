@@ -482,7 +482,10 @@ class Database {
         
         let labelString = labelArray.joined(separator: ",")
         
-        let updateProfile = self.personsTable.update(self.pathToPhoto <- profile.getInfo().pathToPhoto,
+        // Get the ID we want to update, or else we're updating EVERY row.
+        let personToUpdate = self.personsTable.filter(self.id == profile.getId())
+        
+        let updateProfile = personToUpdate.update(self.pathToPhoto <- profile.getInfo().pathToPhoto,
                                                      self.firstName <- profile.getInfo().firstName,
                                                      self.lastName <- profile.getInfo().lastName,
                                                      self.phoneNumber <- profile.getInfo().phoneNumber,
@@ -511,8 +514,10 @@ class Database {
          - False if it could not be updated.
      */
     func updateLabel(label: Label) -> Bool {
-
-        let updateLabel = self.labelTable.update(self.label <- label.getName())
+        // Get the ID we want to update, or else we're updating EVERY row.
+        let labelToUpdate = self.labelTable.filter(self.labelId == label.getId())
+        
+        let updateLabel = labelToUpdate.update(self.label <- label.getName())
         do {
             try self.labelDatabase.run(updateLabel)
             let rowid = label.getId()

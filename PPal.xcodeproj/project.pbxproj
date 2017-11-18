@@ -28,6 +28,7 @@
 		F7563BB91F9A9BF90046AC3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7563BB71F9A9BF90046AC3E /* LaunchScreen.storyboard */; };
 		F7563BCF1F9A9BF90046AC3E /* PPalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7563BCE1F9A9BF90046AC3E /* PPalUITests.swift */; };
 		F7563BDE1F9A9C230046AC3E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F7563BDD1F9A9C230046AC3E /* libsqlite3.tbd */; settings = {ATTRIBUTES = (Required, ); }; };
+		F75D1C411FBFE0B5005402B5 /* DataPopulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D1C401FBFE0B5005402B5 /* DataPopulation.swift */; };
 		F75D81E01FAE7C6F0071F47F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75D81D31FAE7C630071F47F /* SQLite.framework */; };
 		F75D81E11FAE7C740071F47F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75D81D31FAE7C630071F47F /* SQLite.framework */; };
 		F75D81E21FAE7C740071F47F /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F75D81D31FAE7C630071F47F /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -164,6 +165,7 @@
 		F7563BCE1F9A9BF90046AC3E /* PPalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPalUITests.swift; sourceTree = "<group>"; };
 		F7563BD01F9A9BF90046AC3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7563BDD1F9A9C230046AC3E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		F75D1C401FBFE0B5005402B5 /* DataPopulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPopulation.swift; sourceTree = "<group>"; };
 		F75D81C81FAE7C630071F47F /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		F75D82041FAE7F570071F47F /* PersonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewController.swift; sourceTree = "<group>"; };
 		F75D82051FAE7F570071F47F /* LabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				6D1E1E831FB020DB0055C01A /* DatabaseTest.swift */,
+				F75D1C401FBFE0B5005402B5 /* DataPopulation.swift */,
 				6D1E1E801FB020DB0055C01A /* LabelTest.swift */,
 				6D1E1E811FB020DB0055C01A /* PeopleBankTest.swift */,
 				6D1E1E821FB020DB0055C01A /* PersonLabelTest.swift */,
@@ -565,6 +568,7 @@
 				6D1E1E861FB020DB0055C01A /* PeopleBankTest.swift in Sources */,
 				6D1E1E881FB020DB0055C01A /* DatabaseTest.swift in Sources */,
 				6D1E1E891FB020DB0055C01A /* PersonTest.swift in Sources */,
+				F75D1C411FBFE0B5005402B5 /* DataPopulation.swift in Sources */,
 				6D1E1E851FB020DB0055C01A /* LabelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
