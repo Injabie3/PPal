@@ -261,7 +261,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XW-Vc-3tR">
-                                <rect key="frame" x="16" y="323.5" width="343" height="27.5"/>
+                                <rect key="frame" x="16" y="329.5" width="343" height="27.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -269,7 +269,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qew-Fp-cnI" firstAttribute="top" secondItem="6XW-Vc-3tR" secondAttribute="bottom" constant="16" id="4d4-3m-u2E"/>
+                            <constraint firstItem="qew-Fp-cnI" firstAttribute="top" secondItem="6XW-Vc-3tR" secondAttribute="bottom" constant="10" id="4d4-3m-u2E"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6XW-Vc-3tR" secondAttribute="trailing" id="5Cr-Sy-BTC"/>
                             <constraint firstItem="15G-Ss-vFw" firstAttribute="leading" secondItem="tr1-yk-KjP" secondAttribute="leadingMargin" id="74e-wz-7bf"/>
                             <constraint firstItem="JBJ-jW-Gwb" firstAttribute="leading" secondItem="tr1-yk-KjP" secondAttribute="leadingMargin" id="842-8o-Pir"/>

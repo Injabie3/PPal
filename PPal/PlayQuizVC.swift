@@ -35,6 +35,11 @@ class PlayQuizVC: UIViewController {
         self.reviewButton.isHidden = true
         self.nextQuestionButton.isHidden = true
         self.resultText.isHidden = true
+ 
+        for i in 1...4 {
+            let button = view.viewWithTag(i) as! UIButton
+            button.isEnabled = true
+        }
     }
     
     // If any answer is chosen, check if the answer is right
@@ -48,12 +53,12 @@ class PlayQuizVC: UIViewController {
             self.self.view.viewWithTag(Int(rightAnswerPlacement))?.backgroundColor = UIColor(red: 0.06, green: 0.74, blue: 0.46, alpha: 1.0)
             
             // Uncomment if you want other answers to disappear
-            /*for i in 1...4 {
+            for i in 1...4 {
                 if (i != (Int(rightAnswerPlacement))) {
                     print(i)
                     self.self.view.viewWithTag(i)?.isHidden = true
                 }
-            }*/
+            }
             points += 1
         }
         else {
@@ -65,12 +70,12 @@ class PlayQuizVC: UIViewController {
             self.self.view.viewWithTag(sender.tag)?.backgroundColor = UIColor.red
 
             // Uncomment if you want other answers to disappear
-            /*for i in 1...4 {
+            for i in 1...4 {
                 if (i != sender.tag) && (i != (Int(rightAnswerPlacement))) {
                     print(i)
                     self.self.view.viewWithTag(i)?.isHidden = true
                 }
-            }*/
+            }
         }
         
         hiddenButtons()
@@ -83,9 +88,9 @@ class PlayQuizVC: UIViewController {
         if currentQuestion != questions.count {
             for i in 1...4 {
                 // Uncomment if you want other answers to disappear
-                /*if (self.self.view.viewWithTag(i)?.isHidden)! {
+                if (self.self.view.viewWithTag(i)?.isHidden)! {
                     self.self.view.viewWithTag(i)?.isHidden = !((self.self.view.viewWithTag(i)?.isHidden)!)
-                }*/
+                }
                 
                 self.self.view.viewWithTag(i)?.backgroundColor = UIColor(red: 0.50, green: 0.52, blue: 1.00, alpha: 1.0)
             }
@@ -99,6 +104,11 @@ class PlayQuizVC: UIViewController {
     func hiddenButtons() {
         self.reviewButton.isHidden = !self.reviewButton.isHidden
         self.nextQuestionButton.isHidden = !self.nextQuestionButton.isHidden
+        
+        for i in 1...4 {
+            let button = view.viewWithTag(i) as! UIButton
+            button.isEnabled = !(button.isEnabled)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
