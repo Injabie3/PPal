@@ -13,16 +13,7 @@ class PlayQuizVC: UIViewController {
     let quiz = QuizBank.shared.generateQuestions()
     
     // An aray of questions, replace with strings of questions, separated with commas
-    // let questions = ["Who is this person?", "What month is it?", "What is your phone number?"]
     var questions = [Question]()
-    
-    //let questions = self.quiz.questions
-    
-    // An array of answers, with the right answer as the first index
-    let answers = [["Ryan", "Mirac", "Ranbir", "Harry"], ["November", "October", "December", "January"], ["604-604-6044", "604-123-4567", "778-456-7890", "778-123-4567"]]
-    
-    // An array of photos, replace with others
-    let photos = ["test1.jpg", "test2.jpg", "test3.jpeg", "test4.jpg"]
     
     var currentQuestion = 0
     var rightAnswerPlacement: UInt32 = 0
@@ -50,7 +41,8 @@ class PlayQuizVC: UIViewController {
     // If any answer is chosen, check if the answer is right
     @IBAction func buttonAction(_ sender: AnyObject) {
         
-        // if sender.tag == Int(rightAnswerPlacement) {
+        // If the button we pressed is the correct one, then make it green, disable the choice buttons,
+        // and show the review and next question/end quiz buttons.
         if sender.tag == Int(rightAnswerPlacement) {
             print("right answer")
             resultText.text = "Correct"
@@ -67,6 +59,8 @@ class PlayQuizVC: UIViewController {
             }
             points += 1
         }
+        // Else the choice was incorrect, and we put the incorrect answer in red, and show the correct answer in
+        // green.  Also show the review and next question/end quiz buttons.
         else {
             print("wrong answer")
             resultText.text = "Incorrect"
@@ -129,34 +123,17 @@ class PlayQuizVC: UIViewController {
         questionText.text = questions[currentQuestion].text
         quizPhoto.image = questions[currentQuestion].image.toImage
         
-        
-        // Randomizes the placement of the correct answer
-        // No need to randomize.
-        // rightAnswerPlacement = arc4random_uniform(4) + 1
-        
         var button: UIButton = UIButton()
-//        var questionNumber = 1
         
-//        for i in 1...4 {
-//            button = view.viewWithTag(i) as! UIButton
-//
-//            // If i equals the randomly generated number from arc4random, then set the button with tag i as the correct answer
-//            if i == Int(rightAnswerPlacement) {
-//                button.setTitle(answers[currentQuestion][0], for: .normal)
-//            }
-//            else {
-//                button.setTitle(answers[currentQuestion][questionNumber], for: .normal)
-//                questionNumber += 1
-//            }
-//        }
+        // Get the choices from the question.
         let choices = questions[currentQuestion].getChoices()
         
+        // Set the correct answer. We need to add one because the tags go from 1 to 4.
         rightAnswerPlacement = UInt32(questions[currentQuestion].getCorrectAnswer() + 1)
         
+        // Set the choice text on the buttons.
         for i in 1...4 {
             button = view.viewWithTag(i) as! UIButton
-            
-            // If i equals the randomly generated number from arc4random, then set the button with tag i as the correct answer
             button.setTitle(choices[i-1].text, for: .normal)
 
         }
