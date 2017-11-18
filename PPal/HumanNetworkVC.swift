@@ -274,10 +274,16 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             // For the People List View
         else if tableView == listViewTableView {
             if editingStyle == .delete {
+                
                 // Delete the row from the data source
-                let people = PeopleBank.shared.getPeople()
+                // This line below was before we implemented the search bar.
+                // let people = PeopleBank.shared.getPeople()
+                let people = filteredArrayToSearch
                 _ = Database.shared.deleteProfileById(id: people[indexPath.row].getId())
                 _ = PeopleBank.shared.del(person: people[indexPath.row])
+                
+                // Make the table view consistent again.
+                filteredArrayToSearch = PeopleBank.shared.getPeople()
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 
             } else if editingStyle == .insert {
