@@ -79,9 +79,14 @@ class QuizBank {
      */
     func generateQuestions() -> Quiz {
         var randomNum = 0
+        var randomNum1 = 0
+        var flag = true
+        var flag1 = true
         let quizToReturn = Quiz()
         let sizeOfPeopleBank = PeopleBank.shared.getPeople().count
+        let sizeOfLabelBank = PeopleBank.shared.getLabels().count
         let listOfPeople = PeopleBank.shared.getPeople()
+        let listOfLabels = PeopleBank.shared.getLabels()
         
         var randomizedQuestionsArray = [Question]()
         var previousChoiceIndices = [Int]()
@@ -162,6 +167,108 @@ class QuizBank {
           // quizToReturn.questions[index] = arc4random_uniform(UInt32(sizeOfPeopleBank))
             
         }
+        
+        
+        if(listOfLabels.count > 1)
+        {
+            for index in 0...sizeOfLabelBank-1
+            {
+                if(listOfLabels[index].getPeople().count > 2){
+                    var tempListOfLabels = listOfLabels
+                    //var tempListOfLabel = listOfLabels[index]
+                    var tempListOfPeople = listOfLabels[index].getPeople()
+                    var choiceIndex: [Int] = [0, 1, 2, 3]
+                    
+                    tempQuestion = Question()
+                    
+                    tempChoice = Choice()
+                    
+                    //no label photo to display for this version yet
+                    tempQuestion.text = "If there are three people with a common label: Who does not belong to the label \(tempListOfLabels[index].getName())"
+                    //choice 1
+                    
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count))) //get random label and then access the info of three people for the three false choices
+                    tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
+                    tempChoice.person = tempListOfPeople[randomNum]
+                    tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
+                    tempListOfPeople.remove(at: randomNum)
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+                    _ = tempQuestion.set(choice: tempChoice, atIndex: randomNum)
+                    choiceIndex.remove(at: randomNum)
+                    
+                    //choice 2
+                    
+                    tempChoice = Choice()
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count))) //get random label and then access the info of three people for the three false choices
+                    tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
+                    tempChoice.person = tempListOfPeople[randomNum]
+                    tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
+                    tempListOfPeople.remove(at: randomNum)
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+                    _ = tempQuestion.set(choice: tempChoice, atIndex: randomNum)
+                    choiceIndex.remove(at: randomNum)
+                    
+                    //choice 3
+                    tempChoice = Choice()
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count))) //get random label and then access the info of three people for the three false choices
+                    tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
+                    tempChoice.person = tempListOfPeople[randomNum]
+                    tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
+                    tempListOfPeople.remove(at: randomNum)
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+                    _ = tempQuestion.set(choice: tempChoice, atIndex: randomNum)
+                    choiceIndex.remove(at: randomNum)
+                    
+                    //choice 4 correct choice
+                    tempListOfLabels.remove(at: index)
+                    tempChoice = Choice()
+                    flag = true
+                    flag1 = true
+                    
+                    while(!tempListOfLabels.isEmpty && flag)
+                    {
+                        randomNum = Int(arc4random_uniform(UInt32(tempListOfLabels.count)))
+                        while(!tempListOfLabels[randomNum].getPeople().isEmpty && flag1)
+                        {
+                           
+                            if(listOfLabels[index].getPeople().contains(tempListOfLabels[randomNum].getPeople()[0]))
+                            {
+                                
+                                _ = tempListOfLabels[randomNum].del(person: tempListOfLabels[randomNum].getPeople()[0])
+                                
+                            }
+                            else
+                            {
+                                tempChoice.pathToPhoto = tempListOfLabels[randomNum].getPeople()[0].getInfo().pathToPhoto
+                                tempChoice.person = tempListOfLabels[randomNum].getPeople()[0]
+                                tempChoice.text = "\(tempListOfLabels[randomNum].getPeople()[0].getName().firstName) " + "\(tempListOfLabels[randomNum].getPeople()[0].getName().lastName)"
+                                _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[0])
+                                _ = tempQuestion.set(correctAnswerIndex: choiceIndex[0])
+                                randomizedQuestionsArray.append(tempQuestion)
+                                
+                                flag = false
+                                flag1 = false
+                                
+                            }
+                        }
+                        
+                        tempListOfLabels.remove(at: randomNum)
+                    }
+                    
+                    
+                    
+                }
+                
+                
+            }
+        }
+        
         
         for _ in 0...9 { // randomizing the resulting question array to be returned as a quiz
             
