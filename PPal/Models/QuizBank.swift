@@ -56,8 +56,13 @@ class QuizBank {
      - False if the Question was not added.  This is due to the Question being invalid.
      */
     func addCustom(question: Question) -> Bool {
-        /// Stub function, to be implemented in version 3.
-        return true
+        if !question.valid {
+            return false
+        }
+        else { // Valid question, time to add.
+            customQuestions.append(question)
+            return true
+        }
     }
     
     /**
@@ -69,7 +74,11 @@ class QuizBank {
      the list.
      */
     func delCustom(question: Question) -> Bool {
-        /// Stub function, to be implemented in version 3.
+        // Check to see if this question is on the list.
+        if !customQuestions.contains(question) {
+            return false
+        }
+        
         return true
     }
     
@@ -100,10 +109,10 @@ class QuizBank {
         {
             var tempListOfPeople = listOfPeople
             var choiceIndex: [Int] = [0, 1, 2, 3]
-
+            
             tempQuestion = Question()
             
-// choice 1
+            // choice 1
             tempChoice = Choice()
             
             tempQuestion.image = tempListOfPeople[index].getInfo().pathToPhoto // stored but can be chosen not to be shown for this question
@@ -112,6 +121,7 @@ class QuizBank {
             tempChoice.pathToPhoto = "\(tempListOfPeople[index].getInfo().pathToPhoto)"
             tempChoice.person = tempListOfPeople[index] // .person is optional. What im getting from you here Ryan is that you only want to associate the person with the choices that are the names of the person and not when choices are addresses?
             tempChoice.text = "\(tempListOfPeople[index].getName().firstName) " + "\(tempListOfPeople[index].getName().lastName)"
+            tempListOfPeople.remove(at: index)
             // ummm so the tempChoice.valid checks the whether photostring and text are empty. What im getting from you Ryan is that you would still want these fields to not be null but just choose to display one of the two depending on the context of the question? Not sure how i would use this when i already set the fields. Or is it purely for testing purposes?
             randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))// returns an index in the range of 0 - 3. Purpose is to randomize the position of the correct answer
             previousChoiceIndices.append(randomNum) // append the choice positions so when randomly generating positions for other choices there will be no collision
@@ -119,7 +129,7 @@ class QuizBank {
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum]) // assuming result unused warning is due to the returned boolean for you to use in testing?
             _ = tempQuestion.set(correctAnswerIndex: choiceIndex[randomNum]) // set the correct index right away
             choiceIndex.remove(at: randomNum)
-// choice 2
+            // choice 2
             tempChoice = Choice()
             
             randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count))) // randomly selecting a person from the listofpeople and get that person's info to set the appropriate fields below
@@ -130,14 +140,15 @@ class QuizBank {
             tempListOfPeople.remove(at: randomNum)
             
             randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count))) // randomize the choice positions
-           
-            _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
             
-// choice 3
+            _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
+            choiceIndex.remove(at: randomNum)
+            
+            // choice 3
             tempChoice = Choice()
             
             randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count)))
-      
+            
             
             tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
             tempChoice.person = tempListOfPeople[randomNum]
@@ -147,24 +158,24 @@ class QuizBank {
             
             previousChoiceIndices.append(randomNum)
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
-         
+            choiceIndex.remove(at: randomNum)
             
-// choice 4
+            // choice 4
             tempChoice = Choice()
-
+            
             randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count)))
-                
+            
             tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
             tempChoice.person = tempListOfPeople[randomNum]
             tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
             // tempListOfPeople.remove(at: randomNum)
-
+            
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[0])
-
+            
             randomizedQuestionsArray.append(tempQuestion)
-             // remember to set the correct index for the correct answer
-
-          // quizToReturn.questions[index] = arc4random_uniform(UInt32(sizeOfPeopleBank))
+            // remember to set the correct index for the correct answer
+            
+            // quizToReturn.questions[index] = arc4random_uniform(UInt32(sizeOfPeopleBank))
             
         }
         
@@ -195,7 +206,7 @@ class QuizBank {
                     tempListOfPeople.remove(at: randomNum)
                     
                     randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
-                    _ = tempQuestion.set(choice: tempChoice, atIndex: randomNum)
+                    _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
                     choiceIndex.remove(at: randomNum)
                     
                     //choice 2
@@ -209,7 +220,7 @@ class QuizBank {
                     tempListOfPeople.remove(at: randomNum)
                     
                     randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
-                    _ = tempQuestion.set(choice: tempChoice, atIndex: randomNum)
+                    _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
                     choiceIndex.remove(at: randomNum)
                     
                     //choice 3
@@ -222,7 +233,7 @@ class QuizBank {
                     tempListOfPeople.remove(at: randomNum)
                     
                     randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
-                    _ = tempQuestion.set(choice: tempChoice, atIndex: randomNum)
+                    _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
                     choiceIndex.remove(at: randomNum)
                     
                     //choice 4 correct choice
@@ -234,14 +245,13 @@ class QuizBank {
                     while(!tempListOfLabels.isEmpty && flag)
                     {
                         randomNum = Int(arc4random_uniform(UInt32(tempListOfLabels.count)))
-                        while(!tempListOfLabels[randomNum].getPeople().isEmpty && flag1)
+                        var tempListOfPeople = tempListOfLabels[randomNum].getPeople()
+                        while(!tempListOfPeople.isEmpty && flag1)
                         {
-                           
-                            if(listOfLabels[index].getPeople().contains(tempListOfLabels[randomNum].getPeople()[0]))
+                            
+                            if(listOfLabels[index].getPeople().contains(tempListOfPeople[0]))
                             {
-                                
-                                _ = tempListOfLabels[randomNum].del(person: tempListOfLabels[randomNum].getPeople()[0])
-                                
+                                tempListOfPeople.remove(at: 0)
                             }
                             else
                             {
