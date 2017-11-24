@@ -58,6 +58,7 @@ class Choice {
 }
 
 extension Choice: Equatable {
+    
     /**
      Defines the equality operator to signify what is meant by
      having two Choice objects being "equivalent"
