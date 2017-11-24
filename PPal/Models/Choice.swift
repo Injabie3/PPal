@@ -56,3 +56,20 @@ class Choice {
     }
     
 }
+
+extension Choice: Equatable {
+    /**
+     Defines the equality operator to signify what is meant by
+     having two Choice objects being "equivalent"
+     
+     Two choices are the same if their photo and text are the same.
+     
+     Referenced: https://developer.apple.com/documentation/swift/equatable
+     */
+    static func == (lhs: Choice, rhs: Choice) -> Bool {
+        return
+            lhs.pathToPhoto == rhs.pathToPhoto &&
+            lhs.text == rhs.text
+    }
+    
+}

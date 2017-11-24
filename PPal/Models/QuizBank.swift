@@ -56,8 +56,13 @@ class QuizBank {
      - False if the Question was not added.  This is due to the Question being invalid.
      */
     func addCustom(question: Question) -> Bool {
-        /// Stub function, to be implemented in version 3.
-        return true
+        if !question.valid {
+            return false
+        }
+        else { // Valid question, time to add.
+            customQuestions.append(question)
+            return true
+        }
     }
     
     /**
@@ -69,7 +74,11 @@ class QuizBank {
      the list.
      */
     func delCustom(question: Question) -> Bool {
-        /// Stub function, to be implemented in version 3.
+        // Check to see if this question is on the list.
+        if !customQuestions.contains(question) {
+            return false
+        }
+        
         return true
     }
     

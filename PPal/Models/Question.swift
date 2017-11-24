@@ -163,3 +163,32 @@ class Question {
     }
     
 }
+
+extension Question: Equatable {
+    
+    /**
+     Defines the equality operator to signify what is meant by
+     having two Question objects being "equivalent".
+     
+     Basically two questions are equivalent if the choices are the same,
+     the selected answer is the same, the correct answer is the same, the
+     image is the same, and the text is the same.
+     
+     Referenced: https://developer.apple.com/documentation/swift/equatable
+     */
+    static func == (lhs: Question, rhs: Question) -> Bool {
+        // Check the choices first.
+        for choiceIndex in 0..<4 {
+            if lhs.choices[choiceIndex] == rhs.choices[choiceIndex] {
+                return true
+            }
+        }
+        
+        return
+            lhs.selectedAnswer == rhs.selectedAnswer &&
+            lhs.correctAnswer == rhs.correctAnswer &&
+            lhs.image == rhs.image &&
+            lhs.text == rhs.text
+    }
+    
+}
