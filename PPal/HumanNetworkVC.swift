@@ -292,6 +292,84 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         }
     }
     
+    /// Table view function to support swiping left for different options such as Edit and Delete
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editLabel = UITableViewRowAction(style: .default, title: "Edit") { action, index in
+            
+            let labelAlert = UIAlertController(title: "Edit Label", message: "",preferredStyle: .alert)
+            // PLEASE NOTE
+            // The below line will need to be fixed when implementing the search bar with this.
+            let labels = PeopleBank.shared.getLabels()
+            let label = labels[indexPath.row] // Get the label that was selected.
+            
+            labelAlert.addTextField { (textField) in
+                textField.placeholder = "Label Name"
+                textField.text = label.getName()
+                textField.keyboardType = .default
+            }
+            
+            let alertEditLabel = UIAlertAction(title: "Edit Label", style: .default) { (action) in
+                
+                let labelName = labelAlert.textFields
+                
+                // Edit the label into the database and data model.
+                // Also have to update each person in the database!
+                for item in labelName! {
+                    label.editLabel(name: item.text!)
+                    _ = Database.shared.updateLabel(label: label)
+                    for person in label.getPeople() {
+                        _ = Database.shared.updateProfile(profile: person)
+                    }
+                }
+                
+                // Reload the table view.
+                self.labelTableView.reloadData()
+                
+            }
+            
+            let alertCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            labelAlert.addAction(alertEditLabel)
+            labelAlert.addAction(alertCancel)
+            self.present(labelAlert, animated: true, completion: nil)
+            print("Edit pressed in Label List View")
+        }
+        
+        let deleteLabel = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+            // Delete the row from the data source
+            // PLEASE NOTE
+            // The below line will need to be fixed when implementing the search bar with this.
+            let labels = PeopleBank.shared.getLabels()
+            _ = Database.shared.deleteLabelById(id: labels[indexPath.row].getId())
+            _ = PeopleBank.shared.del(label: labels[indexPath.row])
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        let deletePerson = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+            // Delete the row from the data source
+            // This line below was before we implemented the search bar.
+            // let people = PeopleBank.shared.getPeople()
+            let people = self.filteredArrayToSearch
+            _ = Database.shared.deleteProfileById(id: people[indexPath.row].getId())
+            _ = PeopleBank.shared.del(person: people[indexPath.row])
+            
+            // Make the table view consistent again.
+            self.filteredArrayToSearch = PeopleBank.shared.getPeople()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        editLabel.backgroundColor = .blue
+        deleteLabel.backgroundColor = .red
+        
+        if tableView == listViewTableView {
+            return [deletePerson]
+        }
+        else { // tableView == labelTableView {
+            return [editLabel, deleteLabel]
+            
+        }
+    }
+    
     /// Table view function to support tapping on a row.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // If we tap on a contact, we want to be able to go view the details of this person.
