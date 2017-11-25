@@ -322,8 +322,15 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
                 let alertYes = UIAlertAction(title: "Yes", style: .destructive) { action in
                     // PLEASE NOTE
                     // The below line will need to be fixed when implementing the search bar with this.
+                    let peopleWithDeletedLabel = label.getPeople()
                     _ = Database.shared.deleteLabelById(id: label.getId())
                     _ = PeopleBank.shared.del(label: label)
+                    
+                    // Update each person in the database
+                    for person in peopleWithDeletedLabel {
+                        _ = Database.shared.updateProfile(profile: person)
+                    }
+                    
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
                 let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)
