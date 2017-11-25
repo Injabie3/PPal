@@ -181,7 +181,12 @@ class QuizBank {
         for _ in 0...9 { // randomizing the resulting question array to be returned as a quiz
             
             randomNum = Int(arc4random_uniform(UInt32(randomizedQuestionsArray.count)))
-            quizToReturn.questions.append(randomizedQuestionsArray[randomNum])
+            
+            // We need a different reference for each question, so the copy initializer (constructor)
+            // will make a copy of each question (and implicitly each choice) as a new reference.
+            let questionToAdd = Question(randomizedQuestionsArray[randomNum])
+            
+            quizToReturn.questions.append(questionToAdd)
         }
         
         return quizToReturn
