@@ -14,11 +14,24 @@ import Foundation
  */
 class Choice {
     
+    /// The default constructor, will create a blank Choice.
     init() {
         id = -1
         pathToPhoto = ""
         text = ""
         person = nil
+    }
+    
+    /**
+     Makes a copy of the Choice that has a different reference.
+     This is useful when we want to add this choice to multiple questions,
+     but we want the Choice to be unique to the Question.
+     */
+    init(_ choice: Choice) {
+        self.id = -1 // Since this is a different reference, this is not in the database.
+        self.pathToPhoto = choice.pathToPhoto
+        self.text = choice.text
+        self.person = choice.person // We can reference the same person (if referenced), so this is fine.
     }
     
     /// The database primary key, used to store this choice.
@@ -53,6 +66,24 @@ class Choice {
             return true
         }
         
+    }
+    
+}
+
+extension Choice: Equatable {
+    
+    /**
+     Defines the equality operator to signify what is meant by
+     having two Choice objects being "equivalent"
+     
+     Two choices are the same if their photo and text are the same.
+     
+     Referenced: https://developer.apple.com/documentation/swift/equatable
+     */
+    static func == (lhs: Choice, rhs: Choice) -> Bool {
+        return
+            lhs.pathToPhoto == rhs.pathToPhoto &&
+            lhs.text == rhs.text
     }
     
 }
