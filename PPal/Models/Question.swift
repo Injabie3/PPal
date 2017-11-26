@@ -14,6 +14,7 @@ import Foundation
  */
 class Question {
     
+    /// The default constructor, will create a blank question, with blank choices.
     init() {
         id = -1
         text = ""
@@ -21,6 +22,25 @@ class Question {
         choices = Array(repeating: Choice(), count: 4)
         correctAnswer = -1
         selectedAnswer = -1
+    }
+    
+    /**
+     Makes a copy of the Question that has a different reference.
+     Implicitly makes a copy of each Choice with a different reference as well.
+     This is useful when we want to add this Question to multiple quizzes,
+     but we want the Question to be unique to the Quiz.
+     */
+    init(_ question: Question) {
+        self.id = -1 // Since this is different reference, this is not in the database.
+        self.text = question.text
+        self.image = question.image
+        self.correctAnswer = question.correctAnswer
+        self.selectedAnswer = question.selectedAnswer
+        self.choices = [Choice]()
+        for choice in question.choices {
+            // Make a copy of the choice, so it's a completely different reference.
+            self.choices.append(Choice(choice))
+        }
     }
     
     /// The database primary key, used to store this question
@@ -160,6 +180,35 @@ class Question {
      */
     func getChoices() -> [Choice] {
         return choices
+    }
+    
+}
+
+extension Question: Equatable {
+    
+    /**
+     Defines the equality operator to signify what is meant by
+     having two Question objects being "equivalent".
+     
+     Basically two questions are equivalent if the choices are the same,
+     the selected answer is the same, the correct answer is the same, the
+     image is the same, and the text is the same.
+     
+     Referenced: https://developer.apple.com/documentation/swift/equatable
+     */
+    static func == (lhs: Question, rhs: Question) -> Bool {
+        // Check the choices first.
+        for choiceIndex in 0..<4 {
+            if lhs.choices[choiceIndex] == rhs.choices[choiceIndex] {
+                return true
+            }
+        }
+        
+        return
+            lhs.selectedAnswer == rhs.selectedAnswer &&
+            lhs.correctAnswer == rhs.correctAnswer &&
+            lhs.image == rhs.image &&
+            lhs.text == rhs.text
     }
     
 }

@@ -36,6 +36,9 @@ class PlayQuizVC: UIViewController {
             let button = view.viewWithTag(i) as! UIButton
             button.isEnabled = true
         }
+        
+        questions = quiz.questions
+        newQuestion()
     }
     
     // If any answer is chosen, check if the answer is right
@@ -43,6 +46,7 @@ class PlayQuizVC: UIViewController {
         
         // If the button we pressed is the correct one, then make it green, disable the choice buttons,
         // and show the review and next question/end quiz buttons.
+        _ = questions[currentQuestion - 1].set(selectedAnswerIndex: sender.tag - 1)
         if sender.tag == Int(rightAnswerPlacement) {
             print("right answer")
             resultText.text = "Correct"
@@ -96,7 +100,29 @@ class PlayQuizVC: UIViewController {
             }
             newQuestion()
         }
-        else {
+        else { // End quiz, let's save this quiz to the database, and add it to the quiz history.
+            for question in quiz.questions {
+                for choice in question.getChoices() {
+                    // Save the choices for each question into the database, which
+                    // will assign an ID to the choice so you can save the question
+                    // into the database.
+                    _ = Database.shared.saveChoiceToDatabase(choice: choice)
+                }
+             
+                // Save the question for each quiz into the database, which
+                // will assign an ID to the question so you can save the quiz
+                // into the database.
+                _ = Database.shared.saveQuestionToDatabase(question: question)
+            }
+            
+            // Finally, add the date and score into the quiz, and then
+            // save the quiz into the database, and add it to the quiz bank.
+            quiz.dateTaken = Date()
+            quiz.score = points
+            _ = Database.shared.saveQuizToDatabase(quiz: quiz)
+            _ = QuizBank.shared.quizHistory.append(quiz)
+            
+            // Now we can segue to next screen :)
             performSegue(withIdentifier: "segueToEndQuiz", sender: self)
         }
     }
@@ -112,8 +138,7 @@ class PlayQuizVC: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        questions = quiz.questions
-        newQuestion()
+        
     }
     
     // When currentQuestion != question.count, create a new question
@@ -152,5 +177,16 @@ class PlayQuizVC: UIViewController {
             viewVC.endPoints = points
         }
     }
+    
+    @IBAction func reviewPressed(_ sender: UIButton) {
+        
+        let question = questions[currentQuestion - 1]
+        if let person = question.getChoices()[question.getCorrectAnswer()].person {
+            let edit = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddContactVC") as! AddContactVC
+            edit.person = person
+            navigationController?.pushViewController(edit, animated: true)
+        }
+    }
+    
     
 }
