@@ -14,11 +14,24 @@ import Foundation
  */
 class Choice {
     
+    /// The default constructor, will create a blank Choice.
     init() {
         id = -1
         pathToPhoto = ""
         text = ""
         person = nil
+    }
+    
+    /**
+     Makes a copy of the Choice that has a different reference.
+     This is useful when we want to add this choice to multiple questions,
+     but we want the Choice to be unique to the Question.
+     */
+    init(_ choice: Choice) {
+        self.id = -1 // Since this is a different reference, this is not in the database.
+        self.pathToPhoto = choice.pathToPhoto
+        self.text = choice.text
+        self.person = choice.person // We can reference the same person (if referenced), so this is fine.
     }
     
     /// The database primary key, used to store this choice.

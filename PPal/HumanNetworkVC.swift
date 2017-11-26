@@ -256,39 +256,137 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         
     }
     
-    // Table view function to support editing.
-    // Override to support editing the table view.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if tableView == labelTableView {
-            if editingStyle == .delete {
-                // Delete the row from the data source
-                let labels = PeopleBank.shared.getLabels()
-                _ = Database.shared.deleteLabelById(id: labels[indexPath.row].getId())
-                _ = PeopleBank.shared.del(label: labels[indexPath.row])
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                
-            } else if editingStyle == .insert {
-                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    /// Table view function to support swiping left for different options such as Edit and Delete
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        // Program the Edit button for the label table view
+        let editLabel = UITableViewRowAction(style: .default, title: "Edit") { action, index in
+            
+            let labelAlert = UIAlertController(title: "Edit Label", message: "", preferredStyle: .alert)
+            // PLEASE NOTE
+            // The below line will need to be fixed when implementing the search bar with this.
+            let labels = PeopleBank.shared.getLabels()
+            let label = labels[indexPath.row] // Get the label that was selected.
+            
+            labelAlert.addTextField { (textField) in
+                textField.placeholder = "Label Name"
+                textField.text = label.getName()
+                textField.keyboardType = .default
             }
-        }
-            // For the People List View
-        else if tableView == listViewTableView {
-            if editingStyle == .delete {
+            
+            let alertEditLabel = UIAlertAction(title: "Edit Label", style: .default) { (action) in
                 
-                // Delete the row from the data source
+                let labelName = labelAlert.textFields
+                
+                // Edit the label into the database and data model.
+                // Also have to update each person in the database!
+                for item in labelName! {
+                    label.editLabel(name: item.text!)
+                    _ = Database.shared.updateLabel(label: label)
+                    for person in label.getPeople() {
+                        _ = Database.shared.updateProfile(profile: person)
+                    }
+                }
+                
+                // Reload the table view.
+                self.labelTableView.reloadData()
+                
+            }
+            
+            let alertCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            labelAlert.addAction(alertEditLabel)
+            labelAlert.addAction(alertCancel)
+            
+            // Show the edit prompt.
+            self.present(labelAlert, animated: true, completion: nil)
+        }
+        
+        // Program the Delete button for the label table view.
+        let deleteLabel = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+            // Delete the row from the data source
+            var ableToDelete = true // Represents: Can we delete this label?
+            let labels = PeopleBank.shared.getLabels()
+            let label = labels[indexPath.row]
+            let labelAlert: UIAlertController?
+            
+            for person in label.getPeople() {
+                if person.getLabels().count == 1 {
+                    ableToDelete = false
+                }
+            }
+            
+            if ableToDelete {
+                labelAlert = UIAlertController(title: "Warning", message: "Are you sure you want to delete this label?", preferredStyle: .alert)
+                
+                let alertYes = UIAlertAction(title: "Yes", style: .destructive) { action in
+                    // PLEASE NOTE
+                    // The below line will need to be fixed when implementing the search bar with this.
+                    let peopleWithDeletedLabel = label.getPeople()
+                    _ = Database.shared.deleteLabelById(id: label.getId())
+                    _ = PeopleBank.shared.del(label: label)
+                    
+                    // Update each person in the database
+                    for person in peopleWithDeletedLabel {
+                        _ = Database.shared.updateProfile(profile: person)
+                    }
+                    
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+                let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                
+                labelAlert!.addAction(alertYes)
+                labelAlert!.addAction(alertNo)
+            }
+            else { // Cannot delete!
+                labelAlert = UIAlertController(title: "Error!", message: "Cannot delete this label, because there is a person that contains only this label!", preferredStyle: .alert)
+                
+                let alertOK = UIAlertAction(title: "OK", style: .default)
+                
+                labelAlert!.addAction(alertOK)
+                
+            }
+            
+            // Show the alert prompt.
+            self.present(labelAlert!, animated: true, completion: nil)
+        }
+        
+        // Program the Delete button for the Person List table view.
+        let deletePerson = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
+            // Delete the row from the data source
+            
+            let personAlert = UIAlertController(title: "Warning", message: "Are you sure you want to delete this person?", preferredStyle: .alert)
+            
+            let alertYes = UIAlertAction(title: "Yes", style: .destructive) { action in
                 // This line below was before we implemented the search bar.
                 // let people = PeopleBank.shared.getPeople()
-                let people = filteredArrayToSearch
+                let people = self.filteredArrayToSearch
                 _ = Database.shared.deleteProfileById(id: people[indexPath.row].getId())
                 _ = PeopleBank.shared.del(person: people[indexPath.row])
                 
                 // Make the table view consistent again.
-                filteredArrayToSearch = PeopleBank.shared.getPeople()
+                self.filteredArrayToSearch = PeopleBank.shared.getPeople()
                 tableView.deleteRows(at: [indexPath], with: .fade)
-                
-            } else if editingStyle == .insert {
-                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
             }
+            let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            
+            personAlert.addAction(alertYes)
+            personAlert.addAction(alertNo)
+            
+            // Confirm with the user if they want to delete the person.
+            self.present(personAlert, animated: true, completion: nil)
+        }
+        
+        editLabel.backgroundColor = .blue
+        deleteLabel.backgroundColor = .red
+        
+        // Display the corresponding buttons in the table views when we swipe left.
+        if tableView == listViewTableView {
+            return [deletePerson]
+        }
+        else { // tableView == labelTableView {
+            return [editLabel, deleteLabel]
+            
         }
     }
     
