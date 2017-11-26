@@ -403,7 +403,6 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             
         else if tableView == labelTableView {
             let label = PeopleBank.shared.getLabels()[indexPath.row]
-            //
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

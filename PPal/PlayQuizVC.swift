@@ -36,6 +36,9 @@ class PlayQuizVC: UIViewController {
             let button = view.viewWithTag(i) as! UIButton
             button.isEnabled = true
         }
+        
+        questions = quiz.questions
+        newQuestion()
     }
     
     // If any answer is chosen, check if the answer is right
@@ -43,7 +46,7 @@ class PlayQuizVC: UIViewController {
         
         // If the button we pressed is the correct one, then make it green, disable the choice buttons,
         // and show the review and next question/end quiz buttons.
-        _ = questions[currentQuestion - 1].set(selectedAnswerIndex: Int(rightAnswerPlacement) - 1)
+        _ = questions[currentQuestion - 1].set(selectedAnswerIndex: sender.tag - 1)
         if sender.tag == Int(rightAnswerPlacement) {
             print("right answer")
             resultText.text = "Correct"
@@ -135,8 +138,7 @@ class PlayQuizVC: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        questions = quiz.questions
-        newQuestion()
+        
     }
     
     // When currentQuestion != question.count, create a new question
@@ -175,5 +177,16 @@ class PlayQuizVC: UIViewController {
             viewVC.endPoints = points
         }
     }
+    
+    @IBAction func reviewPressed(_ sender: UIButton) {
+        
+        let question = questions[currentQuestion - 1]
+        if let person = question.getChoices()[question.getCorrectAnswer()].person {
+            let edit = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddContactVC") as! AddContactVC
+            edit.person = person
+            navigationController?.pushViewController(edit, animated: true)
+        }
+    }
+    
     
 }

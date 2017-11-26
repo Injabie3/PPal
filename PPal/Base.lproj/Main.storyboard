@@ -189,7 +189,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="zBS-xm-QIg" kind="show" id="u9G-KJ-ybZ"/>
+                                            <segue destination="irK-zZ-sca" kind="show" id="KGw-fO-pjK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYF-cM-LTG">
@@ -265,6 +265,23 @@
                 <exit id="Qvd-xQ-dUk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="122.40000000000001" y="851.42428785607206"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2z0-YN-PyL">
+            <objects>
+                <navigationController id="irK-zZ-sca" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gwL-MG-aZC">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zBS-xm-QIg" kind="relationship" relationship="rootViewController" id="OmL-Zt-sUF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pBk-fe-guX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1190" y="1623"/>
         </scene>
         <!--Play QuizVC-->
         <scene sceneID="VUD-sr-sVn">
@@ -362,7 +379,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CqA-rb-rd9">
-                                <rect key="frame" x="0.0" y="20" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="kcf-Iw-EuX"/>
                                     <constraint firstAttribute="height" constant="50" id="zYX-Ta-CSA"/>
@@ -373,7 +390,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="230" placeholderIntrinsicHeight="230" image="default-user" translatesAutoresizingMaskIntoConstraints="NO" id="0cy-Bh-E8U">
-                                <rect key="frame" x="72" y="39.5" width="230" height="230"/>
+                                <rect key="frame" x="72" y="84" width="230" height="230"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0cy-Bh-E8U" secondAttribute="height" multiplier="1:1" id="Evb-H9-7lr"/>
                                 </constraints>
@@ -396,6 +413,9 @@
                                                 <integer key="value" value="7"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="reviewPressed:" destination="zBS-xm-QIg" eventType="touchUpInside" id="GjE-sM-58r"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="In7-X9-HZ0">
                                         <rect key="frame" x="176.5" y="0.0" width="166.5" height="80"/>
@@ -416,16 +436,16 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qvq-C3-wWl">
-                                <rect key="frame" x="16" y="290.5" width="343" height="55.5"/>
+                                <rect key="frame" x="16" y="335" width="343" height="11"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gA8-lc-cL5">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="11"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XW-Vc-3tR">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="27.5"/>
+                                        <rect key="frame" x="0.0" y="11" width="343" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -455,6 +475,7 @@
                             <constraint firstItem="0cy-Bh-E8U" firstAttribute="centerX" secondItem="tr1-yk-KjP" secondAttribute="centerX" id="xhV-f7-0MB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="3oU-Ci-UV3"/>
                     <connections>
                         <outlet property="nextQuestionButton" destination="In7-X9-HZ0" id="pOu-xA-cVm"/>
                         <outlet property="questionText" destination="gA8-lc-cL5" id="zEB-42-e0Y"/>
@@ -553,7 +574,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laj-fK-kUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="a3H-ju-9Ge" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="556" y="1622.3388305847077"/>
+            <point key="canvasLocation" x="711" y="1623"/>
         </scene>
         <!--PPal-->
         <scene sceneID="8my-cD-Ufz">
@@ -1511,7 +1532,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HuB-Yz-PdM"/>
-        <segue reference="zqJ-ar-m1Q"/>
+        <segue reference="deH-AL-rod"/>
         <segue reference="fKh-Q2-mQo"/>
     </inferredMetricsTieBreakers>
 </document>
