@@ -150,7 +150,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
                 textField.placeholder = "Add New Label"
                 textField.keyboardType = .default
             }
-            let addLabel = UIAlertAction(title: "Add New Label", style: .default) { (action) in
+            let addLabel = UIAlertAction(title: "Save", style: .default) { (action) in
                 print("Add Label in second UIAlertController")
                 
                 let labelName = labelAlert.textFields
@@ -274,7 +274,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
                 textField.keyboardType = .default
             }
             
-            let alertEditLabel = UIAlertAction(title: "Edit Label", style: .default) { (action) in
+            let alertEditLabel = UIAlertAction(title: "Save", style: .default) { (action) in
                 
                 let labelName = labelAlert.textFields
                 
