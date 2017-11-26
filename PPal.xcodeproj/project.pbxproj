@@ -14,6 +14,10 @@
 		6D1E1E881FB020DB0055C01A /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1E831FB020DB0055C01A /* DatabaseTest.swift */; };
 		6D1E1E891FB020DB0055C01A /* PersonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1E841FB020DB0055C01A /* PersonTest.swift */; };
 		6D3A00051FAFA469004141E5 /* XLabelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */; };
+		6D4E9A191FCA2ED300880697 /* QuizListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E9A181FCA2ED300880697 /* QuizListTableViewController.swift */; };
+		6D4E9A1B1FCA382900880697 /* QuizListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E9A1A1FCA382900880697 /* QuizListTableViewCell.swift */; };
+		6D4E9A1F1FCA522F00880697 /* QuestionListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E9A1E1FCA522F00880697 /* QuestionListTableViewController.swift */; };
+		6D4E9A211FCA52C700880697 /* QuestionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E9A201FCA52C700880697 /* QuestionListTableViewCell.swift */; };
 		717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717749B61FA8061800C33286 /* HumanNetworkVC.swift */; };
 		BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */; };
 		D343E0F71FB3A47900151675 /* MainQuizPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D343E0F61FB3A47900151675 /* MainQuizPageVC.swift */; };
@@ -145,6 +149,10 @@
 		6D1E1E831FB020DB0055C01A /* DatabaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
 		6D1E1E841FB020DB0055C01A /* PersonTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTest.swift; sourceTree = "<group>"; };
 		6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLabelsTableViewController.swift; sourceTree = "<group>"; };
+		6D4E9A181FCA2ED300880697 /* QuizListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListTableViewController.swift; sourceTree = "<group>"; };
+		6D4E9A1A1FCA382900880697 /* QuizListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListTableViewCell.swift; sourceTree = "<group>"; };
+		6D4E9A1E1FCA522F00880697 /* QuestionListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListTableViewController.swift; sourceTree = "<group>"; };
+		6D4E9A201FCA52C700880697 /* QuestionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListTableViewCell.swift; sourceTree = "<group>"; };
 		717749B61FA8061800C33286 /* HumanNetworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanNetworkVC.swift; sourceTree = "<group>"; };
 		BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserProfileVC.swift; sourceTree = "<group>"; };
 		D343E0F61FB3A47900151675 /* MainQuizPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQuizPageVC.swift; sourceTree = "<group>"; };
@@ -247,6 +255,10 @@
 				F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */,
 				F7563BB01F9A9BF90046AC3E /* ViewController.swift */,
 				F7563BB21F9A9BF90046AC3E /* Main.storyboard */,
+				6D4E9A201FCA52C700880697 /* QuestionListTableViewCell.swift */,
+				6D4E9A1E1FCA522F00880697 /* QuestionListTableViewController.swift */,
+				6D4E9A1A1FCA382900880697 /* QuizListTableViewCell.swift */,
+				6D4E9A181FCA2ED300880697 /* QuizListTableViewController.swift */,
 				6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */,
 				717749B61FA8061800C33286 /* HumanNetworkVC.swift */,
 				BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */,
@@ -533,10 +545,12 @@
 			files = (
 				F7563BB11F9A9BF90046AC3E /* ViewController.swift in Sources */,
 				D343E0FF1FB3AABC00151675 /* MainScreenVC.swift in Sources */,
+				6D4E9A1B1FCA382900880697 /* QuizListTableViewCell.swift in Sources */,
 				6D3A00051FAFA469004141E5 /* XLabelsTableViewController.swift in Sources */,
 				F768427B1FBE4B53004EB264 /* Question.swift in Sources */,
 				F76842831FBE4B53004EB264 /* PeopleBank.swift in Sources */,
 				BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */,
+				6D4E9A191FCA2ED300880697 /* QuizListTableViewController.swift in Sources */,
 				F768427E1FBE4B53004EB264 /* Label.swift in Sources */,
 				F76842811FBE4B53004EB264 /* Person.swift in Sources */,
 				D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */,
@@ -546,6 +560,7 @@
 				D343E0F71FB3A47900151675 /* MainQuizPageVC.swift in Sources */,
 				F768427C1FBE4B53004EB264 /* Choice.swift in Sources */,
 				F75D82091FAE7F580071F47F /* LabelTableViewCell.swift in Sources */,
+				6D4E9A1F1FCA522F00880697 /* QuestionListTableViewController.swift in Sources */,
 				F75D820A1FAE7F580071F47F /* PersonTableViewCell.swift in Sources */,
 				F7563BAF1F9A9BF90046AC3E /* AppDelegate.swift in Sources */,
 				EB41F8FC1FBBC74F00D7E25D /* PlayQuizVC.swift in Sources */,
@@ -557,6 +572,7 @@
 				F75D820B1FAE7F580071F47F /* AddLabelTableViewController.swift in Sources */,
 				F768427D1FBE4B53004EB264 /* Database.swift in Sources */,
 				F75D82261FAE9B6D0071F47F /* Emergency.swift in Sources */,
+				6D4E9A211FCA52C700880697 /* QuestionListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

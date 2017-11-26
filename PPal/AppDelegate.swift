@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Reload data from the database.
-        Database.shared.getAllData()
+        _=Database.shared.getAllData()
+        _=Database.shared.getAllQuizData()
         return true
     }
 
