@@ -109,7 +109,6 @@ class QuizBank {
      */
     func generateQuestions() -> Quiz {
         var randomNum = 0
-        var randomNum1 = 0
         var flag = true
         var flag1 = true
         let quizToReturn = Quiz()
@@ -181,24 +180,20 @@ class QuizBank {
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
             choiceIndex.remove(at: randomNum)
             
+            
             // choice 4
             tempChoice = Choice()
             
             randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count)))
             
-            tempChoice.pathToPhoto = tempListOfPeople[0].getInfo().pathToPhoto
-            tempChoice.person = tempListOfPeople[0]
-            tempChoice.text = "\(tempListOfPeople[0].getName().firstName) " + "\(tempListOfPeople[0].getName().lastName)"
-            
-            _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[0])
-            _ = tempQuestion.set(correctAnswerIndex: choiceIndex[0])
+            tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
+            tempChoice.person = tempListOfPeople[randomNum]
+            tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
             // tempListOfPeople.remove(at: randomNum)
-            
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[0])
             
             randomizedQuestionsArray.append(tempQuestion)
             // remember to set the correct index for the correct answer
-            
             // quizToReturn.questions[index] = arc4random_uniform(UInt32(sizeOfPeopleBank))
             
         }
@@ -206,6 +201,7 @@ class QuizBank {
         
         if(listOfLabels.count > 1)
         {
+            
             for index in 0...sizeOfLabelBank-1
             {
                 if(listOfLabels[index].getPeople().count > 2){
@@ -399,6 +395,8 @@ class QuizBank {
             // We need a different reference for each question, so the copy initializer (constructor)
             // will make a copy of each question (and implicitly each choice) as a new reference.
             let questionToAdd = Question(randomizedQuestionsArray[randomNum])
+            
+            
             
             quizToReturn.questions.append(questionToAdd)
         }
