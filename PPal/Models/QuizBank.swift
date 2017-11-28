@@ -356,7 +356,8 @@ class QuizBank {
                     while(!UnionTempListOfLabels.isEmpty) //I am going to randomly select a label and see who belongs to that label. While doing so any other unique labels that belongs to the same person is removed from UnionTempListOfLabels since that person is used as one of the choices. Therefore when all four people is set as the choices, there should be no labels left in UnionTempListOfLabels.
                     {
                         randomNum = Int(arc4random_uniform(UInt32(UnionTempListOfLabels.count)))
-                        for m in 0...tempListOfPeople[index].count-1 //I'm open to any better/more efficient ways to find out who contains the randomly selected label. Obviously at least one of the 4 people would contain that label i just need to find out who it is to generate the choices.
+                        
+                        for m in 0...tempListOfPeople[index].count-1 //I'm open to any better/more efficient ways to find out who contains the randomly selected label. Obviously one of the 4 people would contain that label i just need to find out who it is to generate the choices.
                         {
                             if(tempListOfPeople[index][m].getLabels().contains(UnionTempListOfLabels[randomNum]))
                             {
@@ -373,6 +374,7 @@ class QuizBank {
                                 tempChoiceIndex = choiceIndex[randomNum]
                                 choiceIndex.remove(at: randomNum)
                                 UnionTempListOfLabels = UnionTempListOfLabels.filter({!$0.getPeople().contains(tempListOfPeople[index][m])}) //not sure if this is a correct way of doing it. But the intention here is to filter out the all labels in UnionTempListOfLabels that belong to the person tempListOfPeople[index][m] and then returning that to UnionTempListOfLabels again.
+                                break
                             }
                             
                             
