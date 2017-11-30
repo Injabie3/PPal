@@ -24,6 +24,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     
     // To implement the search bar
     var filteredArrayToSearch = [Person]()
+    var filteredLabelArrayToSearch = [Label]()
     
     @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -57,6 +58,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         searchBar.delegate = self
         
         filteredArrayToSearch = PeopleBank.shared.getPeople()
+        filteredLabelArrayToSearch = PeopleBank.shared.getLabels()
         
         // Do any additional setup after loading the view.
     }
@@ -64,6 +66,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     override func viewWillAppear(_ animated: Bool) {
         // Reload data upon loading this screen.
         filteredArrayToSearch = PeopleBank.shared.getPeople()
+        filteredLabelArrayToSearch = PeopleBank.shared.getLabels()
         listViewTableView.reloadData()
         labelTableView.reloadData()
         
@@ -209,7 +212,8 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         }
         // Get the number of labels to display for the label list view.
         if tableView == self.labelTableView {
-            return PeopleBank.shared.getLabels().count
+            return filteredLabelArrayToSearch.count
+            // return PeopleBank.shared.getLabels().count
         }
         return 1
     }
@@ -252,7 +256,8 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             
             // Fetches the appropriate label for the data source layout.
             
-            let label = PeopleBank.shared.getLabels()[indexPath.row]
+            // let label = PeopleBank.shared.getLabels()[indexPath.row]
+            let label = self.filteredLabelArrayToSearch[indexPath.row]
             
             cell.labelName.text = label.getName()
             if (indexPath.row % 2) != 0 {
@@ -427,10 +432,13 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             filteredArrayToSearch = PeopleBank.shared.getPeople()
+            filteredLabelArrayToSearch = PeopleBank.shared.getLabels()
         } else {
             filteredArrayToSearch = PeopleBank.shared.getPeople().filter { "\($0.getName().firstName) \($0.getName().lastName)".lowercased().contains(searchText.lowercased())}
+            filteredLabelArrayToSearch = PeopleBank.shared.getLabels().filter{ $0.getName().lowercased().contains(searchText.lowercased())}
         }
         self.listViewTableView.reloadData()
+        self.labelTableView.reloadData()
     }
     
     
