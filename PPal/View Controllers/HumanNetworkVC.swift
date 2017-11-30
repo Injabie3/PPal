@@ -413,9 +413,9 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             
         else if tableView == labelTableView {
             let label = PeopleBank.shared.getLabels()[indexPath.row]
-            let peopleToPass = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PeopleFromLabelVC") as! PeopleFromLabelVC
-            peopleToPass.peopleInLabel = label.getPeople()
-            navigationController?.pushViewController(peopleToPass, animated: true)
+            // let peopleToPass = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PeopleFromLabelVC") as! PeopleFromLabelVC
+            // peopleToPass.peopleInLabel = label.getPeople()
+            // navigationController?.pushViewController(peopleToPass, animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
