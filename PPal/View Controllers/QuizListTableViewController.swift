@@ -65,7 +65,7 @@ class QuizListTableViewController: UITableViewController {
         if (indexPath.row % 2) != 0 {
             cell.backgroundColor = UIColor .white
         }
-        else{
+        else {
             cell.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.93, alpha: 1.0)
         }
         

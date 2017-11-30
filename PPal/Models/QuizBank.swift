@@ -204,7 +204,7 @@ class QuizBank {
             
             for index in 0...sizeOfLabelBank-1
             {
-                if(listOfLabels[index].getPeople().count > 2){
+                if(listOfLabels[index].getPeople().count > 2) {
                     var tempListOfLabels = listOfLabels
                     //var tempListOfLabel = listOfLabels[index]
                     var tempListOfPeople = listOfLabels[index].getPeople()
@@ -316,23 +316,23 @@ class QuizBank {
             }
             
             
-            var UnionTempListOfLabels = [Label]() //A temporary storage array of label type that will be used to store labels other than the intersection.
+            var unionTempListOfLabels = [Label]() //A temporary storage array of label type that will be used to store labels other than the intersection.
             
             for k in 0...tempListOfLabels.count-1 //Can't find a better way of doing this (i'm open to any suggestions). But the intention here is to loop through all the labels in templistOfLabels and then finding the duplicate labels which will not be appended to unionTempListOfLabels.
             {
                 if tempListOfLabels.filter({$0 == tempListOfLabels[k]}).count == 1 //.filter returns an array but it does not change the original array itself. So here im extracting all labels tempListOfLabels[k] from tempListOfLabels and then .count to check if its unique.
                 {
-                    UnionTempListOfLabels.append(tempListOfLabels[k]) //Appending all labels that are unique
+                    unionTempListOfLabels.append(tempListOfLabels[k]) //Appending all labels that are unique
                 }
                 
             }
             
-            if(UnionTempListOfLabels.count > 3) //At least four having four unique labels for question to be valid
+            if(unionTempListOfLabels.count > 3) //At least four having four unique labels for question to be valid
             {
                 flag = true //a flag to check if every person in the question have at least one unique label. If three people have unique labels and the fourth does not then question will not be appended.
-                for l in 0...UnionTempListOfLabels.count-1
+                for l in 0...unionTempListOfLabels.count-1
                 {
-                    if(UnionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][0]) || UnionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][1]) || UnionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][2]) || UnionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][3])) //hardcoding here should be fine since there are always only 4 people to check
+                    if(unionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][0]) || unionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][1]) || unionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][2]) || unionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][3])) //hardcoding here should be fine since there are always only 4 people to check
                     {
                         flag = true
                     }
@@ -349,17 +349,17 @@ class QuizBank {
                     var tempQuestionText = "" //I dont immediately set the question here since i still don't know the matching pair (personN <-> labelN).
                     var choiceIndex: [Int] = [0, 1, 2, 3]
                     var tempChoiceIndex = 0
-                    while(!UnionTempListOfLabels.isEmpty) //I am going to randomly select a label and see who belongs to that label. While doing so any other unique labels that belongs to the same person is removed from UnionTempListOfLabels since that person is used as one of the choices. Therefore when all four people is set as the choices, there should be no labels left in UnionTempListOfLabels.
+                    while(!unionTempListOfLabels.isEmpty) //I am going to randomly select a label and see who belongs to that label. While doing so any other unique labels that belongs to the same person is removed from UnionTempListOfLabels since that person is used as one of the choices. Therefore when all four people is set as the choices, there should be no labels left in UnionTempListOfLabels.
                     {
-                        randomNum = Int(arc4random_uniform(UInt32(UnionTempListOfLabels.count)))
+                        randomNum = Int(arc4random_uniform(UInt32(unionTempListOfLabels.count)))
                         
                         for m in 0...tempListOfPeople[index].count-1 //I'm open to any better/more efficient ways to find out who contains the randomly selected label. Obviously one of the 4 people would contain that label i just need to find out who it is to generate the choices.
                         {
-                            if(tempListOfPeople[index][m].getLabels().contains(UnionTempListOfLabels[randomNum]))
+                            if(tempListOfPeople[index][m].getLabels().contains(unionTempListOfLabels[randomNum]))
                             {
                                 
                                 
-                                tempQuestionText = "\(UnionTempListOfLabels[randomNum].getName())" //This changes every iteration and the last iteration before exiting the while loop gets used in tempQuestion.text below. But it is still random since the position of the correct choice is also randomly generated.
+                                tempQuestionText = "\(unionTempListOfLabels[randomNum].getName())" //This changes every iteration and the last iteration before exiting the while loop gets used in tempQuestion.text below. But it is still random since the position of the correct choice is also randomly generated.
                                 
                                 tempChoice = Choice()
                                 tempChoice.pathToPhoto = tempListOfPeople[index][m].getInfo().pathToPhoto
@@ -369,7 +369,7 @@ class QuizBank {
                                 _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
                                 tempChoiceIndex = choiceIndex[randomNum]
                                 choiceIndex.remove(at: randomNum)
-                                UnionTempListOfLabels = UnionTempListOfLabels.filter({!$0.getPeople().contains(tempListOfPeople[index][m])}) //not sure if this is a correct way of doing it. But the intention here is to filter out the all labels in UnionTempListOfLabels that belong to the person tempListOfPeople[index][m] and then returning that to UnionTempListOfLabels again.
+                                unionTempListOfLabels = unionTempListOfLabels.filter({!$0.getPeople().contains(tempListOfPeople[index][m])}) //not sure if this is a correct way of doing it. But the intention here is to filter out the all labels in UnionTempListOfLabels that belong to the person tempListOfPeople[index][m] and then returning that to UnionTempListOfLabels again.
                                 break
                             }
                             
