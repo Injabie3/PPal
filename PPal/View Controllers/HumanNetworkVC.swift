@@ -409,7 +409,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // If we tap on a contact, we want to be able to go view the details of this person.
         if tableView == listViewTableView {
-            let person = PeopleBank.shared.getPeople()[indexPath.row]
+            let person = filteredArrayToSearch[indexPath.row]
             let edit = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddContactVC") as! AddContactVC
             edit.person = person
             navigationController?.pushViewController(edit, animated: true)
@@ -417,10 +417,11 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         }
             
         else if tableView == labelTableView {
-            let label = PeopleBank.shared.getLabels()[indexPath.row]
-            // let peopleToPass = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PeopleFromLabelVC") as! PeopleFromLabelVC
-            // peopleToPass.peopleInLabel = label.getPeople()
-            // navigationController?.pushViewController(peopleToPass, animated: true)
+            let label = filteredLabelArrayToSearch[indexPath.row]
+            let peopleToPass = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PeopleFromLabelVC") as! PeopleFromLabelVC
+            peopleToPass.peopleInLabel = label.getPeople()
+            peopleToPass.label = label
+            navigationController?.pushViewController(peopleToPass, animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -435,11 +436,16 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             filteredLabelArrayToSearch = PeopleBank.shared.getLabels()
         } else {
             filteredArrayToSearch = PeopleBank.shared.getPeople().filter { "\($0.getName().firstName) \($0.getName().lastName)".lowercased().contains(searchText.lowercased())}
-            filteredLabelArrayToSearch = PeopleBank.shared.getLabels().filter{ $0.getName().lowercased().contains(searchText.lowercased())}
+            filteredLabelArrayToSearch = PeopleBank.shared.getLabels().filter { $0.getName().lowercased().contains(searchText.lowercased())}
         }
         self.listViewTableView.reloadData()
         self.labelTableView.reloadData()
     }
     
+    // This will make the keyboard disappear when you tap away.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.searchBar.resignFirstResponder()
+        self.view.endEditing(true)
+    }
     
 }
