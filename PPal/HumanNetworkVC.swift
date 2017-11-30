@@ -234,7 +234,12 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             cell.profileImage.image = person.getInfo().pathToPhoto.toImage
             cell.nameLabel.text = "\(person.getName().firstName) \(person.getName().lastName)"
             cell.phoneNumberLabel.text = person.getInfo().phoneNumber
-            
+            if (indexPath.row % 2) != 0 {
+                cell.backgroundColor = UIColor .white
+            }
+            else{
+                cell.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.93, alpha: 1.0)
+            }
             return cell
         }
             
@@ -250,7 +255,12 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             let label = PeopleBank.shared.getLabels()[indexPath.row]
             
             cell.labelName.text = label.getName()
-            
+            if (indexPath.row % 2) != 0 {
+                cell.backgroundColor = UIColor .white
+            }
+            else{
+                cell.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.93, alpha: 1.0)
+            }
             return cell
         }
         
