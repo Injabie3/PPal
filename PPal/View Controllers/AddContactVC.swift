@@ -180,6 +180,9 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
             
         } else {
             // label01.editLabel(name: "Cool People")
+            for label in person!.getLabels() {
+                _ = person!.del(label: label)
+            }
             
             for label in selectedLabels {
                 // _ = PeopleBank.shared.add(label: label)

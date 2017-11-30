@@ -8,19 +8,19 @@
 import Foundation
 
 /*extension MutableCollection where Index == Int {
-    /// Shuffle the elements of `self` in-place.
-    mutating func shuffle() {
-        // empty and single-element collections don't shuffle
-        if count < 2 { return }
-        
-        for i in startIndex ..< endIndex - 1 {
-            let j = Int(arc4random_uniform(UInt32(endIndex - i))) + i
-            if i != j {
-                swap(&self[i], &self[j])
-            }
-        }
-    }
-}*/
+ /// Shuffle the elements of `self` in-place.
+ mutating func shuffle() {
+ // empty and single-element collections don't shuffle
+ if count < 2 { return }
+ 
+ for i in startIndex ..< endIndex - 1 {
+ let j = Int(arc4random_uniform(UInt32(endIndex - i))) + i
+ if i != j {
+ swap(&self[i], &self[j])
+ }
+ }
+ }
+ }*/
 
 /**
  An encapsulating class that will hold the following:
@@ -46,6 +46,27 @@ class QuizBank {
     private init() {
         quizHistory = [Quiz]()
         customQuestions = [Question]()
+    }
+    
+    //Exerpt taken from https://github.com/almata/Combinatorics in Combinatorics.swift
+    //Maybe i should make this an extension instead?
+    //This function works off of a template to take in various types. While the parameter elements will be of type [person] array and taking will be the size that we are choosing from the [Person] array (i.e [Harry, Ryan, Mirac] choose 2 will be [Harry, Ryan] and [Mirac, Ryan] and [Harry, Mirac]). Returns value is an array within an array. The function only returns combinations without repetition. Hence, [Harry, Mirac] and [Mirac, Harry] are the same and only one unique combination is taking.
+    func combinationsWithoutRepetitionFrom<T>(_ elements: [T], taking: Int) -> [[T]] {
+        guard elements.count >= taking else { return [] }
+        guard elements.count > 0 && taking > 0 else { return [[]] }
+        
+        if taking == 1 {
+            return elements.map {[$0]}
+        }
+        
+        var combinations = [[T]]()
+        for (index, element) in elements.enumerated() {
+            var reducedElements = elements
+            reducedElements.removeFirst(index + 1)
+            combinations += combinationsWithoutRepetitionFrom(reducedElements, taking: taking - 1).map {[element] + $0}
+        }
+        
+        return combinations
     }
     
     /**
@@ -78,9 +99,6 @@ class QuizBank {
         if !customQuestions.contains(question) {
             return false
         }
-     
-        let indexToRemove = customQuestions.index(of: question)
-        customQuestions.remove(at: indexToRemove!)
         
         return true
     }
@@ -91,9 +109,13 @@ class QuizBank {
      */
     func generateQuestions() -> Quiz {
         var randomNum = 0
+        var flag = true
+        var flag1 = true
         let quizToReturn = Quiz()
         let sizeOfPeopleBank = PeopleBank.shared.getPeople().count
+        let sizeOfLabelBank = PeopleBank.shared.getLabels().count
         let listOfPeople = PeopleBank.shared.getPeople()
+        let listOfLabels = PeopleBank.shared.getLabels()
         
         var randomizedQuestionsArray = [Question]()
         var previousChoiceIndices = [Int]()
@@ -107,10 +129,10 @@ class QuizBank {
         {
             var tempListOfPeople = listOfPeople
             var choiceIndex: [Int] = [0, 1, 2, 3]
-
+            
             tempQuestion = Question()
             
-// choice 1
+            // choice 1
             tempChoice = Choice()
             
             tempQuestion.image = tempListOfPeople[index].getInfo().pathToPhoto // stored but can be chosen not to be shown for this question
@@ -157,24 +179,215 @@ class QuizBank {
             previousChoiceIndices.append(randomNum)
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
             choiceIndex.remove(at: randomNum)
-         
             
-// choice 4
+            
+            // choice 4
             tempChoice = Choice()
-
+            
             randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count)))
-                
+            
             tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
             tempChoice.person = tempListOfPeople[randomNum]
             tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
             // tempListOfPeople.remove(at: randomNum)
-
             _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[0])
-
+            
             randomizedQuestionsArray.append(tempQuestion)
-             // remember to set the correct index for the correct answer
-
-          // quizToReturn.questions[index] = arc4random_uniform(UInt32(sizeOfPeopleBank))
+            // remember to set the correct index for the correct answer
+            // quizToReturn.questions[index] = arc4random_uniform(UInt32(sizeOfPeopleBank))
+            
+        }
+        
+        
+        if(listOfLabels.count > 1)
+        {
+            
+            for index in 0...sizeOfLabelBank-1
+            {
+                if(listOfLabels[index].getPeople().count > 2) {
+                    var tempListOfLabels = listOfLabels
+                    //var tempListOfLabel = listOfLabels[index]
+                    var tempListOfPeople = listOfLabels[index].getPeople()
+                    var choiceIndex: [Int] = [0, 1, 2, 3]
+                    
+                    tempQuestion = Question()
+                    
+                    tempChoice = Choice()
+                    
+                    //no label photo to display for this version yet
+                    tempQuestion.text = "Who does not have the label \(tempListOfLabels[index].getName())"
+                    //choice 1
+                    
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count))) //get random label and then access the info of three people for the three false choices
+                    tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
+                    tempChoice.person = tempListOfPeople[randomNum]
+                    tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
+                    tempListOfPeople.remove(at: randomNum)
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+                    _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
+                    choiceIndex.remove(at: randomNum)
+                    
+                    //choice 2
+                    
+                    tempChoice = Choice()
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count))) //get random label and then access the info of three people for the three false choices
+                    tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
+                    tempChoice.person = tempListOfPeople[randomNum]
+                    tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
+                    tempListOfPeople.remove(at: randomNum)
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+                    _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
+                    choiceIndex.remove(at: randomNum)
+                    
+                    //choice 3
+                    tempChoice = Choice()
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(tempListOfPeople.count))) //get random label and then access the info of three people for the three false choices
+                    tempChoice.pathToPhoto = tempListOfPeople[randomNum].getInfo().pathToPhoto
+                    tempChoice.person = tempListOfPeople[randomNum]
+                    tempChoice.text = "\(tempListOfPeople[randomNum].getName().firstName) " + "\(tempListOfPeople[randomNum].getName().lastName)"
+                    tempListOfPeople.remove(at: randomNum)
+                    
+                    randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+                    _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
+                    choiceIndex.remove(at: randomNum)
+                    
+                    //choice 4 correct choice
+                    tempListOfLabels.remove(at: index)
+                    tempChoice = Choice()
+                    flag = true
+                    flag1 = true
+                    
+                    while(!tempListOfLabels.isEmpty && flag)
+                    {
+                        randomNum = Int(arc4random_uniform(UInt32(tempListOfLabels.count)))
+                        var tempListOfPeople = tempListOfLabels[randomNum].getPeople()
+                        while(!tempListOfPeople.isEmpty && flag1)
+                        {
+                            
+                            if(listOfLabels[index].getPeople().contains(tempListOfPeople[0]))
+                            {
+                                tempListOfPeople.remove(at: 0)
+                            }
+                            else
+                            {
+                                // tempChoice.pathToPhoto = tempListOfLabels[randomNum].getPeople()[0].getInfo().pathToPhoto
+                                tempChoice.pathToPhoto = tempListOfPeople[0].getInfo().pathToPhoto
+                                // tempChoice.person = tempListOfLabels[randomNum].getPeople()[0]
+                                tempChoice.person = tempListOfPeople[0]
+                                // tempChoice.text = "\(tempListOfLabels[randomNum].getPeople()[0].getName().firstName) " + "\(tempListOfLabels[randomNum].getPeople()[0].getName().lastName)"
+                                tempChoice.text = "\(tempListOfPeople[0].getName().firstName) \(tempListOfPeople[0].getName().lastName)"
+                                _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[0])
+                                _ = tempQuestion.set(correctAnswerIndex: choiceIndex[0])
+                                randomizedQuestionsArray.append(tempQuestion)
+                                
+                                flag = false
+                                flag1 = false
+                                
+                            }
+                        }
+                        
+                        tempListOfLabels.remove(at: randomNum)
+                    }
+                    
+                    
+                    
+                }
+                
+                
+            }
+        }
+        
+        
+        var tempListOfPeople = combinationsWithoutRepetitionFrom(listOfPeople, taking: 4) //this function returns an array within an array. Every array within the array consists of a distinct combination of four people.
+        
+        
+        
+        for index in 0...tempListOfPeople.count-1 //looping through all combinations of the 2d array.
+        {   var tempListOfLabels = [Label]() //define a temporary list of labels to store all labels that belongs to a combination of four people.
+            for i in 0...tempListOfPeople[index].count-1 //looping through the four people in one combination. Although i used .count just for consistency.
+            {
+                for j in 0...tempListOfPeople[index][i].getLabels().count-1 //getting the labels from one person
+                {
+                    tempListOfLabels.append(tempListOfPeople[index][i].getLabels()[j]) //appending those labels that belong to the person.
+                    
+                }
+            }
+            
+            
+            var unionTempListOfLabels = [Label]() //A temporary storage array of label type that will be used to store labels other than the intersection.
+            
+            for k in 0...tempListOfLabels.count-1 //Can't find a better way of doing this (i'm open to any suggestions). But the intention here is to loop through all the labels in templistOfLabels and then finding the duplicate labels which will not be appended to unionTempListOfLabels.
+            {
+                if tempListOfLabels.filter({$0 == tempListOfLabels[k]}).count == 1 //.filter returns an array but it does not change the original array itself. So here im extracting all labels tempListOfLabels[k] from tempListOfLabels and then .count to check if its unique.
+                {
+                    unionTempListOfLabels.append(tempListOfLabels[k]) //Appending all labels that are unique
+                }
+                
+            }
+            
+            if(unionTempListOfLabels.count > 3) //At least four having four unique labels for question to be valid
+            {
+                flag = true //a flag to check if every person in the question have at least one unique label. If three people have unique labels and the fourth does not then question will not be appended.
+                for l in 0...unionTempListOfLabels.count-1
+                {
+                    if(unionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][0]) || unionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][1]) || unionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][2]) || unionTempListOfLabels[l].getPeople().contains(tempListOfPeople[index][3])) //hardcoding here should be fine since there are always only 4 people to check
+                    {
+                        flag = true
+                    }
+                    else
+                    {
+                        flag = false
+                    }
+                }
+                
+                
+                if(flag)
+                {
+                    tempQuestion = Question()
+                    var tempQuestionText = "" //I dont immediately set the question here since i still don't know the matching pair (personN <-> labelN).
+                    var choiceIndex: [Int] = [0, 1, 2, 3]
+                    var tempChoiceIndex = 0
+                    while(!unionTempListOfLabels.isEmpty) //I am going to randomly select a label and see who belongs to that label. While doing so any other unique labels that belongs to the same person is removed from UnionTempListOfLabels since that person is used as one of the choices. Therefore when all four people is set as the choices, there should be no labels left in UnionTempListOfLabels.
+                    {
+                        randomNum = Int(arc4random_uniform(UInt32(unionTempListOfLabels.count)))
+                        
+                        for m in 0...tempListOfPeople[index].count-1 //I'm open to any better/more efficient ways to find out who contains the randomly selected label. Obviously one of the 4 people would contain that label i just need to find out who it is to generate the choices.
+                        {
+                            if(tempListOfPeople[index][m].getLabels().contains(unionTempListOfLabels[randomNum]))
+                            {
+                                
+                                
+                                tempQuestionText = "\(unionTempListOfLabels[randomNum].getName())" //This changes every iteration and the last iteration before exiting the while loop gets used in tempQuestion.text below. But it is still random since the position of the correct choice is also randomly generated.
+                                
+                                tempChoice = Choice()
+                                tempChoice.pathToPhoto = tempListOfPeople[index][m].getInfo().pathToPhoto
+                                tempChoice.person = tempListOfPeople[index][m]
+                                tempChoice.text = "\(tempListOfPeople[index][m].getName().firstName) " + "\(tempListOfPeople[index][m].getName().lastName)"
+                                randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+                                _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[randomNum])
+                                tempChoiceIndex = choiceIndex[randomNum]
+                                choiceIndex.remove(at: randomNum)
+                                unionTempListOfLabels = unionTempListOfLabels.filter({!$0.getPeople().contains(tempListOfPeople[index][m])}) //not sure if this is a correct way of doing it. But the intention here is to filter out the all labels in UnionTempListOfLabels that belong to the person tempListOfPeople[index][m] and then returning that to UnionTempListOfLabels again.
+                                break
+                            }
+                            
+                            
+                            
+                        }
+                        
+                    }
+                    
+                    tempQuestion.text = "Who has the label \(tempQuestionText)" //getting the last iteration of tempQuestionText.
+                    _ = tempQuestion.set(correctAnswerIndex: tempChoiceIndex) // last generated index from choiceIndex[random].
+                    randomizedQuestionsArray.append(tempQuestion)
+                }
+                
+            }
             
         }
         
@@ -186,11 +399,13 @@ class QuizBank {
             // will make a copy of each question (and implicitly each choice) as a new reference.
             let questionToAdd = Question(randomizedQuestionsArray[randomNum])
             
+            
+            
             quizToReturn.questions.append(questionToAdd)
         }
         
         return quizToReturn
     }
-
+    
     
 }

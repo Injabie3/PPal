@@ -1,5 +1,5 @@
 //
-//  QuizListTableViewController.swift
+//  QuestionListTableViewController.swift
 //  PPal
 //
 //  Created by Mirac Chen on 11/25/17.
@@ -7,12 +7,11 @@
 //
 
 import UIKit
-var questionList = [Question]()
 
-class QuizListTableViewController: UITableViewController {
+class QuestionListTableViewController: UITableViewController {
 
     //MARK: Properties
-    var quizList = [Quiz]()
+    var quiz: Quiz? // A quiz object that we will pass on a segue.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +22,11 @@ class QuizListTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         // Reload data upon loading this screen.
-        quizList = QuizBank.shared.quizHistory
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,38 +36,35 @@ class QuizListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return quizList.count
+        return questionList.count
     }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier="QuizListTableViewCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? QuizListTableViewCell else {
-            fatalError("The dequeued cell is not an instance of QuizListTableViewCell")
+        let cellIdentifier="QuestionListTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? QuestionListTableViewCell else {
+            fatalError("The dequeued cell is not an instance of QuestionListTableViewCell")
         }
         
-        let quiz = quizList[indexPath.row]
-        cell.quizSessionNumber.text = "Quiz No. \(quiz.id)"
-        cell.quizScore.text = "Score: \(quiz.score)"
+        let question = questionList[indexPath.row]
+        cell.questionPhoto.image = question.image.toImage
+        cell.questionText.text = question.text
+        cell.selectedAns.text = "Selected: \(question.getChoices()[question.getSelectedAnswer()].text)"
+        cell.correctAns.text = "Answer: \(question.getChoices()[question.getCorrectAnswer()].text)"
         
-        //Preparing date with displayable format
-        let date = quiz.dateTaken
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "MM-dd-yyyy HH:mm"
-        cell.quizDate.text = dateFormatterPrint.string(from: date)
-        
+        if (indexPath.row % 2) != 0 {
+            cell.backgroundColor = UIColor .white
+        }
+        else {
+            cell.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.93, alpha: 1.0)
+        }
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        questionList.removeAll()
-        for question in quizList[indexPath.row].questions {
-            questionList.append(question)
-        }
     }
     
     /*
