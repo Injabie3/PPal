@@ -77,6 +77,9 @@ class QuizListTableViewController: UITableViewController {
         for question in quizList[indexPath.row].questions {
             questionList.append(question)
         }
+        
+        // Deselect the row so the colour goes back to normal.
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     /*

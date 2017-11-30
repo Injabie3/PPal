@@ -275,9 +275,12 @@ class QuizBank {
                             }
                             else
                             {
-                                tempChoice.pathToPhoto = tempListOfLabels[randomNum].getPeople()[0].getInfo().pathToPhoto
-                                tempChoice.person = tempListOfLabels[randomNum].getPeople()[0]
-                                tempChoice.text = "\(tempListOfLabels[randomNum].getPeople()[0].getName().firstName) " + "\(tempListOfLabels[randomNum].getPeople()[0].getName().lastName)"
+                                // tempChoice.pathToPhoto = tempListOfLabels[randomNum].getPeople()[0].getInfo().pathToPhoto
+                                tempChoice.pathToPhoto = tempListOfPeople[0].getInfo().pathToPhoto
+                                // tempChoice.person = tempListOfLabels[randomNum].getPeople()[0]
+                                tempChoice.person = tempListOfPeople[0]
+                                // tempChoice.text = "\(tempListOfLabels[randomNum].getPeople()[0].getName().firstName) " + "\(tempListOfLabels[randomNum].getPeople()[0].getName().lastName)"
+                                tempChoice.text = "\(tempListOfPeople[0].getName().firstName) \(tempListOfPeople[0].getName().lastName)"
                                 _ = tempQuestion.set(choice: tempChoice, atIndex: choiceIndex[0])
                                 _ = tempQuestion.set(correctAnswerIndex: choiceIndex[0])
                                 randomizedQuestionsArray.append(tempQuestion)
