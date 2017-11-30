@@ -19,6 +19,7 @@
 		6D4E9A1F1FCA522F00880697 /* QuestionListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E9A1E1FCA522F00880697 /* QuestionListTableViewController.swift */; };
 		6D4E9A211FCA52C700880697 /* QuestionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E9A201FCA52C700880697 /* QuestionListTableViewCell.swift */; };
 		717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717749B61FA8061800C33286 /* HumanNetworkVC.swift */; };
+		BB0BC7E61FD0BD1700148E6D /* EditQuestionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0BC7E51FD0BD1700148E6D /* EditQuestionsVC.swift */; };
 		BBA2E1C51FAC0C99008DF6D2 /* CreateUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */; };
 		D343E0F71FB3A47900151675 /* MainQuizPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D343E0F61FB3A47900151675 /* MainQuizPageVC.swift */; };
 		D343E0FF1FB3AABC00151675 /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D343E0FE1FB3AABC00151675 /* MainScreenVC.swift */; };
@@ -155,6 +156,7 @@
 		6D4E9A1E1FCA522F00880697 /* QuestionListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListTableViewController.swift; sourceTree = "<group>"; };
 		6D4E9A201FCA52C700880697 /* QuestionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListTableViewCell.swift; sourceTree = "<group>"; };
 		717749B61FA8061800C33286 /* HumanNetworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanNetworkVC.swift; sourceTree = "<group>"; };
+		BB0BC7E51FD0BD1700148E6D /* EditQuestionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuestionsVC.swift; sourceTree = "<group>"; };
 		BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserProfileVC.swift; sourceTree = "<group>"; };
 		D343E0F61FB3A47900151675 /* MainQuizPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQuizPageVC.swift; sourceTree = "<group>"; };
 		D343E0FE1FB3AABC00151675 /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				6D4E9A181FCA2ED300880697 /* QuizListTableViewController.swift */,
 				F7563BB01F9A9BF90046AC3E /* ViewController.swift */,
 				6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */,
+				BB0BC7E51FD0BD1700148E6D /* EditQuestionsVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				46BBC2C21FAEE0A3005B0710 /* EmergencySettingsVC.swift in Sources */,
 				F768427F1FBE4B53004EB264 /* Quiz.swift in Sources */,
 				F76842801FBE4B53004EB264 /* UIImage.swift in Sources */,
+				BB0BC7E61FD0BD1700148E6D /* EditQuestionsVC.swift in Sources */,
 				F75D820B1FAE7F580071F47F /* AddLabelTableViewController.swift in Sources */,
 				F7A880691FCFAA74001A540C /* PeopleFromLabelVC.swift in Sources */,
 				F768427D1FBE4B53004EB264 /* Database.swift in Sources */,

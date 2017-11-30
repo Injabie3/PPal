@@ -207,6 +207,9 @@
                                                 <integer key="value" value="7"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="dkT-TR-ZZg" kind="show" id="WPd-Ce-cGw"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynK-Ps-2DM">
                                         <rect key="frame" x="0.0" y="130" width="374" height="50"/>
@@ -266,6 +269,110 @@
             </objects>
             <point key="canvasLocation" x="122.40000000000001" y="851.42428785607206"/>
         </scene>
+        <!--Create New Questions-->
+        <scene sceneID="O0x-su-Oiv">
+            <objects>
+                <viewController id="Eao-jF-SCC" customClass="EditQuestionsVC" customModule="PPal" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CcP-Is-HAo"/>
+                        <viewControllerLayoutGuide type="bottom" id="liR-dY-8kA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iTD-EY-GvN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nWN-oX-VHw">
+                                <rect key="frame" x="20" y="109" width="97" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcB-ce-HZr">
+                                <rect key="frame" x="20" y="232" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CAw-Yc-IaP">
+                                <rect key="frame" x="20" y="310" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FrM-xV-ulW">
+                                <rect key="frame" x="20" y="389" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pZH-SJ-R7i">
+                                <rect key="frame" x="20" y="465" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdr-QK-AeI">
+                                <rect key="frame" x="20" y="203" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTB-yF-D9p">
+                                <rect key="frame" x="20" y="281" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72B-Ie-eY2">
+                                <rect key="frame" x="20" y="360" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1Q-nM-l2c">
+                                <rect key="frame" x="20" y="436" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVD-Vd-DY1">
+                                <rect key="frame" x="20" y="80" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Correct Answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5X-2D-RcK">
+                                <rect key="frame" x="277" y="77" width="117" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="nWN-oX-VHw" secondAttribute="trailing" id="gF4-1E-poo"/>
+                            <constraint firstItem="nWN-oX-VHw" firstAttribute="leading" secondItem="iTD-EY-GvN" secondAttribute="leadingMargin" id="uVi-Kg-IAJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create New Questions" id="p62-Nl-e8I">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Tj4-46-ypT"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="PWn-k2-5gV"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QwV-qJ-ZLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1823.1884057971015" y="1621.467391304348"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="2z0-YN-PyL">
             <objects>
@@ -281,7 +388,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBk-fe-guX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1190" y="1623"/>
+            <point key="canvasLocation" x="-884.05797101449286" y="1622.2826086956522"/>
         </scene>
         <!--Play QuizVC-->
         <scene sceneID="VUD-sr-sVn">
@@ -488,7 +595,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJn-g0-3xh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cZA-4C-8N4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-218.40000000000001" y="1623.2383808095954"/>
+            <point key="canvasLocation" x="88.405797101449281" y="1623.0978260869567"/>
         </scene>
         <!--End QuizVC-->
         <scene sceneID="GI2-1I-VqN">
@@ -574,7 +681,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laj-fK-kUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="a3H-ju-9Ge" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="711" y="1623"/>
+            <point key="canvasLocation" x="1017.3913043478261" y="1622.2826086956522"/>
         </scene>
         <!--PPal-->
         <scene sceneID="8my-cD-Ufz">
@@ -1107,7 +1214,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U60-KW-rlr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1868" y="1761"/>
+            <point key="canvasLocation" x="2173.913043478261" y="1760.8695652173915"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hWs-Nf-rmA">
@@ -1550,7 +1657,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVt-OM-N4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2813.5999999999999" y="1329.9850074962519"/>
+            <point key="canvasLocation" x="3120.289855072464" y="1329.6195652173915"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vzk-7L-Jcv">
@@ -1587,6 +1694,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vU-ny-QgG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1144.8" y="851.42428785607206"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AXU-eM-qyX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dkT-TR-ZZg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VYb-b1-OaZ">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Eao-jF-SCC" kind="relationship" relationship="rootViewController" id="H50-lP-uZf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gLX-ti-bT3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2603" y="1623"/>
         </scene>
     </scenes>
     <resources>

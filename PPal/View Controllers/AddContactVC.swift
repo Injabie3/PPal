@@ -44,6 +44,8 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         isPhotoSelected = false
         isTextFieldsFilled = false
         
+        self.navigationController?.navigationBar.isHidden = false
+        
         firstNameField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         lastNameField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         phoneNumberField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
