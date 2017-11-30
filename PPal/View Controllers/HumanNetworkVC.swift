@@ -24,6 +24,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     
     // To implement the search bar
     var filteredArrayToSearch = [Person]()
+    var filteredLabelArrayToSearch = [Label]()
     
     @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -57,6 +58,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         searchBar.delegate = self
         
         filteredArrayToSearch = PeopleBank.shared.getPeople()
+        filteredLabelArrayToSearch = PeopleBank.shared.getLabels()
         
         // Do any additional setup after loading the view.
     }
@@ -64,6 +66,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     override func viewWillAppear(_ animated: Bool) {
         // Reload data upon loading this screen.
         filteredArrayToSearch = PeopleBank.shared.getPeople()
+        filteredLabelArrayToSearch = PeopleBank.shared.getLabels()
         listViewTableView.reloadData()
         labelTableView.reloadData()
         
@@ -209,7 +212,8 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         }
         // Get the number of labels to display for the label list view.
         if tableView == self.labelTableView {
-            return PeopleBank.shared.getLabels().count
+            return filteredLabelArrayToSearch.count
+            // return PeopleBank.shared.getLabels().count
         }
         return 1
     }
@@ -234,7 +238,12 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             cell.profileImage.image = person.getInfo().pathToPhoto.toImage
             cell.nameLabel.text = "\(person.getName().firstName) \(person.getName().lastName)"
             cell.phoneNumberLabel.text = person.getInfo().phoneNumber
-            
+            if (indexPath.row % 2) != 0 {
+                cell.backgroundColor = UIColor .white
+            }
+            else {
+                cell.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.93, alpha: 1.0)
+            }
             return cell
         }
             
@@ -247,10 +256,16 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             
             // Fetches the appropriate label for the data source layout.
             
-            let label = PeopleBank.shared.getLabels()[indexPath.row]
+            // let label = PeopleBank.shared.getLabels()[indexPath.row]
+            let label = self.filteredLabelArrayToSearch[indexPath.row]
             
             cell.labelName.text = label.getName()
-            
+            if (indexPath.row % 2) != 0 {
+                cell.backgroundColor = UIColor .white
+            }
+            else {
+                cell.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.93, alpha: 1.0)
+            }
             return cell
         }
         
@@ -394,7 +409,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // If we tap on a contact, we want to be able to go view the details of this person.
         if tableView == listViewTableView {
-            let person = PeopleBank.shared.getPeople()[indexPath.row]
+            let person = filteredArrayToSearch[indexPath.row]
             let edit = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddContactVC") as! AddContactVC
             edit.person = person
             navigationController?.pushViewController(edit, animated: true)
@@ -402,7 +417,11 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         }
             
         else if tableView == labelTableView {
-            let label = PeopleBank.shared.getLabels()[indexPath.row]
+            let label = filteredLabelArrayToSearch[indexPath.row]
+            let peopleToPass = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PeopleFromLabelVC") as! PeopleFromLabelVC
+            peopleToPass.peopleInLabel = label.getPeople()
+            peopleToPass.label = label
+            navigationController?.pushViewController(peopleToPass, animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -414,10 +433,19 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             filteredArrayToSearch = PeopleBank.shared.getPeople()
+            filteredLabelArrayToSearch = PeopleBank.shared.getLabels()
         } else {
             filteredArrayToSearch = PeopleBank.shared.getPeople().filter { "\($0.getName().firstName) \($0.getName().lastName)".lowercased().contains(searchText.lowercased())}
+            filteredLabelArrayToSearch = PeopleBank.shared.getLabels().filter { $0.getName().lowercased().contains(searchText.lowercased())}
         }
         self.listViewTableView.reloadData()
+        self.labelTableView.reloadData()
+    }
+    
+    // This will make the keyboard disappear when you tap away.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.searchBar.resignFirstResponder()
+        self.view.endEditing(true)
     }
     
 }

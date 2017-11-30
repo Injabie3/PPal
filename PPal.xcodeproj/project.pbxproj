@@ -51,6 +51,7 @@
 		F76842811FBE4B53004EB264 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76842771FBE4B53004EB264 /* Person.swift */; };
 		F76842821FBE4B53004EB264 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76842781FBE4B53004EB264 /* String.swift */; };
 		F76842831FBE4B53004EB264 /* PeopleBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76842791FBE4B53004EB264 /* PeopleBank.swift */; };
+		F7A880691FCFAA74001A540C /* PeopleFromLabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A880681FCFAA73001A540C /* PeopleFromLabelVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +191,7 @@
 		F76842771FBE4B53004EB264 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = PPal/Models/Person.swift; sourceTree = SOURCE_ROOT; };
 		F76842781FBE4B53004EB264 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = PPal/Models/String.swift; sourceTree = SOURCE_ROOT; };
 		F76842791FBE4B53004EB264 /* PeopleBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeopleBank.swift; path = PPal/Models/PeopleBank.swift; sourceTree = SOURCE_ROOT; };
+		F7A880681FCFAA73001A540C /* PeopleFromLabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleFromLabelVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,31 +246,15 @@
 		F7563BAD1F9A9BF90046AC3E /* PPal */ = {
 			isa = PBXGroup;
 			children = (
+				F7A880671FCF9B34001A540C /* Table View Cells */,
+				F7A880601FCF9B0C001A540C /* View Controllers */,
 				F768426F1FBE4B3F004EB264 /* Models */,
-				D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */,
 				F75D82251FAE9B6D0071F47F /* Emergency.swift */,
-				46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */,
-				F75D82071FAE7F570071F47F /* AddLabelTableViewController.swift */,
-				F75D82051FAE7F570071F47F /* LabelTableViewCell.swift */,
-				F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */,
-				F75D82041FAE7F570071F47F /* PersonTableViewController.swift */,
 				F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */,
-				F7563BB01F9A9BF90046AC3E /* ViewController.swift */,
 				F7563BB21F9A9BF90046AC3E /* Main.storyboard */,
-				6D4E9A201FCA52C700880697 /* QuestionListTableViewCell.swift */,
-				6D4E9A1E1FCA522F00880697 /* QuestionListTableViewController.swift */,
-				6D4E9A1A1FCA382900880697 /* QuizListTableViewCell.swift */,
-				6D4E9A181FCA2ED300880697 /* QuizListTableViewController.swift */,
-				6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */,
-				717749B61FA8061800C33286 /* HumanNetworkVC.swift */,
-				BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */,
 				F7563BB51F9A9BF90046AC3E /* Assets.xcassets */,
 				F7563BB71F9A9BF90046AC3E /* LaunchScreen.storyboard */,
 				F7563BBA1F9A9BF90046AC3E /* Info.plist */,
-				D343E0F61FB3A47900151675 /* MainQuizPageVC.swift */,
-				D343E0FE1FB3AABC00151675 /* MainScreenVC.swift */,
-				EB41F8FB1FBBC74F00D7E25D /* PlayQuizVC.swift */,
-				EB41F9031FBBDC1400D7E25D /* EndQuizVC.swift */,
 			);
 			path = PPal;
 			sourceTree = "<group>";
@@ -336,6 +322,39 @@
 			);
 			name = Models;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		F7A880601FCF9B0C001A540C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */,
+				F75D82071FAE7F570071F47F /* AddLabelTableViewController.swift */,
+				BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */,
+				46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */,
+				EB41F9031FBBDC1400D7E25D /* EndQuizVC.swift */,
+				717749B61FA8061800C33286 /* HumanNetworkVC.swift */,
+				D343E0F61FB3A47900151675 /* MainQuizPageVC.swift */,
+				D343E0FE1FB3AABC00151675 /* MainScreenVC.swift */,
+				F7A880681FCFAA73001A540C /* PeopleFromLabelVC.swift */,
+				F75D82041FAE7F570071F47F /* PersonTableViewController.swift */,
+				EB41F8FB1FBBC74F00D7E25D /* PlayQuizVC.swift */,
+				6D4E9A1E1FCA522F00880697 /* QuestionListTableViewController.swift */,
+				6D4E9A181FCA2ED300880697 /* QuizListTableViewController.swift */,
+				F7563BB01F9A9BF90046AC3E /* ViewController.swift */,
+				6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F7A880671FCF9B34001A540C /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F75D82051FAE7F570071F47F /* LabelTableViewCell.swift */,
+				F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */,
+				6D4E9A201FCA52C700880697 /* QuestionListTableViewCell.swift */,
+				6D4E9A1A1FCA382900880697 /* QuizListTableViewCell.swift */,
+			);
+			path = "Table View Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,6 +589,7 @@
 				F768427F1FBE4B53004EB264 /* Quiz.swift in Sources */,
 				F76842801FBE4B53004EB264 /* UIImage.swift in Sources */,
 				F75D820B1FAE7F580071F47F /* AddLabelTableViewController.swift in Sources */,
+				F7A880691FCFAA74001A540C /* PeopleFromLabelVC.swift in Sources */,
 				F768427D1FBE4B53004EB264 /* Database.swift in Sources */,
 				F75D82261FAE9B6D0071F47F /* Emergency.swift in Sources */,
 				6D4E9A211FCA52C700880697 /* QuestionListTableViewCell.swift in Sources */,
