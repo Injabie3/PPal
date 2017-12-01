@@ -113,12 +113,6 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     // update label text field
     func updateDisplayLabelsTextbox() {
         var labelArray = [String]()
-        //        if let person = person {
-        //            for label in person.getLabels() {
-        //                labelArray.append(label.getName())
-        //            }
-        //        }
-        // else {
         for label in selectedLabels {
             labelArray.append(label.getName())
         }
@@ -127,8 +121,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         let labelString = labelArray.joined(separator: ",")
         
         self.displayLabels.text = (labelString)
-        print (labelString)
-        print(labelArray)
+
     }
     
 
