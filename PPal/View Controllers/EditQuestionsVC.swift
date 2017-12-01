@@ -10,26 +10,30 @@ import UIKit
 
 class EditQuestionsVC: UIViewController {
 
+    
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var questionTextField: UITextField!
+    @IBOutlet weak var correctAnswerText: UITextField!
+    @IBOutlet weak var answerTwoField: UITextField!
+    @IBOutlet weak var answerThreeField: UITextField!
+    @IBOutlet weak var answerFourField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.saveButton.isEnabled = false
+        
+        questionTextField.addTarget(self, action: #selector(EditQuestionsVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        correctAnswerText.addTarget(self, action: #selector(EditQuestionsVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        answerTwoField.addTarget(self, action: #selector(EditQuestionsVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        answerThreeField.addTarget(self, action: #selector(EditQuestionsVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        answerFourField.addTarget(self, action: #selector(EditQuestionsVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if(questionTextField?.text?.isEmpty)! || (correctAnswerText?.text?.isEmpty)! || (answerTwoField?.text?.isEmpty)! || (answerThreeField?.text?.isEmpty)! || (answerFourField?.text?.isEmpty)! {
+            saveButton.isEnabled = false
+        } else {
+            saveButton.isEnabled = true
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

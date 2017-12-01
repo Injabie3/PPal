@@ -46,11 +46,11 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         
         self.navigationController?.navigationBar.isHidden = false
         
-        firstNameField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
-        lastNameField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
-        phoneNumberField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
-        emailField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
-        addressField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        firstNameField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        lastNameField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        phoneNumberField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        emailField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        addressField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         
         if isImported {
             isImported = false
@@ -293,6 +293,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     @IBAction func cancelPressed(_ sender: Any) {
         // Clear the variables and go back.
         selectedLabels.removeAll()
+        self.navigationController?.navigationBar.isHidden = true
         self.navigationController!.popViewController(animated: true)
     }
     
