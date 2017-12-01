@@ -9,6 +9,7 @@
 import UIKit
 import Contacts
 import ContactsUI
+var newLabel = Label()
 
 class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     var fromRoot = false
@@ -167,6 +168,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
                     _ = PeopleBank.shared.add(label: label)
                     _ = Database.shared.saveLabelToDatabase(label: label)
                     
+                    newLabel = label
                 }
                 // Reload the table view.
                 self.labelTableView.reloadData()
