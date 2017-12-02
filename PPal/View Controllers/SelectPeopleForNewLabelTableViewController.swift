@@ -141,7 +141,7 @@ class SelectPeopleForNewLabelTableViewController: UITableViewController {
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
         }
         
-        self.tableView(tableView, didDeselectRowAt: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
