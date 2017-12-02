@@ -72,9 +72,11 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         labelTableView.reloadData()
         
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
+    
     @IBAction func importFromContactsButton(_ sender: Any) {
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)

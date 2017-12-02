@@ -323,4 +323,5 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         
         return true
     }
+    
 }

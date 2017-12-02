@@ -670,7 +670,7 @@ class Database {
      */
     func deleteQuestionById(id: Int) -> Bool {
         
-        let question = self.customizedQuestionTable.filter(self.id == id)
+        let question = self.customizedQuestionTable.filter(self.customizedQuestionId == id)
         let deleteQuestion = question.delete()
         do {
             try self.customizedQuestionsDatabase.run(deleteQuestion)

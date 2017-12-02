@@ -18,6 +18,12 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
     @IBOutlet weak var answerFourField: UITextField!
     @IBOutlet weak var quizPhoto: UIImageView!
     
+    
+    
+    var choiceIndex = [0,1,2,3]
+    var randomNum: Int = 0
+    var customQuestion = Question()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -121,12 +127,71 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
         // Set photoImageView to display the selected image.
         quizPhoto.image = selectedImage
         
+        customQuestion.image = (quizPhoto.image?.resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64)!
+
+        //customQuestion.image = selectedImage
+
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        var customChoice = Choice()
+        customQuestion.text = questionTextField.text!
+        randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+        
+        
+        customChoice.pathToPhoto = #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
+        customChoice.person = nil
+        customChoice.text = correctAnswerText.text!
+        _ = customQuestion.set(choice: customChoice, atIndex: choiceIndex[randomNum])
+        _ = customQuestion.set(correctAnswerIndex: choiceIndex[randomNum])
+        choiceIndex.remove(at: randomNum)
+        
+        
+        customChoice = Choice()
+        customChoice.pathToPhoto = #imageLiteral(resourceName: "default-user").toBase64
+        customChoice.person = nil
+        customChoice.text = answerTwoField.text!
+        randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+        _ = customQuestion.set(choice: customChoice, atIndex: choiceIndex[randomNum])
+        choiceIndex.remove(at: randomNum)
+        
+        customChoice = Choice()
+        customChoice.pathToPhoto = #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
+        customChoice.person = nil
+        customChoice.text = answerThreeField.text!
+        randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+        _ = customQuestion.set(choice: customChoice, atIndex: choiceIndex[randomNum])
+        choiceIndex.remove(at: randomNum)
+        
+        customChoice = Choice()
+        customChoice.pathToPhoto = #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
+        customChoice.person = nil
+        customChoice.text = answerFourField.text!
+        randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+        _ = customQuestion.set(choice: customChoice, atIndex: choiceIndex[randomNum])
+        choiceIndex.remove(at: randomNum)
+        
+
+        let result = QuizBank.shared.addCustom(question: customQuestion)
+        
+        for choice in customQuestion.getChoices() {
+            _ = Database.shared.saveCustomizedChoiceToDatabase(choice: choice)
+        }
+     
+        _ = Database.shared.saveCustomizedQuestionToDatabase(question: customQuestion)
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
     }
     
     // Hides keyboard when the view sees a touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
 }
