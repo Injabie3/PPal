@@ -28,6 +28,7 @@ class QuizListTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         // Reload data upon loading this screen.
         quizList = QuizBank.shared.quizHistory
+        
     }
     
     override func didReceiveMemoryWarning() {

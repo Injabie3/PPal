@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4608DF211FD26280000582AF /* CustomQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4608DF201FD26280000582AF /* CustomQuizViewController.swift */; };
+		4608DF231FD268EB000582AF /* CustomQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4608DF221FD268EB000582AF /* CustomQuizTableViewCell.swift */; };
 		46BBC2C21FAEE0A3005B0710 /* EmergencySettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */; };
 		6D1E1E851FB020DB0055C01A /* LabelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1E801FB020DB0055C01A /* LabelTest.swift */; };
 		6D1E1E861FB020DB0055C01A /* PeopleBankTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1E811FB020DB0055C01A /* PeopleBankTest.swift */; };
@@ -53,6 +55,7 @@
 		F76842821FBE4B53004EB264 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76842781FBE4B53004EB264 /* String.swift */; };
 		F76842831FBE4B53004EB264 /* PeopleBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76842791FBE4B53004EB264 /* PeopleBank.swift */; };
 		F7A880691FCFAA74001A540C /* PeopleFromLabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A880681FCFAA73001A540C /* PeopleFromLabelVC.swift */; };
+		F7B91B181FD24FA300A151F4 /* SelectPeopleForNewLabelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B91B111FD24FA300A151F4 /* SelectPeopleForNewLabelTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +146,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4608DF201FD26280000582AF /* CustomQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomQuizViewController.swift; sourceTree = "<group>"; };
+		4608DF221FD268EB000582AF /* CustomQuizTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomQuizTableViewCell.swift; sourceTree = "<group>"; };
 		46BBC2BC1FAEB2D9005B0710 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencySettingsVC.swift; sourceTree = "<group>"; };
 		6D1E1E801FB020DB0055C01A /* LabelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelTest.swift; sourceTree = "<group>"; };
@@ -194,6 +199,7 @@
 		F76842781FBE4B53004EB264 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = PPal/Models/String.swift; sourceTree = SOURCE_ROOT; };
 		F76842791FBE4B53004EB264 /* PeopleBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeopleBank.swift; path = PPal/Models/PeopleBank.swift; sourceTree = SOURCE_ROOT; };
 		F7A880681FCFAA73001A540C /* PeopleFromLabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleFromLabelVC.swift; sourceTree = "<group>"; };
+		F7B91B111FD24FA300A151F4 /* SelectPeopleForNewLabelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPeopleForNewLabelTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +337,7 @@
 			children = (
 				D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */,
 				F75D82071FAE7F570071F47F /* AddLabelTableViewController.swift */,
+				4608DF201FD26280000582AF /* CustomQuizViewController.swift */,
 				BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */,
 				46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */,
 				EB41F9031FBBDC1400D7E25D /* EndQuizVC.swift */,
@@ -342,6 +349,7 @@
 				EB41F8FB1FBBC74F00D7E25D /* PlayQuizVC.swift */,
 				6D4E9A1E1FCA522F00880697 /* QuestionListTableViewController.swift */,
 				6D4E9A181FCA2ED300880697 /* QuizListTableViewController.swift */,
+				F7B91B111FD24FA300A151F4 /* SelectPeopleForNewLabelTableViewController.swift */,
 				F7563BB01F9A9BF90046AC3E /* ViewController.swift */,
 				6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */,
 				BB0BC7E51FD0BD1700148E6D /* EditQuestionsVC.swift */,
@@ -352,6 +360,7 @@
 		F7A880671FCF9B34001A540C /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4608DF221FD268EB000582AF /* CustomQuizTableViewCell.swift */,
 				F75D82051FAE7F570071F47F /* LabelTableViewCell.swift */,
 				F75D82061FAE7F570071F47F /* PersonTableViewCell.swift */,
 				6D4E9A201FCA52C700880697 /* QuestionListTableViewCell.swift */,
@@ -576,8 +585,10 @@
 				F768427E1FBE4B53004EB264 /* Label.swift in Sources */,
 				F76842811FBE4B53004EB264 /* Person.swift in Sources */,
 				D3D234B01FA96C1300E5D683 /* AddContactVC.swift in Sources */,
+				F7B91B181FD24FA300A151F4 /* SelectPeopleForNewLabelTableViewController.swift in Sources */,
 				717749B71FA8061800C33286 /* HumanNetworkVC.swift in Sources */,
 				F75D82081FAE7F580071F47F /* PersonTableViewController.swift in Sources */,
+				4608DF211FD26280000582AF /* CustomQuizViewController.swift in Sources */,
 				F768427A1FBE4B53004EB264 /* QuizBank.swift in Sources */,
 				D343E0F71FB3A47900151675 /* MainQuizPageVC.swift in Sources */,
 				F768427C1FBE4B53004EB264 /* Choice.swift in Sources */,
@@ -591,6 +602,7 @@
 				46BBC2C21FAEE0A3005B0710 /* EmergencySettingsVC.swift in Sources */,
 				F768427F1FBE4B53004EB264 /* Quiz.swift in Sources */,
 				F76842801FBE4B53004EB264 /* UIImage.swift in Sources */,
+				4608DF231FD268EB000582AF /* CustomQuizTableViewCell.swift in Sources */,
 				BB0BC7E61FD0BD1700148E6D /* EditQuestionsVC.swift in Sources */,
 				F75D820B1FAE7F580071F47F /* AddLabelTableViewController.swift in Sources */,
 				F7A880691FCFAA74001A540C /* PeopleFromLabelVC.swift in Sources */,
