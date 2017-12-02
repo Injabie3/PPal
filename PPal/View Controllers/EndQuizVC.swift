@@ -16,7 +16,7 @@ class EndQuizVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.isHidden = true
         print(endPoints)
         scoreLabel.text = "Score:" + String(endPoints)
     }

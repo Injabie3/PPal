@@ -44,11 +44,13 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         isPhotoSelected = false
         isTextFieldsFilled = false
         
-        firstNameField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
-        lastNameField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
-        phoneNumberField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
-        emailField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
-        addressField.addTarget(self, action: #selector(CreateUserProfileVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        self.navigationController?.navigationBar.isHidden = false
+        
+        firstNameField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        lastNameField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        phoneNumberField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        emailField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
+        addressField.addTarget(self, action: #selector(AddContactVC.textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
         
         if isImported {
             isImported = false
@@ -113,12 +115,6 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     // update label text field
     func updateDisplayLabelsTextbox() {
         var labelArray = [String]()
-        //        if let person = person {
-        //            for label in person.getLabels() {
-        //                labelArray.append(label.getName())
-        //            }
-        //        }
-        // else {
         for label in selectedLabels {
             labelArray.append(label.getName())
         }
@@ -127,8 +123,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         let labelString = labelArray.joined(separator: ",")
         
         self.displayLabels.text = (labelString)
-        print (labelString)
-        print(labelArray)
+
     }
     
 
@@ -291,6 +286,7 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
     @IBAction func cancelPressed(_ sender: Any) {
         // Clear the variables and go back.
         selectedLabels.removeAll()
+        self.navigationController?.navigationBar.isHidden = true
         self.navigationController!.popViewController(animated: true)
     }
     
@@ -300,6 +296,32 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
         present(alert, animated: true, completion: nil)
+    }
+    
+    // When the next button is pressed on the keyboard, it should go to the next text field. The last text field will have a done button which will dismiss the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == firstNameField {
+            textField.resignFirstResponder()
+            lastNameField.becomeFirstResponder()
+        }
+        else if textField == lastNameField {
+            textField.resignFirstResponder()
+            phoneNumberField.becomeFirstResponder()
+        }
+        else if textField == phoneNumberField {
+            textField.resignFirstResponder()
+            emailField.becomeFirstResponder()
+        }
+        else if textField == emailField {
+            textField.resignFirstResponder()
+            addressField.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
 }
