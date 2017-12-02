@@ -142,4 +142,29 @@ class CreateUserProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
         self.view.endEditing(true)
     }
     
+    // When the next button is pressed on the keyboard, it should go to the next text field. The last text field will have a done button which will dismiss the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == firstNameTextField {
+            textField.resignFirstResponder()
+            lastNameTextField.becomeFirstResponder()
+        }
+        else if textField == lastNameTextField {
+            textField.resignFirstResponder()
+            phoneField.becomeFirstResponder()
+        }
+        else if textField == phoneField {
+            textField.resignFirstResponder()
+            emailField.becomeFirstResponder()
+        }
+        else if textField == emailField {
+            textField.resignFirstResponder()
+            addressField.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
 }

@@ -305,4 +305,29 @@ class AddContactVC: UIViewController, UITextFieldDelegate, UIImagePickerControll
         present(alert, animated: true, completion: nil)
     }
     
+    // When the next button is pressed on the keyboard, it should go to the next text field. The last text field will have a done button which will dismiss the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == firstNameField {
+            textField.resignFirstResponder()
+            lastNameField.becomeFirstResponder()
+        }
+        else if textField == lastNameField {
+            textField.resignFirstResponder()
+            phoneNumberField.becomeFirstResponder()
+        }
+        else if textField == phoneNumberField {
+            textField.resignFirstResponder()
+            emailField.becomeFirstResponder()
+        }
+        else if textField == emailField {
+            textField.resignFirstResponder()
+            addressField.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
 }

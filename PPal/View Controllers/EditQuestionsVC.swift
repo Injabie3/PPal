@@ -10,7 +10,6 @@ import UIKit
 
 class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
 
-    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var correctAnswerText: UITextField!
@@ -40,12 +39,61 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
         answerThreeField.borderStyle = .roundedRect
         answerFourField.borderStyle = .roundedRect
     }
+    
     @objc func textFieldDidChange(_ textField: UITextField) {
         if(questionTextField?.text?.isEmpty)! || (correctAnswerText?.text?.isEmpty)! || (answerTwoField?.text?.isEmpty)! || (answerThreeField?.text?.isEmpty)! || (answerFourField?.text?.isEmpty)! {
             saveButton.isEnabled = false
         } else {
             saveButton.isEnabled = true
         }
+    }
+    
+    // Moves the view up by 200 when the user starts editing any text fields
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        moveTextField(textField, moveDistance: -200, up: true)
+    }
+    
+    // Moves the view back down by 200 when the user finishes editing any text fields
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        moveTextField(textField, moveDistance: -200, up: false)
+    }
+    
+    // When the next button is pressed on the keyboard, it should go to the next text field. The last text field will have a done button which will dismiss the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == questionTextField {
+            textField.resignFirstResponder()
+            correctAnswerText.becomeFirstResponder()
+        }
+        else if textField == correctAnswerText {
+            textField.resignFirstResponder()
+            answerTwoField.becomeFirstResponder()
+        }
+        else if textField == answerTwoField {
+            textField.resignFirstResponder()
+            answerThreeField.becomeFirstResponder()
+        }
+        else if textField == answerThreeField {
+            textField.resignFirstResponder()
+            answerFourField.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+        }
+
+        return true
+    }
+    
+    // Animates the movement of the text fields
+    func moveTextField(_ textField: UITextField, moveDistance: Int, up: Bool) {
+        let moveDuration = 0.3
+        let movement: CGFloat = CGFloat(up ? moveDistance : -moveDistance)
+        
+        UIView.beginAnimations("animateTextField", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(moveDuration)
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
     }
     
     @IBAction func selectImageFromLibrary(_ sender: Any) {
@@ -57,6 +105,7 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismiss(animated: true, completion: nil)
@@ -74,5 +123,10 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
         
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
+    }
+    
+    // Hides keyboard when the view sees a touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
