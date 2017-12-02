@@ -1133,11 +1133,11 @@
                                 </connections>
                             </segmentedControl>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWV-Sh-sif" userLabel="Label View">
-                                <rect key="frame" x="0.0" y="148" width="414" height="524"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="588"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kzs-9B-gTg">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="524"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="588"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
@@ -1172,7 +1172,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4l-t3-h7H" userLabel="List View">
-                                <rect key="frame" x="0.0" y="148" width="414" height="524"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="591"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T9O-2V-d6w">
@@ -1255,7 +1255,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ohg-Ck-s6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4GL-OP-E2D" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1868" y="851"/>
+            <point key="canvasLocation" x="1866.6666666666667" y="850.27173913043487"/>
         </scene>
         <!--Select People-->
         <scene sceneID="xCD-cw-zeA">

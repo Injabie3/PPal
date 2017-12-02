@@ -89,7 +89,10 @@ class XLabelsTableViewController: UITableViewController {
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
         }
         
+        // I don't think we need the following line...
         self.tableView(tableView, didDeselectRowAt: indexPath)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
 
     }
     
