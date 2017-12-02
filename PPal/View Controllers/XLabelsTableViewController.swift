@@ -22,6 +22,7 @@ class XLabelsTableViewController: UITableViewController {
 
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -38,12 +39,20 @@ class XLabelsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         
         cell.textLabel?.text = PeopleBank.shared.getLabels()[indexPath.row].getName() // get person name with index.row from peoplebank
+        for label in selectedLabels {
+
+            if ((cell.textLabel?.text)! == label.getName()) {
+                cell.accessoryType = .checkmark
+            }
+        }
+
         if (indexPath.row % 2) != 0 {
             cell.backgroundColor = UIColor .white
         }
         else {
             cell.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.93, alpha: 1.0)
         }
+        
         return cell
         
     }

@@ -35,7 +35,7 @@ class Database {
     var labelDatabase: Connection!
     
     //Table variable declaration for questions
-    let questionTable = Table("question")
+    let questionTable = Table("questions")
     let questionId = Expression<Int>("questionId")
     let question = Expression<String>("question")
     let questionPhoto = Expression<String>("questionPhoto")
@@ -62,6 +62,27 @@ class Database {
     let questions = Expression<String>("questions")
     let score = Expression<Int>("score")
     var quizzesDatabase: Connection!
+    
+    //Table variable declaration for customized questions
+    let customizedQuestionTable = Table("questions")
+    let customizedQuestionId = Expression<Int>("questionId")
+    let questionText = Expression<String>("question")
+    let customizedQuestionPhoto = Expression<String>("questionPhoto")
+    let customizedChoice1 = Expression<Int>("choice1")
+    let customizedChoice2 = Expression<Int>("choice2")
+    let customizedChoice3 = Expression<Int>("choice3")
+    let customizedChoice4 = Expression<Int>("choice4")
+    let customizedCorrectAns = Expression<Int>("correctAns")
+    let customizedSelectedAns = Expression<Int>("selectedAns")
+    var customizedQuestionsDatabase: Connection!
+    
+    //Table variable declaration for customized choices
+    let customizedChoiceTable = Table("choices")
+    let customizedChoiceId = Expression<Int>("choiceId")
+    let customizedChoiceText = Expression<String>("choiceText")
+    let customizedChoicePhoto = Expression<String>("choicePhoto")
+    let customizedPersonId = Expression<Int?>("personId")
+    var customizedChoicesDatabase: Connection!
     
     // create document path URL if not existed
     private init() {
@@ -100,6 +121,20 @@ class Database {
             let quizzesDatabase = try Connection(quizzesFileUrl.path)
             self.quizzesDatabase = quizzesDatabase
             self.createTableForQuizzes()
+            
+            // creating customized questions database
+            let customizedQuestionsDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let customizedQuestionsFileUrl = customizedQuestionsDocumentDirectory.appendingPathComponent("customizedQuestions").appendingPathExtension("sqlite3")
+            let customizedQuestionsDatabase = try Connection(customizedQuestionsFileUrl.path)
+            self.customizedQuestionsDatabase = customizedQuestionsDatabase
+            self.createTableForcustomizedQuestions()
+            
+            // creating customized choices database
+            let customizedChoicesDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let customizedChoicesFileUrl = customizedChoicesDocumentDirectory.appendingPathComponent("customizedChoices").appendingPathExtension("sqlite3")
+            let customizedChoicesDatabase = try Connection(customizedChoicesFileUrl.path)
+            self.customizedChoicesDatabase = customizedChoicesDatabase
+            self.createTableForCustomizedChoices()
             
         } catch {
             print(error)
@@ -143,6 +178,20 @@ class Database {
             let quizzesDatabase = try Connection(quizzesFileUrl.path)
             self.quizzesDatabase = quizzesDatabase
             self.createTableForQuizzes()
+            
+            // creating customized questions database
+            let customizedQuestionsDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let customizedQuestionsFileUrl = customizedQuestionsDocumentDirectory.appendingPathComponent("customizedQuestions").appendingPathExtension("sqlite3")
+            let customizedQuestionsDatabase = try Connection(customizedQuestionsFileUrl.path)
+            self.customizedQuestionsDatabase = customizedQuestionsDatabase
+            self.createTableForcustomizedQuestions()
+            
+            // creating customized choices database
+            let customizedChoicesDocumentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let customizedChoicesFileUrl = customizedChoicesDocumentDirectory.appendingPathComponent("customizedChoices").appendingPathExtension("sqlite3")
+            let customizedChoicesDatabase = try Connection(customizedChoicesFileUrl.path)
+            self.customizedChoicesDatabase = customizedChoicesDatabase
+            self.createTableForCustomizedChoices()
             
             
         } catch {
@@ -253,6 +302,49 @@ class Database {
         } catch {
             print(error)
         }
+        
+    }
+    
+    /// Table creation for Customized Questions
+    private func createTableForcustomizedQuestions() {
+        
+        let tryCreatingCustomizedQuestionsTable = self.customizedQuestionTable.create { (table) in
+            table.column(self.customizedQuestionId, primaryKey: true)
+            table.column(self.questionText)
+            table.column(self.customizedQuestionPhoto)
+            table.column(self.customizedChoice1)
+            table.column(self.customizedChoice2)
+            table.column(self.customizedChoice3)
+            table.column(self.customizedChoice4)
+            table.column(self.customizedCorrectAns)
+            table.column(self.customizedSelectedAns)
+            print("Customized Questions Table Created!")
+        }
+        
+        do {
+            try self.customizedQuestionsDatabase.run(tryCreatingCustomizedQuestionsTable)
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    /// Table creation for Choices
+    private func createTableForCustomizedChoices() {
+        
+        let tryCreatingCustomizedChoicesTable = self.customizedChoiceTable.create { (table) in
+            table.column(self.customizedChoiceId, primaryKey: true)
+            table.column(self.customizedChoiceText)
+            table.column(self.customizedChoicePhoto)
+            table.column(self.customizedPersonId)
+            print("Customized Choices Table Created!")
+        }
+        
+        do {
+            try self.customizedChoicesDatabase.run(tryCreatingCustomizedChoicesTable)
+        } catch {
+            print(error)
+        }
     }
     
     /**
@@ -336,6 +428,109 @@ class Database {
             return false
         }
     }
+    
+    
+    
+    /**
+     Saves a customized question to the database for the first time.
+     - parameter label: A Question object.
+     - returns: true or false.
+     - True if the customized question was saved to the database.
+     - False if the customized question could not be saved.
+     */
+    func saveCustomizedQuestionToDatabase(question: Question) -> Bool {
+        
+        let saveCustomizedQuestion = self.customizedQuestionTable.insert(self.questionText <- question.text, self.customizedQuestionPhoto <- question.image, self.customizedChoice1 <- question.getChoices()[0].id, self.customizedChoice2 <- question.getChoices()[1].id, self.customizedChoice3 <- question.getChoices()[2].id, self.customizedChoice4 <- question.getChoices()[3].id, self.customizedCorrectAns <- question.getCorrectAnswer(), self.customizedSelectedAns <- question.getSelectedAnswer())
+        do {
+            let rowid = try self.customizedQuestionsDatabase.run(saveCustomizedQuestion)
+            question.set(id: Int(truncatingIfNeeded: rowid))
+            print("Saved customized question (rowid: \(rowid)) to database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+    
+    
+    /**
+     Updates a customized question in the database.
+     - parameter profile: A Question object.
+     - returns: true or false
+     - True if the update was successful.
+     - False if it could not be updated.
+     */
+    func updateQuestion(question: Question) -> Bool {
+        
+        
+        // Get the ID we want to update, or else we're updating EVERY row.
+        let questionToUpdate = self.customizedQuestionTable.filter(self.id == question.getId())
+        
+        let updateQuestion = questionToUpdate.update(self.questionText <- question.text, self.customizedQuestionPhoto <- question.image, self.customizedChoice1 <- question.getChoices()[0].id, self.customizedChoice2 <- question.getChoices()[1].id, self.customizedChoice3 <- question.getChoices()[2].id, self.customizedChoice4 <- question.getChoices()[3].id, self.customizedCorrectAns <- question.getCorrectAnswer(), self.customizedSelectedAns <- question.getSelectedAnswer())
+        do {
+            try self.customizedQuestionsDatabase.run(updateQuestion)
+            let rowid = question.getId()
+            print("Updated customized question (rowid: \(rowid)) in database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+        
+        
+    }
+    
+    
+    /**
+     Saves a customized choice to the database for the first time.
+     - parameter choice: A Choice object.
+     - returns: true or false.
+     - True if the choice was saved to the database.
+     - False if the choice could not be saved.
+     */
+    func saveCustomizedChoiceToDatabase(choice: Choice) -> Bool {
+        
+        let saveCustomizedChoice = self.customizedChoiceTable.insert(self.choiceText <- choice.text, self.choicePhoto <- choice.pathToPhoto) //self.personId <- choice.person.getId()
+        do {
+            let rowid = try self.customizedChoicesDatabase.run(saveCustomizedChoice)
+            choice.id = Int(truncatingIfNeeded: rowid)
+            print("Saved choice (rowid: \(rowid)) to database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+        
+    }
+    
+    
+    /**
+     Updates a customized choice in the database.
+     - parameter profile: A Choice object.
+     - returns: true or false
+     - True if the update was successful.
+     - False if it could not be updated.
+     */
+    func updateChoice(choice: Choice) -> Bool {
+        
+        // Get the ID we want to update, or else we're updating EVERY row.
+        let choiceToUpdate = self.customizedChoiceTable.filter(self.id == choice.id)
+        
+        let updateChoice = choiceToUpdate.update(self.choiceText <- choice.text, self.choicePhoto <- choice.pathToPhoto) //self.personId <- choice.person.getId()
+        do {
+            try self.customizedChoicesDatabase.run(updateChoice)
+            let rowid = choice.id
+            print("Updated customized choice (rowid: \(rowid)) in database")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+        
+        
+    }
+    
+    
     
     
     /**
@@ -465,6 +660,27 @@ class Database {
             return false
         }
     }
+    
+    /**
+     Deletes a customized question from the database
+     - parameter id: The ID of the customized question, which can be obtained from the getId() method of the question.
+     - returns: true or false
+     - True if the question was successfully deleted from the database.
+     - False if the question could not be deleted.
+     */
+    func deleteQuestionById(id: Int) -> Bool {
+        
+        let question = self.customizedQuestionTable.filter(self.id == id)
+        let deleteQuestion = question.delete()
+        do {
+            try self.customizedQuestionsDatabase.run(deleteQuestion)
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+    
     
     /**
      Updates a Person profile in the database.
@@ -608,6 +824,7 @@ class Database {
         let bank = QuizBank.shared
         var choiceArray = [Choice]()
         var questionArray = [Question]()
+        var customizedChoiceArray = [Choice]()
 
         //loading choices from database into choiceArray
         do {
@@ -687,6 +904,62 @@ class Database {
         } catch {
             print (error)
         }
+        
+        
+
+        //loading customized choices from database into customizedChoiceArray
+        do {
+            let customizedChoicesInDatabase = try self.customizedChoicesDatabase!.prepare(customizedChoiceTable)
+            for choice in customizedChoicesInDatabase {
+                print("Id: \(choice[self.customizedChoiceId]), choiceText: \(choice[self.customizedChoiceText]), personID: \(String(describing: choice[self.customizedPersonId]))")
+                
+                // Create a Choice object per result, and add this choice into the choiceArray.
+                let choiceObject = Choice()
+                choiceObject.id = choice[self.customizedChoiceId]
+                choiceObject.text = choice[self.customizedChoiceText]
+                choiceObject.pathToPhoto = choice[self.customizedChoicePhoto]
+                customizedChoiceArray.append(choiceObject)
+            }
+        } catch {
+            print (error)
+        }
+        
+        //At this point, we should have an array of customized choices ready to be loaded into customized questions
+        do {
+            let customizedQuestionInDatabase = try self.customizedQuestionsDatabase!.prepare(customizedQuestionTable)
+            for question in customizedQuestionInDatabase {
+                print("Id: \(question[self.customizedQuestionId]), question: \(question[self.questionText]), choice1: \(question[self.customizedChoice1]), choice2: \(question[self.customizedChoice2]), choice3: \(question[self.customizedChoice3]), choice4: \(question[self.customizedChoice4]), correctAns: \(question[self.customizedCorrectAns]), selectedAns: \(question[self.customizedSelectedAns])")
+                let questionObject = Question()
+                // Set the question id from the primary key in the database.
+                questionObject.set(id: question[self.customizedQuestionId])
+                
+                // Set the text and image.
+                questionObject.text = question[self.questionText]
+                questionObject.image = question[self.customizedQuestionPhoto]
+                
+                // Add each choice in from the choice array above, will double check to make sure the index is not nil.
+                if let index0 = customizedChoiceArray.index(where: { $0.id == question[self.customizedChoice1] }) {
+                    _ = questionObject.set(choice: customizedChoiceArray[index0], atIndex: 0)
+                }
+                if let index1 = customizedChoiceArray.index(where: { $0.id == question[self.customizedChoice2] }) {
+                    _ = questionObject.set(choice: customizedChoiceArray[index1], atIndex: 1)
+                }
+                if let index2 = customizedChoiceArray.index(where: { $0.id == question[self.customizedChoice3] }) {
+                    _ = questionObject.set(choice: customizedChoiceArray[index2], atIndex: 2)
+                }
+                if let index3 = customizedChoiceArray.index(where: { $0.id == question[self.customizedChoice4] }) {
+                    _ = questionObject.set(choice: customizedChoiceArray[index3], atIndex: 3)
+                }
+                
+                // Set the correct answer, and selected answer indices.
+                _ = questionObject.set(correctAnswerIndex: question[self.customizedCorrectAns])
+                _ = questionObject.set(selectedAnswerIndex: question[self.customizedSelectedAns])
+                _ = bank.addCustom(question: questionObject)
+            }
+        } catch {
+            print (error)
+        }
+        
 
         //return bank or not
     }
