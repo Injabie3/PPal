@@ -350,6 +350,8 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
                         _ = Database.shared.updateProfile(profile: person)
                     }
                     
+                    // Make the table view consistent again.
+                    self.filteredLabelArrayToSearch = PeopleBank.shared.getLabels()
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
                 let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)
