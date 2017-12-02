@@ -20,7 +20,7 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
     
     
     
-    var choiceIndex = [0,1,2,3]
+    var choiceIndex = [0, 1, 2, 3]
     var randomNum: Int = 0
     var customQuestion = Question()
     

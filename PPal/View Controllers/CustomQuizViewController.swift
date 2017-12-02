@@ -13,6 +13,7 @@ class CustomQuizViewController: UIViewController, UITableViewDataSource, UITable
     var customQuizList = QuizBank.shared.getCustomQuestions()
     
     @IBOutlet weak var customQuizTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         customQuizTableView.delegate = self
@@ -24,6 +25,7 @@ class CustomQuizViewController: UIViewController, UITableViewDataSource, UITable
         customQuizList = QuizBank.shared.getCustomQuestions()
         customQuizTableView.reloadData()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,7 +48,7 @@ class CustomQuizViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         let quiz = customQuizList[indexPath.row]
-        cell.CustomQuizLabel.text = "\(quiz.text)"
+        cell.customQuizLabel.text = "\(quiz.text)"
         
        
         
@@ -67,6 +69,7 @@ class CustomQuizViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
             // Deselect the row so the colour goes back to normal.
+            
             tableView.deselectRow(at: indexPath, animated: true)
         
     }

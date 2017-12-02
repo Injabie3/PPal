@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UIG-ki-zm1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Qy-C5-PO7">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -302,7 +302,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="CustomQuizLabel" destination="XLV-Gh-tjK" id="0Hi-3A-Rqz"/>
+                                            <outlet property="customQuizLabel" destination="XLV-Gh-tjK" id="0Hi-3A-Rqz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1920,6 +1920,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="HuB-Yz-PdM"/>
         <segue reference="cHR-IY-Z5a"/>
-        <segue reference="fKh-Q2-mQo"/>
+        <segue reference="i0u-2t-zK9"/>
     </inferredMetricsTieBreakers>
 </document>

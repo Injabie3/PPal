@@ -11,7 +11,7 @@ import UIKit
 class CustomQuizTableViewCell: UITableViewCell {
 
     
-    @IBOutlet weak var CustomQuizLabel: UILabel!
+    @IBOutlet weak var customQuizLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
