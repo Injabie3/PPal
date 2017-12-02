@@ -9,6 +9,7 @@
 import UIKit
 import Contacts
 import ContactsUI
+var newLabel = Label()
 
 class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     var fromRoot = false
@@ -71,7 +72,11 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         labelTableView.reloadData()
         
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     @IBAction func importFromContactsButton(_ sender: Any) {
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
@@ -165,6 +170,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
                     _ = PeopleBank.shared.add(label: label)
                     _ = Database.shared.saveLabelToDatabase(label: label)
                     
+                    newLabel = label
                 }
                 // Reload the table view.
                 self.labelTableView.reloadData()
@@ -280,7 +286,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
             let labelAlert = UIAlertController(title: "Edit Label", message: "", preferredStyle: .alert)
             // PLEASE NOTE
             // The below line will need to be fixed when implementing the search bar with this.
-            let labels = PeopleBank.shared.getLabels()
+            let labels = self.filteredLabelArrayToSearch
             let label = labels[indexPath.row] // Get the label that was selected.
             
             labelAlert.addTextField { (textField) in
@@ -321,7 +327,7 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
         let deleteLabel = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
             // Delete the row from the data source
             var ableToDelete = true // Represents: Can we delete this label?
-            let labels = PeopleBank.shared.getLabels()
+            let labels = self.filteredLabelArrayToSearch
             let label = labels[indexPath.row]
             let labelAlert: UIAlertController?
             
@@ -345,6 +351,9 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
                     for person in peopleWithDeletedLabel {
                         _ = Database.shared.updateProfile(profile: person)
                     }
+                    
+                    // Make the table view consistent again.
+                    self.filteredLabelArrayToSearch.remove(at: indexPath.row)
                     
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
@@ -380,7 +389,8 @@ class HumanNetworkVC: UIViewController, CNContactPickerDelegate, UITableViewDele
                 _ = PeopleBank.shared.del(person: people[indexPath.row])
                 
                 // Make the table view consistent again.
-                self.filteredArrayToSearch = PeopleBank.shared.getPeople()
+                self.filteredArrayToSearch.remove(at: indexPath.row)
+                
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
             let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)

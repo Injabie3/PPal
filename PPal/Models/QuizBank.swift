@@ -48,6 +48,13 @@ class QuizBank {
         customQuestions = [Question]()
     }
     
+    /// returns all custom questions
+    func getCustomQuestions() -> [Question]
+    {
+        
+        return customQuestions
+    }
+    
     //Exerpt taken from https://github.com/almata/Combinatorics in Combinatorics.swift
     //Maybe i should make this an extension instead?
     //This function works off of a template to take in various types. While the parameter elements will be of type [person] array and taking will be the size that we are choosing from the [Person] array (i.e [Harry, Ryan, Mirac] choose 2 will be [Harry, Ryan] and [Mirac, Ryan] and [Harry, Mirac]). Returns value is an array within an array. The function only returns combinations without repetition. Hence, [Harry, Mirac] and [Mirac, Harry] are the same and only one unique combination is taking.
@@ -99,6 +106,9 @@ class QuizBank {
         if !customQuestions.contains(question) {
             return false
         }
+        
+        let indexToRemove = customQuestions.index(of: question)
+        customQuestions.remove(at: indexToRemove!)
         
         return true
     }
@@ -389,6 +399,12 @@ class QuizBank {
                 
             }
             
+        }
+        
+        // Also include the custom questions in the mix of random questions
+        // we want to generate.
+        for question in customQuestions {
+            randomizedQuestionsArray.append(question)
         }
         
         for _ in 0...9 { // randomizing the resulting question array to be returned as a quiz

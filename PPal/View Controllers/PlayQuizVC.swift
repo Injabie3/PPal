@@ -138,7 +138,7 @@ class PlayQuizVC: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     // When currentQuestion != question.count, create a new question

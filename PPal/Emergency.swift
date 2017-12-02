@@ -55,25 +55,27 @@ class Emergency: UIViewController{
     
     @IBAction func emergencyCall(_ sender: AnyObject)  //emergency call when "Emergency Button" pressed
     {
-        if buttonState == false     //global var to check if the button is off or on in "Emergency Settings" to check
+        if UserDefaults.standard.bool(forKey: "switchState") == true    //get switch value from user defaults
         {
-            if (copyPerson.getInfo().phoneNumber.isEmpty) //check to see if the user has tapped on one of the emergency contacts if tapped that contact is guaranteed to have a phonenumber
-            {
-                print("please set emergency contact")
+            let indexToSearch = UserDefaults.standard.integer(forKey: "emergencyID")
+            if let personIndex = PeopleBank.shared.getPeople().index(where: { $0.getId() == indexToSearch }) {
+                let copyPerson = PeopleBank.shared.getPeople()[personIndex]
+
+                    var phoneNumber = copyPerson.getInfo().phoneNumber
+                    phoneNumber = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                    let url: NSURL = URL(string: "TEL://\(phoneNumber)")! as NSURL
+                    UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                    print(copyPerson.getInfo().phoneNumber)
+                    
+                
             }
-            else  //this will call the set contact number
-            {
-                var phoneNumber = copyPerson.getInfo().phoneNumber
-                phoneNumber = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-                let url: NSURL = URL(string: "TEL://\(phoneNumber)")! as NSURL
-                UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
-                print(copyPerson.getInfo().phoneNumber)
-            }
-            
         }
         else
         {
-            print("please set emergency contact")
+            let UnsetContactAlert = UIAlertController(title: "Cannot Request Assistance", message: "Please set your preferred contact in emergency settings", preferredStyle: .alert)
+            let UnsetContactAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            UnsetContactAlert.addAction(UnsetContactAction)
+            self.present(UnsetContactAlert, animated: true, completion: nil)
             
         }
     }
@@ -164,7 +166,7 @@ extension Emergency: CLLocationManagerDelegate{  //extension to the Emergency cl
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {  // this delegate function is called every time the user exits the the monitored circular region
         let title = "EMERGENCY ALERT"
-        let message = "The AD patient has left the designated region"
+        let message = "You have left the designated region"
         inAppAlert(tle: title, msg: message)
         backGroundNotification(tle: title, msg: message)
         //sendMessage()
@@ -173,7 +175,7 @@ extension Emergency: CLLocationManagerDelegate{  //extension to the Emergency cl
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {  //this delegate function is called every time the user enters the the monitored circular region
         let title = "REGION NOTIFICATION"
-        let message = "The AD patient has come back to the designated region"
+        let message = "You have returned back to the designated region"
         inAppAlert(tle: title, msg: message)  //calling the in app alert function with the title and message set above
         backGroundNotification(tle: title, msg: message) //notify the user in background with the same title and message
         
