@@ -26,10 +26,12 @@ class EmergencySettingsVC: UIViewController, UITableViewDataSource, UITableViewD
          tableView.setEditing(true, animated: false) */
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         list.isHidden = !toggle.isOn
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -99,8 +101,7 @@ class EmergencySettingsVC: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-        if(UserDefaults.standard.integer(forKey: "emergencyID") == 0)
-        {
+        if UserDefaults.standard.integer(forKey: "emergencyID") == 0 {
             UserDefaults.standard.set(false, forKey: "switchState")
             
         }
