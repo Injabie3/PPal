@@ -189,6 +189,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="playPressed:" destination="5RE-gS-YLx" eventType="touchDown" id="iYD-Uc-T6Q"/>
                                             <segue destination="irK-zZ-sca" kind="show" id="KGw-fO-pjK"/>
                                         </connections>
                                     </button>
@@ -335,16 +336,17 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="customQuizTableView" destination="BDt-t1-YZT" id="VeR-Bn-oDc"/>
+                        <segue destination="Eao-jF-SCC" kind="show" identifier="EditQuestionsVC" id="Z4p-7z-aLD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x19-EX-ehr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2336.231884057971" y="1539.9456521739132"/>
         </scene>
-        <!--Create New Question-->
+        <!--EditQuestionsVC-->
         <scene sceneID="O0x-su-Oiv">
             <objects>
-                <viewController id="Eao-jF-SCC" customClass="EditQuestionsVC" customModule="PPal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditQuestionsVC" title="EditQuestionsVC" id="Eao-jF-SCC" customClass="EditQuestionsVC" customModule="PPal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CcP-Is-HAo"/>
                         <viewControllerLayoutGuide type="bottom" id="liR-dY-8kA"/>
@@ -497,7 +499,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBk-fe-guX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-884.05797101449286" y="1622.2826086956522"/>
+            <point key="canvasLocation" x="-754" y="1622"/>
         </scene>
         <!--Play QuizVC-->
         <scene sceneID="VUD-sr-sVn">
@@ -1801,7 +1803,7 @@
                                 <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yk2-gf-pDh" id="wdJ-ez-qkb">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1920,6 +1922,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="HuB-Yz-PdM"/>
         <segue reference="cHR-IY-Z5a"/>
-        <segue reference="i0u-2t-zK9"/>
+        <segue reference="fKh-Q2-mQo"/>
+        <segue reference="Z4p-7z-aLD"/>
     </inferredMetricsTieBreakers>
 </document>

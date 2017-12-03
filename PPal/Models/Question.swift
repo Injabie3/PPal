@@ -20,6 +20,7 @@ class Question {
         text = ""
         image = ""
         choices = Array(repeating: Choice(), count: 4)
+        choiceIndices = []
         correctAnswer = -1
         selectedAnswer = -1
     }
@@ -41,6 +42,7 @@ class Question {
             // Make a copy of the choice, so it's a completely different reference.
             self.choices.append(Choice(choice))
         }
+        self.choiceIndices = [Int]()
     }
     
     /// The database primary key, used to store this question
@@ -51,6 +53,9 @@ class Question {
     
     /// A corresponding image for the question, in base64
     var image: String
+    
+    /// An array of Index position to keep track of the order when setting choice atIndex - Harry
+    var choiceIndices: [Int]
     
     /// An array to hold the four possible choices for each question.
     private var choices: [Choice]
@@ -138,6 +143,7 @@ class Question {
         }
         else {
             choices[atIndex] = choice
+            choiceIndices.append(atIndex)
             return true
         }
     }

@@ -9,9 +9,10 @@
 import UIKit
 
 class PlayQuizVC: UIViewController {
-
-    let quiz = QuizBank.shared.generateQuestions()
     
+    
+    
+    var quiz =  QuizBank.shared.generateQuestions()
     // An aray of questions, replace with strings of questions, separated with commas
     var questions = [Question]()
     
@@ -31,7 +32,7 @@ class PlayQuizVC: UIViewController {
         self.reviewButton.isHidden = true
         self.nextQuestionButton.isHidden = true
         self.resultText.isHidden = true
- 
+        
         for i in 1...4 {
             let button = view.viewWithTag(i) as! UIButton
             button.isEnabled = true
