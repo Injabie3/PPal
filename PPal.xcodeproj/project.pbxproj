@@ -257,7 +257,6 @@
 				F7A880671FCF9B34001A540C /* Table View Cells */,
 				F7A880601FCF9B0C001A540C /* View Controllers */,
 				F768426F1FBE4B3F004EB264 /* Models */,
-				F75D82251FAE9B6D0071F47F /* Emergency.swift */,
 				F7563BAE1F9A9BF90046AC3E /* AppDelegate.swift */,
 				F7563BB21F9A9BF90046AC3E /* Main.storyboard */,
 				F7563BB51F9A9BF90046AC3E /* Assets.xcassets */,
@@ -337,8 +336,10 @@
 			children = (
 				D3D234AF1FA96C1300E5D683 /* AddContactVC.swift */,
 				F75D82071FAE7F570071F47F /* AddLabelTableViewController.swift */,
-				4608DF201FD26280000582AF /* CustomQuizViewController.swift */,
 				BBA2E1C41FAC0C99008DF6D2 /* CreateUserProfileVC.swift */,
+				4608DF201FD26280000582AF /* CustomQuizViewController.swift */,
+				BB0BC7E51FD0BD1700148E6D /* EditQuestionsVC.swift */,
+				F75D82251FAE9B6D0071F47F /* Emergency.swift */,
 				46BBC2C11FAEE0A3005B0710 /* EmergencySettingsVC.swift */,
 				EB41F9031FBBDC1400D7E25D /* EndQuizVC.swift */,
 				717749B61FA8061800C33286 /* HumanNetworkVC.swift */,
@@ -352,7 +353,6 @@
 				F7B91B111FD24FA300A151F4 /* SelectPeopleForNewLabelTableViewController.swift */,
 				F7563BB01F9A9BF90046AC3E /* ViewController.swift */,
 				6D3A00041FAFA469004141E5 /* XLabelsTableViewController.swift */,
-				BB0BC7E51FD0BD1700148E6D /* EditQuestionsVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

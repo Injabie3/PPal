@@ -26,6 +26,8 @@
 	<string>Allow Access to Your Location In and Out of App</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow Access to Your Location when in Use </string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Allows access to images.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

@@ -211,7 +211,7 @@ class QuizBank {
         if listOfLabels.count > 1 {
             
             for index in 0...sizeOfLabelBank-1 {
-                if listOfLabels[index].getPeople().count > 2  {
+                if listOfLabels[index].getPeople().count > 2 {
                     var tempListOfLabels = listOfLabels
                     // var tempListOfLabel = listOfLabels[index]
                     var tempListOfPeople = listOfLabels[index].getPeople()
