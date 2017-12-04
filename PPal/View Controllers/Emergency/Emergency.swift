@@ -69,10 +69,17 @@ class Emergency: UIViewController{
                     
                 
             }
+            else {
+                let UnsetContactAlert = UIAlertController(title: "Cannot Request Assistance", message: "Please set your preferred contact in settings.", preferredStyle: .alert)
+                let UnsetContactAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                UnsetContactAlert.addAction(UnsetContactAction)
+                self.present(UnsetContactAlert, animated: true, completion: nil)
+                
+            }
         }
         else
         {
-            let UnsetContactAlert = UIAlertController(title: "Cannot Request Assistance", message: "Please set your preferred contact in emergency settings", preferredStyle: .alert)
+            let UnsetContactAlert = UIAlertController(title: "Cannot Request Assistance", message: "Please set your preferred contact in settings.", preferredStyle: .alert)
             let UnsetContactAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             UnsetContactAlert.addAction(UnsetContactAction)
             self.present(UnsetContactAlert, animated: true, completion: nil)
