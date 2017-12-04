@@ -23,7 +23,7 @@ class MainQuizPageVC: UIViewController {
     @IBAction func playPressed(_ sender: UIButton) {
         if PeopleBank.shared.getPeople().count < 4
         {
-            let alert = UIAlertController(title: "Cannot Play Quiz", message: "You do not have at least four people in your contact list", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Cannot Play Quiz", message: "You do not have at least four people in your contact list.  Please add more and try again.", preferredStyle: .alert)
             let alertAction =  UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alert.addAction(alertAction)
             present(alert, animated: true, completion: nil)

@@ -188,12 +188,15 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
 
         if questionToPass == nil{
             
+            // Ryan's commentary:
+            // Below, I have made randomNum = 0, because we don't want to shuffle anything here in the editor.
+            
             customQuestion.text = questionTextField.text!
             var customChoice = Choice()
             customChoice.pathToPhoto = #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
             customChoice.person = nil
             customChoice.text = correctAnswerText.text!
-            randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+            randomNum = 0 // Int(arc4random_uniform(UInt32(choiceIndex.count)))
             _ = customQuestion.set(choice: customChoice, atIndex: choiceIndex[randomNum])
             _ = customQuestion.set(correctAnswerIndex: choiceIndex[randomNum])
             choiceIndex.remove(at: randomNum)
@@ -202,7 +205,7 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
             customChoice.pathToPhoto = #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
             customChoice.person = nil
             customChoice.text = answerTwoField.text!
-            randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+            randomNum = 0 // Int(arc4random_uniform(UInt32(choiceIndex.count)))
             _ = customQuestion.set(choice: customChoice, atIndex: choiceIndex[randomNum])
             choiceIndex.remove(at: randomNum)
             
@@ -210,7 +213,7 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
             customChoice.pathToPhoto = #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
             customChoice.person = nil
             customChoice.text = answerThreeField.text!
-            randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+            randomNum = 0 // Int(arc4random_uniform(UInt32(choiceIndex.count)))
             _ = customQuestion.set(choice: customChoice, atIndex: choiceIndex[randomNum])
             choiceIndex.remove(at: randomNum)
             
@@ -218,12 +221,12 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
             customChoice.pathToPhoto = #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
             customChoice.person = nil
             customChoice.text = answerFourField.text!
-            randomNum = Int(arc4random_uniform(UInt32(choiceIndex.count)))
+            randomNum = 0 // Int(arc4random_uniform(UInt32(choiceIndex.count)))
             _ = customQuestion.set(choice: customChoice, atIndex: choiceIndex[randomNum])
             choiceIndex.remove(at: randomNum)
             
             
-            
+            // Ignore the below warning, was using this let to debug.
             let result = QuizBank.shared.addCustom(question: customQuestion)
             for choice in customQuestion.getChoices() {
                 _ = Database.shared.saveCustomizedChoiceToDatabase(choice: choice)
@@ -242,15 +245,15 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
             
             questionToPass!.getChoices()[questionToPass!.choiceIndices[1]].pathToPhoto =  #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
             questionToPass!.getChoices()[questionToPass!.choiceIndices[1]].person = nil
-            questionToPass!.getChoices()[questionToPass!.choiceIndices[1]].text = correctAnswerText.text!
+            questionToPass!.getChoices()[questionToPass!.choiceIndices[1]].text = answerTwoField.text!
             
             questionToPass!.getChoices()[questionToPass!.choiceIndices[2]].pathToPhoto =  #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
             questionToPass!.getChoices()[questionToPass!.choiceIndices[2]].person = nil
-            questionToPass!.getChoices()[questionToPass!.choiceIndices[2]].text = correctAnswerText.text!
+            questionToPass!.getChoices()[questionToPass!.choiceIndices[2]].text = answerThreeField.text!
             
             questionToPass!.getChoices()[questionToPass!.choiceIndices[3]].pathToPhoto =  #imageLiteral(resourceName: "default-user").resizeImageWith(newSize: CGSize(width: 50, height: 50)).toBase64
             questionToPass!.getChoices()[questionToPass!.choiceIndices[3]].person = nil
-            questionToPass!.getChoices()[questionToPass!.choiceIndices[3]].text = correctAnswerText.text!
+            questionToPass!.getChoices()[questionToPass!.choiceIndices[3]].text = answerFourField.text!
             
             
             for choice in questionToPass!.getChoices()

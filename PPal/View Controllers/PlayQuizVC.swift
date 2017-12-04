@@ -146,6 +146,10 @@ class PlayQuizVC: UIViewController {
     func newQuestion() {
         // questionText.text = questions[currentQuestion]
         // quizPhoto.image = UIImage(named: photos[currentQuestion])
+        
+        // Shuffle question
+        questions[currentQuestion].shuffleChoices()
+        
         questionText.text = questions[currentQuestion].text
         quizPhoto.image = questions[currentQuestion].image.toImage
         
@@ -186,6 +190,13 @@ class PlayQuizVC: UIViewController {
             let edit = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddContactVC") as! AddContactVC
             edit.person = person
             navigationController?.pushViewController(edit, animated: true)
+        }
+        else {
+            // This is a custom question.
+            let alert = UIAlertController(title: "Cannot Review", message: "You cannot review custom questions.", preferredStyle: .alert)
+            let alertAction =  UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(alertAction)
+            present(alert, animated: true, completion: nil)
         }
     }
     
