@@ -101,10 +101,10 @@ class EmergencySettingsVC: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-        if UserDefaults.standard.integer(forKey: "emergencyID") == 0 {
-            UserDefaults.standard.set(false, forKey: "switchState")
-            
-        }
+        // if UserDefaults.standard.integer(forKey: "emergencyID") == 0 {
+        //    UserDefaults.standard.set(false, forKey: "switchState")
+        //    
+        // }
         self.navigationController?.popViewController(animated: true)
     }
     
