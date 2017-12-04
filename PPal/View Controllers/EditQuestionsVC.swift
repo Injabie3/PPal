@@ -47,12 +47,11 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
         answerThreeField.borderStyle = .roundedRect
         answerFourField.borderStyle = .roundedRect
         
-        if let customQuestionPassed = questionToPass
-        {
+        if let customQuestionPassed = questionToPass {
             quizPhoto.image = customQuestionPassed.image.toImage
             questionTextField.text = customQuestionPassed.text
             
-            for index in 0...3{
+            for index in 0...3 {
                 
                 sortedChoiceArray.append(customQuestionPassed.getChoices()[index].id)
                 
@@ -71,7 +70,6 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
             print("\(customQuestionPassed.getChoices().filter({$0.id == sortedChoiceArray[3] })[0].id)")
             
         }
-        
     
     }
     
@@ -186,7 +184,7 @@ class EditQuestionsVC: UIViewController, UIImagePickerControllerDelegate, UIText
     
     @IBAction func saveButtonPressed(_ sender: Any) {
 
-        if questionToPass == nil{
+        if questionToPass == nil {
             
             // Ryan's commentary:
             // Below, I have made randomNum = 0, because we don't want to shuffle anything here in the editor.
