@@ -514,9 +514,9 @@ class Database {
     func updateChoice(choice: Choice) -> Bool {
         
         // Get the ID we want to update, or else we're updating EVERY row.
-        let choiceToUpdate = self.customizedChoiceTable.filter(self.id == choice.id)
+        let choiceToUpdate = self.customizedChoiceTable.filter(self.customizedChoiceId == choice.id)
         
-        let updateChoice = choiceToUpdate.update(self.choiceText <- choice.text, self.choicePhoto <- choice.pathToPhoto) //self.personId <- choice.person.getId()
+        let updateChoice = choiceToUpdate.update(self.customizedChoiceText <- choice.text, self.customizedChoicePhoto <- choice.pathToPhoto) //self.personId <- choice.person.getId()
         do {
             try self.customizedChoicesDatabase.run(updateChoice)
             let rowid = choice.id

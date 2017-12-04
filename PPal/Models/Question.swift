@@ -20,6 +20,7 @@ class Question {
         text = ""
         image = ""
         choices = Array(repeating: Choice(), count: 4)
+        choiceIndices = []
         correctAnswer = -1
         selectedAnswer = -1
     }
@@ -41,6 +42,7 @@ class Question {
             // Make a copy of the choice, so it's a completely different reference.
             self.choices.append(Choice(choice))
         }
+        self.choiceIndices = [Int]()
     }
     
     /// The database primary key, used to store this question
@@ -51,6 +53,9 @@ class Question {
     
     /// A corresponding image for the question, in base64
     var image: String
+    
+    /// An array of Index position to keep track of the order when setting choice atIndex - Harry
+    var choiceIndices: [Int]
     
     /// An array to hold the four possible choices for each question.
     private var choices: [Choice]
@@ -106,6 +111,47 @@ class Question {
     }
     
     /**
+     Shuffles the choices, but keeps track of where the correct answer is.  Use only before you give a question for a user to answer.
+     */
+    func shuffleChoices() {
+        var randomizedChoiceArray = Array(repeating: Choice(), count: 4)
+        var newArrayIndices = [0, 1, 2, 3]
+        var originalArrayIndices = [0, 1, 2, 3]
+        
+        // Get the correct index before we start shuffling.
+        var indexFromOriginalArray = self.correctAnswer
+        var indexFromNewArray = Int(arc4random_uniform(UInt32(newArrayIndices.count)))
+        
+        // Copy the correct choice into the new randomized choice array.
+        randomizedChoiceArray[newArrayIndices[indexFromNewArray]] = choices[originalArrayIndices[indexFromOriginalArray]]
+        
+        // Set the new correct answer index here, and then remove the indices.
+        self.correctAnswer = indexFromNewArray
+        
+        originalArrayIndices.remove(at: indexFromOriginalArray)
+        newArrayIndices.remove(at: indexFromNewArray)
+        
+        // We don't care where the other ones go, so we can loop this.
+        for _ in 0..<3 {
+            // Get a random index in the new and original array.
+            indexFromOriginalArray = Int(arc4random_uniform(UInt32(originalArrayIndices.count)))
+            indexFromNewArray = Int(arc4random_uniform(UInt32(newArrayIndices.count)))
+            
+            
+            // Copy choice over.
+            randomizedChoiceArray[newArrayIndices[indexFromNewArray]] = choices[originalArrayIndices[indexFromOriginalArray]]
+            
+            // Remove the indices; rinse and repeat.
+            originalArrayIndices.remove(at: indexFromOriginalArray)
+            newArrayIndices.remove(at: indexFromNewArray)
+        }
+        
+        // Now assign the shuffled array back.
+        self.choices = randomizedChoiceArray
+        
+    }
+    
+    /**
      Sets the selected answer in the array.  This is to indicate which answer the user
      selected during the quiz.
      - parameter index: The index corresponding to the selected Choice
@@ -138,6 +184,7 @@ class Question {
         }
         else {
             choices[atIndex] = choice
+            choiceIndices.append(atIndex)
             return true
         }
     }

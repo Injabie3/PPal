@@ -11,7 +11,7 @@ import UIKit
 class CustomQuizViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var customQuizList = QuizBank.shared.getCustomQuestions()
-    
+    var currentIndexPath = 0
     @IBOutlet weak var customQuizTableView: UITableView!
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class CustomQuizViewController: UIViewController, UITableViewDataSource, UITable
         let quiz = customQuizList[indexPath.row]
         cell.customQuizLabel.text = "\(quiz.text)"
         
-       
+        
         
         
         
@@ -71,6 +71,9 @@ class CustomQuizViewController: UIViewController, UITableViewDataSource, UITable
             // Deselect the row so the colour goes back to normal.
             
             tableView.deselectRow(at: indexPath, animated: true)
+            currentIndexPath = indexPath.row
+            self.performSegue(withIdentifier: "EditQuestionsVC", sender: self)
+        
         
     }
     
@@ -116,6 +119,19 @@ class CustomQuizViewController: UIViewController, UITableViewDataSource, UITable
         dismiss(animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "EditQuestionsVC")
+        {
+            let destinationVC = segue.destination as! EditQuestionsVC
+        
+            let row = currentIndexPath
+            destinationVC.questionToPass = customQuizList[row]
+            
+            
+            
+        }
+    }
     
     /*
     // MARK: - Navigation

@@ -38,6 +38,11 @@
                BlueprintName = "PPalTests"
                ReferencedContainer = "container:PPal.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "DataPopulation">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "YES">
